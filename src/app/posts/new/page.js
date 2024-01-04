@@ -18,15 +18,16 @@ const AddPost = async () => {
 
     return (
         <main className="flex flex-col">
-            <ul className="flex flex-wrap">
-                {posts.map((post, item) =>
-                    <li key={item}>
+            <h5 className="p-5">Для проверки</h5>
+            <ul className="flex flex-wrap h-28 p-5 overflow-hidden">
+                {posts.map(post =>
+                    <li key={post.id}>
                         {post.title}
                     </li>
                 )}
             </ul>
 
-            <div className="justify-center items-center h-screen">
+            <div className="justify-center items-center h-screen p-5">
                 <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-1/3"
                       action={addPost}>
                     <div className="mb-4">
@@ -40,7 +41,7 @@ const AddPost = async () => {
                     </div>
                     <div className="flex items-center justify-between">
 
-                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        <button className="bg-main-blue hover:bg-hov-blue text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                             type="submit">Добавить
                         </button>
                     </div>
@@ -48,7 +49,7 @@ const AddPost = async () => {
 
                 <div className="mb-10 p-10">
                     <Link href={`/posts`}>
-                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Вернуться</button>
+                        <button className="bg-main-blue hover:bg-hov-blue text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Вернуться</button>
                     </Link>
                 </div>
             </div>
