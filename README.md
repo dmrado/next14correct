@@ -1,5 +1,8 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+Предлагаю напистаь осмысленный ридми файл и переименовать репозиторий )))
+
+
 ## Getting Started
 
 First, run the development server:
