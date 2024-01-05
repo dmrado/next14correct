@@ -2,6 +2,7 @@
 const {Model} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Post extends Model {
+    // а у нас модель дважды описана. в этом файле и в файле миграции. Как так вышло?
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.

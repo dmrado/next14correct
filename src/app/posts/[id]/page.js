@@ -5,8 +5,11 @@ import {revalidatePath} from "next/cache"
 
 const PageId = async ({params: {id}}) => {
     //todo как делается обработка ошибок здесь?
+    // думаю надо рассмотреть две ошибки: 1) пост не найден 2) все другие. В первом случае возвращать нулл и обрабатывать этот случай в компоненте
+    // во втором случае возвращать ошибку и обрабатывать ошибку.
     // try {
     const post = await Post.findByPk(id)
+    console.warn('post', post)
     // if (!post) {
     // revalidatePath('/404')
     // }

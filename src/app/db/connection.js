@@ -3,9 +3,9 @@ import Sequelize from "sequelize";
 export default new Sequelize({
     dialect: 'mysql',
     host: 'localhost',
-    port: 8889,
-    username: 'root',
-    password: 'root',
-    database: 'next14correct_development',
+    port: 3306,
+    username: 'admin',
+    password: '123',
+    database: 'nextjs',
     dialectModule: require('mysql2')
 });

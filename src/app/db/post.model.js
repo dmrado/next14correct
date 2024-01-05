@@ -13,7 +13,7 @@ const init_medium_users = (sequelize) => {
             modelName: "post",
         }
     );
-    // Post.sync()
+    Post.sync()
     return Post;
 };
 

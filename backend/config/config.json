@@ -15,6 +15,7 @@
     "dialect": "mysql",
     "port": 8889
   },
+  // надо вводить .env файлы, так не пойдет.
   "production": {
     "username": "root",
     "password": "root",

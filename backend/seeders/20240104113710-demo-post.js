@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = {
+    // а как создавался этот файл? нам правда нужно столько "фейковых "постов?
     async up(queryInterface, Sequelize) {
         await queryInterface.bulkInsert('Posts', [{
             id: 1,

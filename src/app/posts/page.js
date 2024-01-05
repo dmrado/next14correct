@@ -12,8 +12,10 @@ import {revalidatePath} from "next/cache";
 
 const Posts = async () => {
     //todo не понятно зачем мы мапим response, куда это потом применять? Где посмотреть в консоли на свойство объекта dataValues?
+    // ну это "экспериментальный код", надо найти правильный вариант.
+    // кстати, думаю можно стантарную сортировку прописать в модели
     const posts = await Post.findAll({order: [['updatedAt', 'DESC']]}).then(res => res.map(r => r.dataValues))
-
+    console.warn('posts', posts)
     // const data = await getPosts()
     // const posts = data.items
 
@@ -46,6 +48,7 @@ const Posts = async () => {
                         <li key={post.id} className="p-5 mb-3 text-justify hover:bg-[#004E98] rounded-md">
                             <Link href={`posts/${post.id}`}>
                                 {/*todo правильное ли здесь решения дважды использовать Link что бы вывести кнопку удалить из под него?*/}
+                                {/*не очевидно.... Это больше про дизайн и пользователей, но посмотрим*/}
                                 <div className="flex justify-between">
                                     <h2 className="p-2 text-justify text-2xl">{post.title}</h2>
                                     <p className="p-2 text-justify">Post id: {post.id}</p>
