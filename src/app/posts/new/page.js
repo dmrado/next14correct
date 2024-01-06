@@ -1,5 +1,6 @@
 import Post from "@/app/db/post.model";
 import {revalidatePath} from "next/cache";
+import {redirect} from "next/navigation"
 import Link from "next/link";
 
 
@@ -13,6 +14,7 @@ const AddPost = async () => {
             text: formData.get('text')
         })
         revalidatePath('/posts')
+        redirect(`/posts`)
     }
 
 
