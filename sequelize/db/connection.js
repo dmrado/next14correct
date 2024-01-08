@@ -8,4 +8,4 @@ export default new Sequelize({
     password: 'root',
     database: 'next14correct_development',
     dialectModule: require('mysql2')
-});
+})

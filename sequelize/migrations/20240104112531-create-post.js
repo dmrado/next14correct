@@ -1,4 +1,5 @@
 'use strict';
+import User from "@/app/db/post.model"
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Posts', {
@@ -9,7 +10,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userId: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        references: {
+          model: User,
+          key: 'id'
+        }
       },
       title: {type: Sequelize.STRING, allowNull: false},
       text: {type: Sequelize.TEXT, allowNull: false},
@@ -19,13 +24,13 @@ module.exports = {
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn('now')
+        // defaultValue: Sequelize.fn('now')
 
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn('now')
+        // defaultValue: Sequelize.fn('now')
       }
     });
   },

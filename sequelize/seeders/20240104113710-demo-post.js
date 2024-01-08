@@ -1,11 +1,13 @@
 'use strict';
-
+import User from "@/app/db/post.model"
 module.exports = {
     async up(queryInterface, Sequelize) {
         await queryInterface.bulkInsert('Posts', [{
             id: 1,
-            //userId понадобится для выяснения кто добавил статью, естественно с разрешения админа
-            userId: 1,
+            userId: {references: {
+                    model: User,
+                    key: 'id'
+                }},
             title: "Post 1",
             text: "et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut",
             previewId: "Preview Body of the post ",
