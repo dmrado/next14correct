@@ -26,7 +26,7 @@ const init_users = (sequelize) => {
             modelName: "user",
         }
     );
-    User.sync().then(() => console.log('User table created.'))
+    // User.sync().then(() => console.log('User table created.'))
     return User;
 };
 

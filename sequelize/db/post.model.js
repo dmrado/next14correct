@@ -1,6 +1,6 @@
 import { Model, DataTypes } from "sequelize";
 import connection from "./connection";
-import User from "./post.model"
+import User from "./user.model"
 
 
 const init_medium_posts = (sequelize) => {
@@ -22,7 +22,7 @@ const init_medium_posts = (sequelize) => {
             modelName: "post",
         }
     );
-    Post.sync().then(() => console.log('Post table created.'))
+    // Post.sync({ force: true }).then(() => console.log('Post table created.'))
     return Post;
 };
 
