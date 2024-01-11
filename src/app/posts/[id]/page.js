@@ -1,6 +1,6 @@
 import Post from '@/app/db/post.model'
 import Link from "next/link"
-import {revalidatePath} from "next/cache"
+// import {revalidatePath} from "next/cache"
 
 
 const PageId = async ({params: {id}}) => {

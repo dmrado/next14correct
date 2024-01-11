@@ -1,11 +1,19 @@
 import Sequelize from "sequelize";
 
-export default new Sequelize({
+export const connection = new Sequelize({
     dialect: 'mysql',
+    dialectModule: require('mysql2'),
     host: 'localhost',
-    port: 8889,
-    username: 'root',
-    password: 'root',
-    database: 'next14correct_development',
-    dialectModule: require('mysql2')
+    port: 3306,
+    username: 'admin',
+    password: '123',
+    database: 'nextjs',
 });
+
+//   dialect: 'mysql',
+//   dialectModule: require('mysql2'),
+//   host: 'localhost',
+//   port: 3306,
+//   username: 'admin',
+//   password: '123',
+//   database: 'nextjs',
