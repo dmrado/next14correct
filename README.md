@@ -1,3 +1,7 @@
+This project is a website for a non-commercial society organization.
+
+All pages, apart from posts, are static. The posts page uses CRUD operations to add, update, read, and remove posts of only one user with id=1. React Quill is used to add and update posts. Nodemailer is used to send mail from a form on the ContactsPage.js. MySQL is used as the database. ORM Sequelize is also used. The .env file contains all environment variables. The config/mail.json contains all the necessary settings for Nodemailer. The config/config.json contains all the necessary settings for Sequelize connection.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
