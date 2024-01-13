@@ -2,8 +2,6 @@ import { DataTypes } from "sequelize";
 import { connection } from "./connection.js";
 import {User} from "./user.model.js";
 
-
-
 export const Post = connection.define('posts', {
     title: {
       type: DataTypes.STRING,
@@ -14,10 +12,10 @@ export const Post = connection.define('posts', {
       type: DataTypes.STRING
     },
     userId: {
-        type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
         references: {
             model: User,
-            key: 'id'
+            key: 'userId'
         }
     }
     }, {
