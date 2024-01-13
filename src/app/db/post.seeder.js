@@ -4,7 +4,7 @@ const queryInterface = connection.getQueryInterface();
 
 
 const up = async ( Sequelize) => {
-    await queryInterface.bulkInsert('Posts',
+    await queryInterface.bulkInsert('posts',
         [
             {
                 title: 'Title Post-1',

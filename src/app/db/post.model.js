@@ -12,12 +12,12 @@ export const Post = connection.define('posts', {
       type: DataTypes.STRING
     },
     userId: {
-    type: DataTypes.STRING,
-        references: {
-            model: User,
-            key: 'userId'
+      type: DataTypes.INTEGER,
+      references: {
+        model: User,
+        key: 'id'
         }
-    }
+      }
     }, {
      // Other model options go here
     }
