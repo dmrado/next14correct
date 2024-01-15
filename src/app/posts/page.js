@@ -1,5 +1,6 @@
 import Link from "next/link"
 import {Post} from "@/app/db/post.model";
+
 import {revalidatePath} from "next/cache";
 // import DeletePost from "../../components/DeletePost";
 

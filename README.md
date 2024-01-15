@@ -19,7 +19,12 @@ To sync your models run:
 ```bash
 npm run sync-db
 ```
-
+To seed your database with dates run:
+npm run seed-db
+```
+To seed:undo:all your database:
+npm run unseed-db
+```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
