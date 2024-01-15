@@ -2,27 +2,24 @@ import Link from "next/link"
 import {Post} from "@/app/db/post.model";
 
 import {revalidatePath} from "next/cache";
-// import DeletePost from "../../components/DeletePost";
 
 
-//todo в чем разница между таким запросом и правильным? почему здесь нет .json?
-// const getPosts = async () => {
-//     const res = await Post.findAll()
-//     return await res.json()
-// }
 
 const Posts = async () => {
-    //todo не понятно зачем мы мапим response, куда это потом применять? Где посмотреть в консоли на свойство объекта dataValues?
+    //todo не понятно зачем мы мапим response, куда это потом применять?
     const posts = await Post.findAll({order: [['updatedAt', 'DESC']]}).then(res => res.map(r => r.dataValues))
 
-    // const data = await getPosts()
-    // const posts = data.items
+    const formData = new FormData();
+    // todo всю голову сломал как в серверном компоненте передать в deletePost id удаляемого поста? С клиенским компонентом можно было бы использовать onSubmit=(e => deletePost(post.id)), но хочется остаться в серверной парадигме
+    // formData.append('id', post.id);
+    // formData [ [ 'id', '[object Object]' ] ]
 
-
-    const deletePost = async (formData) => {
+    const deletePost = async () => {
         "use server"
-        // const {id} = Object.fromEntries(formData)
-        const {id} = formData.get('id')
+        const {id} = Object.fromEntries(formData)
+        console.log('formData', formData)
+
+        // const id = formData.get('id')
         await Post.destroy({
             where: {id}
         })
