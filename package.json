@@ -1,7 +1,6 @@
 {
   "name": "next14correct",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
   "scripts": {
     "sync-db": "node src/db-sync.js",

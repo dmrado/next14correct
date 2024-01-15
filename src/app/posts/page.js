@@ -9,25 +9,20 @@ const Posts = async () => {
     //todo не понятно зачем мы мапим response, куда это потом применять?
     const posts = await Post.findAll({order: [['updatedAt', 'DESC']]}).then(res => res.map(r => r.dataValues))
 
+    const formData = new FormData();
+    // todo всю голову сломал как в серверном компоненте передать в deletePost id удаляемого поста? С клиенским компонентом можно было бы использовать onSubmit=(e => deletePost(post.id)), но хочется остаться в серверной парадигме
+    // formData.append('id', post.id);
 
-    // formData [ [ 'id', '[object Object]' ] ]
+    const deletePost = async () => {
+        "use server"
+        const {id} = Object.fromEntries(formData)
+        console.log('formData', formData)
 
-    const foo = async (id) => {
-        const formData = new FormData();
-        // todo всю голову сломал как в серверном компоненте передать в deletePost id удаляемого поста? С клиенским компонентом можно было бы использовать onSubmit=(e => deletePost(post.id)), но хочется остаться в серверной парадигме
-        formData.append('id', id);
-        const deletePost = async () => {
-            "use server"
-            const {id} = Object.fromEntries(formData)
-            console.log('formData', formData)
-
-            // const id = formData.get('id')
-            await Post.destroy({
-                where: {id}
-            })
-            revalidatePath('/posts')
-        }
-        return deletePost()
+        // const id = formData.get('id')
+        await Post.destroy({
+            where: {id}
+        })
+        revalidatePath('/posts')
     }
 
 
@@ -58,7 +53,7 @@ const Posts = async () => {
                                     <p className="p-2 text-justify mr-10">{post.text}</p>
                                 </Link>
 
-                                <form action={foo}>
+                                <form action={deletePost}>
                                     <input type="hidden" name={post.id}/>
                                     <button type="submit" className="max-h-12 border-dotted border-2 border-red-500 bg-none hover:bg-red-700 text-white py-2 px-4 rounded
             focus:outline-none focus:shadow-outline">
