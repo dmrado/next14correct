@@ -1,5 +1,7 @@
 import { DataTypes } from "sequelize";
+// @ts-ignore
 import { connection } from "./connection.js";
+// @ts-ignore
 import {User} from "./user.model.js";
 
 export const Post = connection.define('posts', {
