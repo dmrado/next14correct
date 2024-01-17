@@ -1,10 +1,10 @@
 import { DataTypes } from "sequelize";
-// @ts-ignore
-import { connection } from "./connection.js";
-// @ts-ignore
-import {User} from "./user.model.js";
+import { connection } from "./connection.tsx";
+import {User} from "./user.model.tsx";
+import {postType} from '../../../new-types'
 
-export const Post = connection.define('posts', {
+// todo define ниже не подсвечена как функция, что то не то ст типом в файле new-types.d.ts
+export const Post: postType = connection.define('posts', {
     title: {
       type: DataTypes.STRING,
       unique: true,
@@ -19,7 +19,7 @@ export const Post = connection.define('posts', {
         model: User,
         key: 'id'
         }
-      }
+      },
     }, {
      // Other model options go here
     }

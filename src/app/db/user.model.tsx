@@ -1,12 +1,8 @@
 import { DataTypes } from "sequelize";
-import { connection } from "./connection.js";
+import { connection } from "./connection.tsx";
+import {userType} from "../../../new-types";
 
-export const User = connection.define('users', {
-    // todo требует наличия такого же поля с таким же типом данных. Так ка мы импортируем сразу из модели, а не из БД, видимо надо добавить в модель User такое же поле и на всякий случай с дефолтным значением
-    // userId: {
-    //     type: DataTypes.STRING,
-    //     defaultValue: '1'
-    // },
+export const User: userType = connection.define('users', {
     name: {
       type: DataTypes.STRING,
       unique: true,
@@ -15,7 +11,6 @@ export const User = connection.define('users', {
     surname: {
       type: DataTypes.STRING
     },
-    // xx: DataTypes.INTEGER
   }, {
     // Other model options go here
   }
