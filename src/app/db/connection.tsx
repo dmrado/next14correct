@@ -1,7 +1,7 @@
-import { config } from 'dotenv';
+// import { config } from 'dotenv';
 import { Sequelize } from "sequelize"
 import mysql2 from 'mysql2'
-config()
+// config()
 
 console.log(' process.env.DB_PORT', process.env.DB_PORT)
 
