@@ -1,26 +1,56 @@
-import { DataTypes } from "sequelize";
-import { connection } from "./connection.tsx";
-import {User} from "./user.model.tsx";
-import {postType} from '../../../new-types'
+// import { DataTypes } from "sequelize";
+// import { connection } from "./connection.tsx";
+// import {User} from "./user.model.tsx";
+// import {postType} from '../../../new-types'
 
 // todo define ниже не подсвечена как функция, что то не то ст типом в файле new-types.d.ts
-export const Post: postType = connection.define('posts', {
-    title: {
-      type: DataTypes.STRING,
-      unique: true,
-      allowNull: false
+// export const Post: postType = connection.define('posts', {
+//     title: {
+//       type: DataTypes.STRING,
+//       unique: true,
+//       allowNull: false
+//     },
+//     text: {
+//       type: DataTypes.STRING
+//     },
+//     userId: {
+//       type: DataTypes.INTEGER,
+//       references: {
+//         model: User,
+//         key: 'id'
+//         }
+//       },
+//     }, {
+//      // Other model options go here
+//     }
+// )
+// }
+
+
+import { Model, InferAttributes, InferCreationAttributes, CreationOptional, ForeignKey, DataTypes } from 'sequelize';
+import {User} from "./user.model";
+import {sequelize} from "./connection";
+
+export class Post extends Model<InferAttributes<Post>, InferCreationAttributes<Post>> {
+    declare id: CreationOptional<number>;
+    declare title: string;
+    declare text: string;
+    // declare userId: ForeignKey<User['id']>;
+}
+
+// Post.belongsTo(User)
+// Post.sync({force: true})
+Post.init({
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
     },
-    text: {
-      type: DataTypes.STRING
+    title:{
+        type: DataTypes.STRING
     },
-    userId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: User,
-        key: 'id'
-        }
-      },
-    }, {
-     // Other model options go here
-    }
-)
+    text:{
+        type: DataTypes.STRING
+    },
+    },
+    { sequelize })

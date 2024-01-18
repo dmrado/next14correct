@@ -1,21 +1,26 @@
 import { config } from 'dotenv';
-import Sequelize from "sequelize"
+import { Sequelize } from "sequelize"
 import mysql2 from 'mysql2'
-import {connectionType} from "../../../new-types";
 config()
 
 console.log(' process.env.DB_PORT', process.env.DB_PORT)
 
+export const sequelize= new Sequelize(
+    'mysql://admin:123@localhost:3306/nextjs', {
+        dialect: 'mysql',
+        dialectModule: mysql2,
+    }
+);
+
 // todo: load secrets from env file
-export const connection: connectionType = new Sequelize({
-    dialect: 'mysql',
-    dialectModule: mysql2,
-    host: 'localhost',
-    port: process.env.DB_PORT,
-    username: process.env.DB_LOGIN,
-    password: process.env.DB_PASSWORD,
-    database: 'next14correct_development',
-});
+// export const sequelize= new Sequelize(
+//     'localhost:3306/nextjs',
+//     'admin',
+//     '123',{
+//     dialect: 'mysql',
+//     dialectModule: mysql2,
+// });
+
 
 //   dialect: 'mysql',
 //   dialectModule: require('mysql2'),
