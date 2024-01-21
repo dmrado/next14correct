@@ -3,13 +3,13 @@ import {Post} from '../db/post.model'
 
 import {revalidatePath} from "next/cache";
 import PostsPage from "@/components/PostsPage";
-
+import React from "react";
 
 
 const Posts = async () => {
     //response мапим что бы получить объект секвелайз, а не огромной модели даннх
     const posts = await Post.findAll({order: [['updatedAt', 'DESC']]})
-        // .then(res => res.map(r => r.dataValues))
+    // .then(res => res.map(r => r.dataValues))
 
     const formData = new FormData();
     // todo всю голову сломал как в серверном компоненте передать в deletePost id удаляемого поста? С клиенским компонентом можно было бы использовать onSubmit=(e => deletePost(post.id)), но хочется остаться в серверной парадигме
@@ -30,46 +30,50 @@ const Posts = async () => {
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            <div className="mb-5 p-5">
+
+            <div className="grid gap-y-2.5 content-center items-center mt-40">{/*blog-header*/}
+                <h1>Блог пастора</h1>
+                <img src="img/postspage/blog1.webp" alt="Photo" className="h-44 w-full rounded-full"/>
                 <Link href={'/posts/new'}>
                     <button>Новый пост</button>
                 </Link>
             </div>
 
-            <h1>Posts</h1>
+            <div className="max-w-5xl overflow-hidden max-w-1 mt-0 mr-auto mb-0 ml-auto">{/*container*/}
+                <div className="grid grid-cols-2 row-auto grid-flow-row gap-x-7 gap-x-64 p-0 mt-9 mb-52">{/*card-list*/}
 
-            <div className="mt-5">
-                <ul className="">
-                    {posts.map(post => PostsPage(post)
+                    <ul>
+                        {posts.map(post => PostsPage(post)
 
-                        // <li key={post.id} className="p-5 mb-3 text-justify hover:bg-[#004E98] rounded-md">
-                        //     <Link href={`posts/${post.id}`}>
-                        //         {/*todo правильное ли здесь решения дважды использовать Link что бы вывести кнопку удалить из под него?*/}
-                        //         <div className="flex justify-between">
-                        //             <h2 className="p-2 text-justify text-2xl">{post.title}</h2>
-                        //             <p className="p-2 text-justify">Post id: {post.id}</p>
-                        //         </div>
-                        //     </Link>
-                        //     <div className="flex justify-between">
-                        //         <Link href={`posts/${post.id}`}>
-                        //             <p className="p-2 text-justify mr-10">{post.text}</p>
-                        //         </Link>
-                        //
-                        //         {/*<form action={deletePost}>*/}
-                        //         {/*    <input type="hidden" name={post.id}/>*/}
-                        //         {/*    <button type="submit"*/}
-                        //         {/*            className="max-h-12 border-dotted border-2 border-red-500 bg-none hover:bg-red-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline">*/}
-                        //         {/*            onClick=*/}
-                        //         {/*        Удалить*/}
-                        //         {/*    </button>*/}
-                        //         {/*</form>*/}
-                        //
-                        //         {/*<DeletePost id={post.id}/>*/}
-                        //
-                        //     </div>
-                        // </li>
-                    )}
-                </ul>
+                            // <li key={post.id} className="p-5 mb-3 text-justify hover:bg-[#004E98] rounded-md">
+                            //     <Link href={`posts/${post.id}`}>
+                            //         {/*todo правильное ли здесь решения дважды использовать Link что бы вывести кнопку удалить из под него?*/}
+                            //         <div className="flex justify-between">
+                            //             <h2 className="p-2 text-justify text-2xl">{post.title}</h2>
+                            //             <p className="p-2 text-justify">Post id: {post.id}</p>
+                            //         </div>
+                            //     </Link>
+                            //     <div className="flex justify-between">
+                            //         <Link href={`posts/${post.id}`}>
+                            //             <p className="p-2 text-justify mr-10">{post.text}</p>
+                            //         </Link>
+                            //
+                            //         {/*<form action={deletePost}>*/}
+                            //         {/*    <input type="hidden" name={post.id}/>*/}
+                            //         {/*    <button type="submit"*/}
+                            //         {/*            className="max-h-12 border-dotted border-2 border-red-500 bg-none hover:bg-red-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline">*/}
+                            //         {/*            onClick=*/}
+                            //         {/*        Удалить*/}
+                            //         {/*    </button>*/}
+                            //         {/*</form>*/}
+                            //
+                            //         {/*<DeletePost id={post.id}/>*/}
+                            //
+                            //     </div>
+                            // </li>
+                        )}
+                    </ul>
+                </div>
             </div>
 
         </main>
