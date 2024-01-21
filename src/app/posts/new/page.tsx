@@ -6,15 +6,19 @@ import Link from "next/link";
 const AddPost = async () => {
     const posts = await Post.findAll().then(res => res.map(r => r.dataValues))
 
-    const addPost = async (formData) => {
+    const addPost = async (formData: FormData) => {
         "use server"
+        const title: string = formData.get('title') as string;
+
+        if (title === '') {
+            throw new Error('Title cannot be empty')
+        }
         const newPost = await Post.create({
-            title: formData.get('title'),
-            text: formData.get('text')
+            title,
+            text: formData.get('text') as string
         })
         revalidatePath('/posts')
     }
-
 
     return (
         <main className="flex flex-col">

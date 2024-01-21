@@ -2,11 +2,11 @@ import {Post} from '../../db/post.model'
 import Link from "next/link"
 // import {revalidatePath} from "next/cache"
 
-
-const PageId = async ({params: {id}}) => {
+type PostPageParams = { params: { id: number }}
+const PostPage = async ({ params }: PostPageParams) => {
     //todo как делается обработка ошибок здесь?
     // try {
-    const post = await Post.findByPk(id)
+    const post = await Post.findByPk(params.id)
     // if (!post) {
     // revalidatePath('/404')
     // }
@@ -14,6 +14,10 @@ const PageId = async ({params: {id}}) => {
     //     console.log(error)
     // }
 
+    if (post === null){
+        // todo: return 404 status
+        return <>Not found</>
+    }
 
     return (<>
             <div className="p-5 flex flex-col justify-center items-center text-justify">
@@ -34,4 +38,4 @@ const PageId = async ({params: {id}}) => {
     );
 };
 
-export default PageId;
+export default PostPage;
