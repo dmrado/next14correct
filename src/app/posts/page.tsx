@@ -7,7 +7,7 @@ import PostsPage from "@/components/PostsPage";
 
 
 const Posts = async () => {
-    //todo не понятно зачем мы мапим response, куда это потом применять?
+    //response мапим что бы получить объект секвелайз, а не огромной модели даннх
     const posts = await Post.findAll({order: [['updatedAt', 'DESC']]})
         // .then(res => res.map(r => r.dataValues))
 
