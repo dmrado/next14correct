@@ -22,17 +22,10 @@ const AddPost = async () => {
 
     return (
         <main className="flex flex-col">
-            <h5 className="p-5">Для проверки</h5>
-            <ul className="flex flex-wrap h-28 p-5 overflow-hidden">
-                {posts.map(post =>
-                    <li key={post.id}>
-                        {post.title}
-                    </li>
-                )}
-            </ul>
+            <div className="flex justify-center"><h1 className="p-5">Создадим новый пост...</h1> </div>
 
-            <div className="justify-center items-center h-screen p-5">
-                <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-1/3"
+            <div className="items-center h-screen p-5">
+                <form className="bg-white rounded px-8 pt-6 pb-8 mb-4 ml-20 mr-20"
                       action={addPost}>
                     <div className="mb-4">
                         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -43,15 +36,14 @@ const AddPost = async () => {
                         <textarea className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             rows={5} cols={50} name='text' placeholder="Текст"/>
                     </div>
-                    <div className="flex items-center justify-between">
-
-                        <button className="bg-main-blue hover:bg-hov-blue text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    <div className="flex items-center justify-center">
+                        <button className="bg-main-blue hover:bg-hov-blue text-orange-500 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                             type="submit">Добавить
                         </button>
                     </div>
                 </form>
 
-                <div className="mb-10 p-10">
+                <div className="flex justify-center mb-10 p-10">
                     <Link href={`/posts`}>
                         <button className="bg-main-blue hover:bg-hov-blue text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Вернуться</button>
                     </Link>

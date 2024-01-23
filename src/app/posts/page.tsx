@@ -32,10 +32,12 @@ const Posts = async () => {
     return (
         <main className="flex min-h-screen flex-col items-center justify-between sm:pl-2 sm:pr-2">
 
-            <div className="grid gap-y-2.5 content-center items-center mt-40">{/*blog-header*/}
+            <div className="flex flex-col justify-center content-center items-center mt-40">{/*blog-header*/}
+                <img src="img/postspage/blog1.webp" alt="Photo" className="h-44 w-full rounded-full mb-10"/>
+
                 <h1>Блог пастора</h1>
-                <img src="img/postspage/blog1.webp" alt="Photo" className="h-44 w-full rounded-full"/>
-                <Link href={'/posts/new'}>
+
+                <Link className=" mt-10" href={'/posts/new'}>
                     <button>Новый пост</button>
                 </Link>
             </div>
