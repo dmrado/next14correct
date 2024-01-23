@@ -33,7 +33,7 @@ const Posts = async () => {
         <main className="flex min-h-screen flex-col items-center justify-between sm:pl-2 sm:pr-2">
 
             <div className="flex flex-col justify-center content-center items-center mt-40">{/*blog-header*/}
-                <img src="img/postspage/blog1.webp" alt="Photo" className="h-44 w-full rounded-full mb-10"/>
+                <img src="img/postspage/blog1.webp" alt="Photo" className="h-60 w-60 rounded-full mb-10"/>
 
                 <h1>Блог пастора</h1>
 
@@ -42,7 +42,7 @@ const Posts = async () => {
                 </Link>
             </div>
 
-            <div className="max-w-5xl overflow-hidden mt-0 mr-auto mb-0 ml-auto">{/*container*/}
+            <div className="max-w-2xl overflow-hidden mt-0 mr-auto mb-0 ml-auto">{/*container*/}
                 <div className="flex float-left p-0 mt-9">{/*card-list*/}
 
                     <ul>

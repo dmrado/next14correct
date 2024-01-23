@@ -21,30 +21,32 @@ const PostPage = async ({ params }: PostPageParams) => {
     }
 
     return (<>
-            <div className="relative items-center align-c w-full h-full bg-no-repeat bg-center bg-cover bg-fixed text-center">
-                <img className="one-post-banner__img"
-                     src='../img/postspage/cloudsWIDE.webp'
-                     // src={post.imgLink}
-                     alt="Картинка поста"/>
-            </div>
+            <div className="max-w-2xl overflow-hidden mt-0 mr-auto mb-0 ml-auto pr-1 pl-1">
+                <div
+                    className="flex items-center align-c w-full h-full bg-no-repeat bg-center bg-cover bg-fixed text-center">
+                    <img className="one-post-banner__img"
+                         src='../img/postspage/cloudsWIDE.webp'
+                        // src={post.imgLink}
+                         alt="Картинка поста"/>
+                </div>
 
-            <div className="p-5 flex flex-col justify-center items-center text-justify">
-                <h5 className="p-5">Post id: {post.id}</h5>
-                <h1 className="p-5">{post.title}</h1>
-                <p className="p-5">{post.text}</p>
+                <div className="pl-5 pr-5 flex flex-col justify-center items-center text-justify">
+                    <h5 className="p-5">Post id: {post.id}</h5>
+                    <h1 className="p-5">{post.title}</h1>
+                    <p className="">{post.text}</p>
 
-                {/*<p className="text-end text-blue-950">{moment(updatedAt).format("DD.MM.YYYY")}</p>*/}
-                <p className="text-end text-white mt-10 italic">Дата публикации</p>
+                    {/*<p className="text-end text-blue-950">{moment(updatedAt).format("DD.MM.YYYY")}</p>*/}
+                    <p className="text-end text-white mt-10 italic">Дата публикации</p>
 
-                <div className="mb-10 p-10">
-                    <Link href={`/posts`}>
-                        <button
-                            className="bg-main-blue hover:bg-hov-blue text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Вернуться
-                        </button>
-                    </Link>
+                    <div className="mb-10 p-10">
+                        <Link href={`/posts`}>
+                            <button
+                                className="bg-main-blue hover:bg-hov-blue text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Вернуться
+                            </button>
+                        </Link>
+                    </div>
                 </div>
             </div>
-
         </>
     );
 };
