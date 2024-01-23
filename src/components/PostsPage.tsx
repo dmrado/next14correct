@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from "next/link";
 import {Post} from "@/app/db/post.model";
+import moment from "moment";
 
 const PostsPage = (post: Post) => {
     return <li>
@@ -14,13 +15,13 @@ const PostsPage = (post: Post) => {
             <div
                 className="h-52 sm:h-64 w-96 md:w-[32rem] min-h-40 -mt-4 sm:-mt-28 z-10 bottom-0 pt-2.5 pr-7 pb-0 pl-7 overflow-hidden bg-indigo-50 rounded-lg">{/*card-body*/}
                 <h5 className="text-center text-blue-950 font-semibold mt-10 mb-10">
-                    <Link className="hover:text-orange-500 transform hover:scale-150 ease-in-out duration-300 text-3xl" href={'/'}>{post.title}</Link>
+                    <Link className="hover:text-orange-500 transform hover:scale-150 ease-in-out duration-300 text-3xl" href={`/posts/${post.id}`}>{post.title}</Link>
                 </h5>
                 <p className="text-justify text-blue-950">{post.text.slice(0, 100)}...</p>
+
+                {/*<p className="text-end text-blue-950">{moment(updatedAt).format("DD.MM.YYYY")}</p>*/}
+                <p className="text-end text-blue-950 mt-10 italic">Дата публикации</p>
             </div>
-            {/*<div>*/}
-            {/*    <p className="text-justify text-blue-950">{post.updatedAt}...</p>*/}
-            {/*</div>*/}
         </div>
 
     </li>
