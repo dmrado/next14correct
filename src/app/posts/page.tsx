@@ -70,15 +70,12 @@ const Posts = async () => {
                             //         {/*    </button>*/}
                             //         {/*</form>*/}
                             //
-
-                            //
                             //     </div>
                             // </li>
                         )}
                     </ul>
                 </div>
             </div>
-
         </main>
     )
 }

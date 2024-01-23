@@ -2,6 +2,8 @@
 import {Post} from '@/app/db/post.model.ts';
 import {sequelize} from "@/app/db/connection.ts";
 import {QueryInterface} from "sequelize";
+import {revalidatePath} from "next/cache";
+import {redirect} from "next/navigation";
 
 const queryInterface: QueryInterface = sequelize.getQueryInterface();
 
@@ -12,6 +14,7 @@ function DeletePost({ post }: { post: Post }): JSX.Element {
     const removePost = async (id: any) => {
         await queryInterface.bulkDelete('posts', {where: {id}}, {}).then((): void => {
         });
+        redirect('/posts')
     };
 
     return (

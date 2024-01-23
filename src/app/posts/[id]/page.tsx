@@ -39,7 +39,7 @@ const PostPage = async ({ params }: PostPageParams) => {
                     {/*<p className="text-end text-blue-950">{moment(updatedAt).format("DD.MM.YYYY")}</p>*/}
                     <p className="text-end text-white mt-10 italic">Дата публикации</p>
 
-                    {/*<DeletePost post={post}/>*/}
+                    <DeletePost post={post}/>
 
                     <div className="mb-10 p-10">
                         <Link href={`/posts`}>
