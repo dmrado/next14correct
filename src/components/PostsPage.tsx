@@ -22,6 +22,7 @@ const PostsPage = (post: Post) => {
                 {/*<p className="text-end text-blue-950">{moment(updatedAt).format("DD.MM.YYYY")}</p>*/}
                 <p className="text-end text-blue-950 bottom-4 italic">Дата публикации</p>
             </div>
+
         </div>
 
     </li>

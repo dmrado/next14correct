@@ -1,11 +1,17 @@
-import {Post} from '../../db/post.model'
 import Link from "next/link"
 import React from "react";
-import DeletePost from "@/components/DeletePost.tsx";
-// import {revalidatePath} from "next/cache"
+import {revalidatePath} from "next/cache";
+import {redirect} from "next/navigation";
 
-type PostPageParams = { params: { id: number }}
-const PostPage = async ({ params }: PostPageParams) => {
+import {Post} from '@/app/db/post.model.ts';
+import {sequelize} from "@/app/db/connection.ts";
+import {Sequelize} from "sequelize";
+import {QueryInterface} from "sequelize";
+const queryInterface: QueryInterface = sequelize.getQueryInterface();
+
+
+type PostPageParams = { params: { id: number } }
+const PostPage = async ({params}: PostPageParams) => {
     //todo как делается обработка ошибок здесь?
     // try {
     const post = await Post.findByPk(params.id)
@@ -16,10 +22,18 @@ const PostPage = async ({ params }: PostPageParams) => {
     //     console.log(error)
     // }
 
-    if (post === null){
+    if (post === null) {
         // todo: return 404 status
         return <>Not found</>
     }
+
+    async function removePost  (id: number) {
+        'use server'
+        await queryInterface.bulkDelete('posts', { id: [id] }, {}).then((): void => {});
+        revalidatePath('/posts')
+        redirect('/posts')
+    };
+
 
     return (<>
             <div className="max-w-2xl overflow-hidden mt-0 mr-auto mb-0 ml-auto pr-1 pl-1">
@@ -39,7 +53,9 @@ const PostPage = async ({ params }: PostPageParams) => {
                     {/*<p className="text-end text-blue-950">{moment(updatedAt).format("DD.MM.YYYY")}</p>*/}
                     <p className="text-end text-white mt-10 italic">Дата публикации</p>
 
-                    <DeletePost post={post}/>
+                    <form action={removePost.bind(null, post.id)}>
+                        <input type='submit' value="Удалить пост"/>
+                    </form>
 
                     <div className="mb-10 p-10">
                         <Link href={`/posts`}>
@@ -51,7 +67,8 @@ const PostPage = async ({ params }: PostPageParams) => {
                 </div>
             </div>
         </>
-    );
+    )
+        ;
 };
 
 export default PostPage;

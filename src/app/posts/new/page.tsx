@@ -1,6 +1,7 @@
 import {Post} from "@/app/db/post.model";
 import {revalidatePath} from "next/cache";
 import Link from "next/link";
+import {redirect} from "next/navigation";
 
 
 const AddPost = async () => {
@@ -18,6 +19,7 @@ const AddPost = async () => {
             text: formData.get('text') as string
         })
         revalidatePath('/posts')
+        redirect('/posts')
     }
 
     return (
