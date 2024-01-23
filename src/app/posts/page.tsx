@@ -10,6 +10,7 @@ const Posts = async () => {
     //response мапим что бы получить объект секвелайз, а не огромной модели даннх
     const posts = await Post.findAll({order: [['updatedAt', 'DESC']]})
     // .then(res => res.map(r => r.dataValues))
+    console.log(posts)
 
     const formData = new FormData();
     // todo всю голову сломал как в серверном компоненте передать в deletePost id удаляемого поста? С клиенским компонентом можно было бы использовать onSubmit=(e => deletePost(post.id)), но хочется остаться в серверной парадигме
@@ -29,7 +30,7 @@ const Posts = async () => {
 
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
+        <main className="flex min-h-screen flex-col items-center justify-between sm:pl-2 sm:pr-2">
 
             <div className="grid gap-y-2.5 content-center items-center mt-40">{/*blog-header*/}
                 <h1>Блог пастора</h1>
@@ -39,8 +40,8 @@ const Posts = async () => {
                 </Link>
             </div>
 
-            <div className="max-w-5xl overflow-hidden max-w-1 mt-0 mr-auto mb-0 ml-auto">{/*container*/}
-                <div className="grid grid-cols-2 row-auto grid-flow-row gap-x-7 gap-x-64 p-0 mt-9 mb-52">{/*card-list*/}
+            <div className="max-w-5xl overflow-hidden mt-0 mr-auto mb-0 ml-auto">{/*container*/}
+                <div className="flex float-left p-0 mt-9">{/*card-list*/}
 
                     <ul>
                         {posts.map(post => PostsPage(post)

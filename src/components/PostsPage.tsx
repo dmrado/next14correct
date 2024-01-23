@@ -4,17 +4,25 @@ import {Post} from "@/app/db/post.model";
 
 const PostsPage = (post: Post) => {
     return <li>
-        <div
-            className="flex flex-col relative mt-10 h-96 pt-0 pr-30 pb-0 pl-30 content-center items-center">{/*card*/}
-            <img src='img/postspage/cloudsWIDE.webp' alt="Post image" className="absolute h-full w-full"/>{/*card-img*/}
-            <div
-                className="h-72 w-96 -mb-48 bottom-0 pt-2.5 pr-7 pb-2.5 pl-7 overflow-hidden rounded-sm">{/*card-body*/}
-                <h5 className="text-center font-semibold">
-                    <Link href={'/'}>{post.title}</Link>
-                </h5>
-                <p className="text-justify">{post.text}</p>
+
+        <div className="flex flex-col mt-20 h-full pt-0 pr-30 pb-0 pl-30 content-center items-center">{/*card*/}
+
+            <div className="overflow-hidden h-full">{/*card wrapper для эффекта hover-scale картинки*/}
+                <img className="transform hover:scale-150 ease-in-out duration-700 w-full" src='img/postspage/cloudsWIDE.webp' alt="Post image"/>{/*card-img*/}
             </div>
+
+            <div
+                className="h-52 sm:h-64 w-96 md:w-[32rem] min-h-40 -mt-4 sm:-mt-28 z-10 bottom-0 pt-2.5 pr-7 pb-0 pl-7 overflow-hidden bg-indigo-50 rounded-lg">{/*card-body*/}
+                <h5 className="text-center text-blue-950 font-semibold mt-10 mb-10">
+                    <Link className="hover:text-orange-500 transform hover:scale-150 ease-in-out duration-300 text-3xl" href={'/'}>{post.title}</Link>
+                </h5>
+                <p className="text-justify text-blue-950">{post.text.slice(0, 100)}...</p>
+            </div>
+            {/*<div>*/}
+            {/*    <p className="text-justify text-blue-950">{post.updatedAt}...</p>*/}
+            {/*</div>*/}
         </div>
+
     </li>
 }
 

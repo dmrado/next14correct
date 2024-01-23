@@ -35,6 +35,7 @@ export class Post extends Model<InferAttributes<Post>, InferCreationAttributes<P
     declare id: CreationOptional<number>;
     declare title: string;
     declare text: string;
+    declare updatedAt: any;
     // declare userId: ForeignKey<User['id']>;
 }
 
@@ -52,5 +53,6 @@ Post.init({
     text:{
         type: DataTypes.STRING
     },
+        updatedAt: DataTypes.STRING
     },
     { sequelize })
