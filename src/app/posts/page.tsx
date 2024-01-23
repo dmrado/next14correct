@@ -16,17 +16,17 @@ const Posts = async () => {
     // todo всю голову сломал как в серверном компоненте передать в deletePost id удаляемого поста? С клиенским компонентом можно было бы использовать onSubmit=(e => deletePost(post.id)), но хочется остаться в серверной парадигме
     // formData.append('id', post.id);
 
-    const deletePost = async (id: number) => {
-        "use server"
-        // const {id} = Object.fromEntries(formData)
-        console.log('formData', formData)
-
-        // const id = formData.get('id')
-        await Post.destroy({
-            where: {id}
-        })
-        revalidatePath('/posts')
-    }
+    // const deletePost = async (id: number) => {
+    //     "use server"
+    //     // const {id} = Object.fromEntries(formData)
+    //     console.log('formData', formData)
+    //
+    //     // const id = formData.get('id')
+    //     await Post.destroy({
+    //         where: {id}
+    //     })
+    //     revalidatePath('/posts')
+    // }
 
 
     return (
@@ -70,7 +70,7 @@ const Posts = async () => {
                             //         {/*    </button>*/}
                             //         {/*</form>*/}
                             //
-                            //         {/*<DeletePost id={post.id}/>*/}
+
                             //
                             //     </div>
                             // </li>

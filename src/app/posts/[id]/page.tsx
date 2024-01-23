@@ -1,6 +1,7 @@
 import {Post} from '../../db/post.model'
 import Link from "next/link"
 import React from "react";
+import DeletePost from "@/components/DeletePost.tsx";
 // import {revalidatePath} from "next/cache"
 
 type PostPageParams = { params: { id: number }}
@@ -37,6 +38,8 @@ const PostPage = async ({ params }: PostPageParams) => {
 
                     {/*<p className="text-end text-blue-950">{moment(updatedAt).format("DD.MM.YYYY")}</p>*/}
                     <p className="text-end text-white mt-10 italic">Дата публикации</p>
+
+                    {/*<DeletePost post={post}/>*/}
 
                     <div className="mb-10 p-10">
                         <Link href={`/posts`}>
