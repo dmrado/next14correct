@@ -2,12 +2,8 @@ import Link from "next/link"
 import React from "react";
 import {revalidatePath} from "next/cache";
 import {redirect} from "next/navigation";
-
 import {Post} from '@/app/db/post.model.ts';
-import {sequelize} from "@/app/db/connection.ts";
-import {Sequelize} from "sequelize";
-import {QueryInterface} from "sequelize";
-const queryInterface: QueryInterface = sequelize.getQueryInterface();
+import Custom404 from "@/app/404.tsx";
 
 
 type PostPageParams = { params: { id: number } }
@@ -24,12 +20,12 @@ const PostPage = async ({params}: PostPageParams) => {
 
     if (post === null) {
         // todo: return 404 status
-        return <>Not found</>
+        return <Custom404/>
     }
 
     async function removePost  (id: number) {
         'use server'
-        await queryInterface.bulkDelete('posts', { id: [id] }, {}).then((): void => {});
+        await Post.destroy({ where: { id } });
         revalidatePath('/posts')
         redirect('/posts')
     };

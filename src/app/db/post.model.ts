@@ -35,24 +35,28 @@ export class Post extends Model<InferAttributes<Post>, InferCreationAttributes<P
     declare id: CreationOptional<number>;
     declare title: string;
     declare text: string;
-    // declare updatedAt: any;
-    // declare userId: ForeignKey<User['id']>;
+    declare createdAt: CreationOptional<Date>;
+    declare updatedAt: CreationOptional<Date>;
 }
 
 // Post.belongsTo(User)
-// Post.sync({force: true})
+// Post.sync()
 Post.init({
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        title:{
+            type: DataTypes.STRING
+        },
+        text:{
+            type: DataTypes.STRING
+        },
+    createdAt: {type: DataTypes.DATE},
+    updatedAt: {type: DataTypes.DATE}
     },
-    title:{
-        type: DataTypes.STRING
-    },
-    text:{
-        type: DataTypes.STRING
-    },
-        // updatedAt: DataTypes.STRING
-    },
-    { sequelize })
+    {
+        sequelize,
+        timestamps: true
+    })
