@@ -4,13 +4,14 @@ import {revalidatePath} from "next/cache";
 import {redirect} from "next/navigation";
 import {Post} from '@/app/db/post.model.ts';
 import Custom404 from "@/app/404.tsx";
+import moment from "moment";
 
 
 type PostPageParams = { params: { id: number } }
-const PostPage = async ({params}: PostPageParams) => {
+const PostPage = async ( {params}: PostPageParams ) => {
     //todo как делается обработка ошибок здесь?
     // try {
-    const post = await Post.findByPk(params.id)
+    const post : Post | null  = await Post.findByPk(params.id)
     // if (!post) {
     // revalidatePath('/404')
     // }
@@ -19,6 +20,8 @@ const PostPage = async ({params}: PostPageParams) => {
     // }
 
     if (post === null) {
+        // await handler(req, res);
+
         // todo: return 404 status
         return <Custom404/>
     }
@@ -46,20 +49,24 @@ const PostPage = async ({params}: PostPageParams) => {
                     <h1 className="p-5">{post.title}</h1>
                     <p className="">{post.text}</p>
 
-                    {/*<p className="text-end text-blue-950">{moment(updatedAt).format("DD.MM.YYYY")}</p>*/}
-                    <p className="text-end text-white mt-10 italic">Дата публикации</p>
+                    <p className="justify-end text-white italic mt-10">Добавлено: {moment(post.updatedAt).format("DD.MM.YYYY")}</p>
 
-                    <form action={removePost.bind(null, post.id)}>
-                        <input type='submit' value="Удалить пост"/>
-                    </form>
-
-                    <div className="mb-10 p-10">
+                    <div className="mb-5 p-5">
                         <Link href={`/posts`}>
                             <button
-                                className="bg-main-blue hover:bg-hov-blue text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Вернуться
+                                className="hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Вернуться
                             </button>
                         </Link>
                     </div>
+
+                    <Link className="hover:bg-green-600 mt-10 p-2 rounded"
+                          href={`/posts/${post.id}/edit`} >Редактировать</Link>
+
+                    <form className="hover:bg-red-500 mt-10 p-2 rounded"
+                        action={removePost.bind(null, post.id)}>
+                        <input type='submit' value="Удалить пост"/>
+                    </form>
+
                 </div>
             </div>
         </>

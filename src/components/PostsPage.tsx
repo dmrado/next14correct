@@ -19,8 +19,8 @@ const PostsPage = (post: Post) => {
                 </h5>
                 <p className="text-justify text-blue-950">{post.text.slice(0, 100)}...</p>
 
-                {/*<p className="text-end text-blue-950">{moment(post.createdAt).format("DD.MM.YYYY")}</p>*/}
-                <p className="text-end text-blue-950 bottom-4 italic">Дата публикации{post.createdAt.toDateString()}</p>
+                <p className="text-end text-blue-950">Добавлено: {moment(post.createdAt).format("DD.MM.YYYY")}</p>
+                {/*<p className="text-end text-blue-950 bottom-4 italic">Опубликовано: {post.createdAt.toDateString()}</p>*/}
             </div>
 
         </div>
