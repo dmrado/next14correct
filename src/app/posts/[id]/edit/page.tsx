@@ -17,11 +17,16 @@ const EditPost = async ( {params}: PostPageParams) => {
 
     async function updatePost  (data: FormData) {
         'use server'
-        const formData = Object.fromEntries(data) as { title: string, text: string, id: number };
-        const { title, text, id } = formData;
-
-
-        await Post.update( {title, text}, { where: { id } })
+        const title = data.get('title');
+        const text = data.get('text')
+        if (typeof title !== "string" || typeof text !== "string") {
+            throw new Error("Files cannot be loaded through form")
+        }
+        const idValue = data.get('id')
+        if (typeof idValue !== "string" || Number.isNaN(idValue)){
+            throw new Error("Invalid id")
+        }
+        await Post.update( {title: title, text: text}, { where: { id: Number(idValue) } })
 
         revalidatePath('/posts')
         redirect('/posts')
