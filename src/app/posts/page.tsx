@@ -10,7 +10,7 @@ const Posts = async () => {
     //response мапим что бы получить объект секвелайз, а не огромной модели даннх
     const posts = await Post.findAll({order: [['updatedAt', 'DESC']]})
     // .then(res => res.map(r => r.dataValues))
-    console.log(posts)
+    // console.log(posts)
 
     const formData = new FormData();
     // formData.append('id', post.id);
