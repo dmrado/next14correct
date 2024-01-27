@@ -1,6 +1,6 @@
-import {User} from "@/app/db/user.model.ts";
-import {Post} from "@/app/db/post.model.ts";
-import {sequelize} from "@/app/db/connection.js";
+import {User} from "@/app/db/user.model";
+import {Post} from "@/app/db/post.model";
+import {sequelize} from "@/app/db/connection";
 
 const registeredModels = [User, Post]
 const runDbSync = async () => {

@@ -1,6 +1,6 @@
 import { Model, InferAttributes, InferCreationAttributes, CreationOptional, ForeignKey, DataTypes } from 'sequelize';
-import {User} from "./user.model.ts";
-import {sequelize} from "./connection.ts";
+import {User} from "./user.model";
+import {sequelize} from "./connection";
 
 export class Post extends Model<InferAttributes<Post>, InferCreationAttributes<Post>> {
     declare id: CreationOptional<number>;
@@ -17,9 +17,11 @@ Post.init({
             autoIncrement: true,
         },
         title:{
+            // unique: true,
             type: DataTypes.STRING
         },
         text:{
+            // defaultValue: 'ЭТОТ ПОСТ НЕ ИМЕЛ ТЕКСТА ПРИ СОЗДАНИИ',
             type: DataTypes.STRING
         },
     createdAt: {type: DataTypes.DATE},
