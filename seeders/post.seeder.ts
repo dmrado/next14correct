@@ -5,8 +5,8 @@ const queryInterface: QueryInterface = sequelize.getQueryInterface();
 export const up = (queryInterface: QueryInterface): Promise<void> => {
     return queryInterface.bulkInsert('posts', [
         {
-            title: 'Title Post-1',
-            text: 'Text Post-1, Text Post-1, Text Post-1,Text Post-1',
+            title: 'Title Post-1111',
+            text: 'Text Post-111, Text Post-1, Text Post-1,Text Post-1',
             createdAt: new Date(),
             updatedAt: new Date(),
         },
