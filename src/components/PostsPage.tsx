@@ -13,7 +13,7 @@ const PostsPage = (post: Post) => {
             </div>
 
             <div
-                className="flex flex-col h-52 sm:h-60 w-96 md:w-[24rem] min-h-40 -mt-4 sm:-mt-24 z-10 bottom-0 pt-2.5 pr-7 pb-2 pl-7 overflow-hidden bg-indigo-50 rounded-lg border-t-8 border-transparent hover:border-t-8 hover:border-[#004E98]">{/*card-body*/}
+                className="flex flex-col h-52 sm:h-60 w-96 md:w-[24rem] min-h-40 -mt-4 sm:-mt-24 z-10 bottom-0 pt-2.5 pr-7 pb-2 pl-7 overflow-hidden bg-indigo-50 rounded-lg ease-in-out duration-300 border-t-8 border-transparent hover:border-t-8 hover:border-[#004E98]">{/*card-body*/}
                 <h5 className="text-center text-blue-950 font-semibold mt-8 mb-8">
                     <Link className="hover:text-orange-500 transform hover:scale-150 ease-in-out duration-300 text-2xl" href={`/posts/${post.id}`}>{post.title}</Link>
                 </h5>
