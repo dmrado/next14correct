@@ -12,12 +12,6 @@ const fakePostDataFactory=(number = 10, suffix = ""): Array<PostData>=>{
 
 const seedPost = async ()=>{
     const postData = fakePostDataFactory(3)
-    postData.forEach(post=>{
-        if(post.text.length>210){
-            console.log(post)
-            throw Error('Error')
-        }
-    })
     await Promise.all(postData.map(async (post)=> {
         return await Post.create({title: post.title, text: post.text})
     }))
