@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "sync": "npx tsx src/db-sync.ts",
-    "seed": "tsc seeders/seed.ts && node seeders/seed.js",
+    "seed": "npx tsx src/my-seeder.ts",
     "unseed": "tsc seeders/unseed.ts && node seeders/unseed.js"
   },
   "dependencies": {
