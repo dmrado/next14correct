@@ -22,7 +22,8 @@ Post.init({
         },
         text:{
             // defaultValue: 'ЭТОТ ПОСТ НЕ ИМЕЛ ТЕКСТА ПРИ СОЗДАНИИ',
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            defaultValue: "-- default --"
         },
     createdAt: {type: DataTypes.DATE},
     updatedAt: {type: DataTypes.DATE}
