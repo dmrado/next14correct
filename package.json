@@ -10,7 +10,8 @@
     "lint": "next lint",
     "sync": "npx tsx src/db-sync.ts",
     "seed": "npx tsx src/my-seeder.ts",
-    "unseed": "tsc seeders/unseed.ts && node seeders/unseed.js"
+    "unseed": "tsc seeders/unseed.ts && node seeders/unseed.js",
+    "tick": "tsc tasks/tickTak.ts"
   },
   "dependencies": {
     "dotenv": "^16.3.2",
@@ -26,6 +27,7 @@
     "tls": "^0.0.1"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.4.0",
     "@types/node": "^20",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18",
