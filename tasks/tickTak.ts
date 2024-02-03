@@ -1,22 +1,23 @@
 // 'use client'
 // import {useState, useEffect} from "react";
 // import { faker } from "@faker-js/faker"
+// import {number} from "prop-types";
 //
 // const TickTak = () => {
 //     const [index, setIndex] = useState(0)
-//     const [message, setMessage] = useState([])
+//     const [message, setMessage] = useState([] as string [])
 //
 //     const numData = Array.from({length: 10}, (_, index) => index + 1);
 //     console.log(numData);
 //
-//     const tickMessages = numbers.map((num, i) => Tick ${num});
-//     setMessag(tickMessages);
+//     const tickMessages = numData.map((num, i) => `Tick ${num}`)
+//     setMessage(tickMessages)
+//
+//
 //
 //
 //     useEffect(() => {
-//         // Генерируем массив случайных чисел при монтировании компонента
-//         const numbers = generateRandomNumbers();
-//         const tickMessages = numbers.map((num, i) => Tick ${num});
+//         const tickMessages = numData.map((num, i) => `Tick ${num}`);
 //         setMessages(tickMessages);
 //
 //         // Создаем интервал для обновления индекса
