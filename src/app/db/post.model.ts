@@ -1,4 +1,4 @@
-import { Model, InferAttributes, InferCreationAttributes, CreationOptional, ForeignKey, DataTypes } from 'sequelize';
+import {Model, InferAttributes, InferCreationAttributes, CreationOptional, ForeignKey, DataTypes} from 'sequelize';
 import {User} from "./user.model";
 import {sequelize} from "./connection";
 
@@ -16,17 +16,17 @@ Post.init({
             primaryKey: true,
             autoIncrement: true,
         },
-        title:{
+        title: {
             // unique: true,
             type: DataTypes.STRING
         },
-        text:{
+        text: {
             // defaultValue: 'ЭТОТ ПОСТ НЕ ИМЕЛ ТЕКСТА ПРИ СОЗДАНИИ',
             type: DataTypes.STRING,
             defaultValue: "-- default --"
         },
-    createdAt: {type: DataTypes.DATE},
-    updatedAt: {type: DataTypes.DATE}
+        createdAt: {type: DataTypes.DATE},
+        updatedAt: {type: DataTypes.DATE}
     },
     {
         sequelize,
