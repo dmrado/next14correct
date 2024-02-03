@@ -12,8 +12,8 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = require("react");
 var TickTak = function () {
-    var _a = (0, react_1.useState)(0), index = _a[0], setIndex = _a[1];
-    var _b = (0, react_1.useState)([]), message = _b[0], setMessage = _b[1];
+    // const [index, setIndex] = useState(0)
+    var _a = (0, react_1.useState)([]), message = _a[0], setMessage = _a[1];
     // const numData = Array.from({length: 10}, (_, index) => index + 1);
     // console.log(numData);
     (0, react_1.useEffect)(function () {
