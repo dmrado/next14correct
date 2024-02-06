@@ -11,7 +11,8 @@
     "sync": "npx tsx src/db-sync.ts",
     "seed": "npx tsx src/my-seeder.ts",
     "unseed": "tsc seeders/unseed.ts && node seeders/unseed.js",
-    "tick": "tsc tasks/tickTak.ts"
+    "tick": "tsc tasks/tickTak.ts",
+    "peoples": "tsc tasks/peoples.ts"
   },
   "dependencies": {
     "dotenv": "^16.3.2",

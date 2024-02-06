@@ -18,9 +18,9 @@ const TickTak = () => {
             }
         }
         ticker()
-        export {}
+        // export {}
     }, []);
 
-    return <>{message}</>
+    // return <>{message}</>
 }
 export default TickTak
