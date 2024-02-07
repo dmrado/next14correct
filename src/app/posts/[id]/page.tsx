@@ -8,10 +8,10 @@ import moment from "moment";
 
 
 type PostPageParams = { params: { id: number } }
-const PostPage = async ( {params}: PostPageParams ) => {
+const PostPage = async ({params}: PostPageParams) => {
     //todo как делается обработка ошибок здесь?
     // try {
-    const post : Post | null  = await Post.findByPk(params.id)
+    const post: Post | null = await Post.findByPk(params.id)
     // if (!post) {
     // revalidatePath('/404')
     // }
@@ -26,9 +26,9 @@ const PostPage = async ( {params}: PostPageParams ) => {
         return <Custom404/>
     }
 
-    async function removePost  (id: number) {
+    async function removePost(id: number) {
         'use server'
-        await Post.destroy({ where: { id } });
+        await Post.destroy({where: {id}});
         revalidatePath('/posts')
         redirect('/posts')
     };
@@ -60,10 +60,10 @@ const PostPage = async ( {params}: PostPageParams ) => {
                     </div>
 
                     <Link className="hover:bg-green-600 mt-10 p-2 rounded"
-                          href={`/posts/${post.id}/edit`} >Редактировать</Link>
+                          href={`/posts/${post.id}/edit`}>Редактировать</Link>
 
                     <form className="hover:bg-red-500 mt-10 p-2 rounded"
-                        action={removePost.bind(null, post.id)}>
+                          action={removePost.bind(null, post.id)}>
                         <input type='submit' value="Удалить пост"/>
                     </form>
 

@@ -1,5 +1,6 @@
 import {Model, InferAttributes, InferCreationAttributes, CreationOptional, DataTypes} from 'sequelize';
-import { sequelize } from "./connection";
+import {sequelize} from "./connection";
+
 export class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
     declare id: CreationOptional<number>;
     //todo: add unique index, probably using decorators
@@ -13,11 +14,11 @@ User.init({
             primaryKey: true,
             autoIncrement: true,
         },
-        name:{
+        name: {
             type: DataTypes.STRING
         },
-        surname:{
+        surname: {
             type: DataTypes.STRING
         },
     },
-    { sequelize })
+    {sequelize})

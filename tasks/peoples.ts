@@ -1,4 +1,4 @@
-import { faker } from '@faker-js/faker';
+import {faker} from '@faker-js/faker';
 
 interface Person {
     name: string;
@@ -15,7 +15,7 @@ const now = new Date();
 
 // Функция для генерации возраста
 function generateAge(): number {
-    const birthDate = faker.date.birthdate({ min: 0, max: 100, mode: "age" });
+    const birthDate = faker.date.birthdate({min: 0, max: 100, mode: "age"});
     const age = now.getFullYear() - birthDate.getFullYear();
     const monthDiff = now.getMonth() - birthDate.getMonth();
     if (monthDiff < 0 || (monthDiff === 0 && now.getDate() < birthDate.getDate())) {
@@ -52,7 +52,7 @@ const categorizedPeoples = people.reduce<CategorizedPeople>((accum, currentValue
         accum.senior.push(currentValue);
     }
     return accum;
-}, { young: [], workingAge: [], senior: [] });
+}, {young: [], workingAge: [], senior: []});
 
 console.log('Categorized Peoples:', categorizedPeoples);
 
