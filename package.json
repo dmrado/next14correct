@@ -12,7 +12,7 @@
     "seed": "npx tsx src/my-seeder.ts",
     "unseed": "tsc seeders/unseed.ts && node seeders/unseed.js",
     "tick": "tsc tasks/tickTak.ts",
-    "peoples": "tsc tasks/peoples.ts"
+    "peoples": "npx tsx tasks/peoples.ts"
   },
   "dependencies": {
     "dotenv": "^16.3.2",
