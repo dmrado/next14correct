@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 
-export default NextAuth({
+export const authOptions = {
   // Конфигурация провайдеров
   providers: [
     GoogleProvider({
@@ -9,6 +9,8 @@ export default NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
-
-  // Дополнительная конфигурация...
-})
+  //это значение по умолчанию указано здесь для ясности
+  session: {
+    strategy: 'jwt',
+  },
+}
