@@ -1,4 +1,3 @@
-import { GoogleLogout } from 'react-google-login'
 
 const clientId = process.env.clientId
 

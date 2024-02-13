@@ -1,7 +1,6 @@
 import { GoogleLogin } from 'react-google-login'
-//todo cors проверить
 
-const clientId = process.env.clientId
+const clientId = '511592118187-cg6kmvv6u58dqlg23u2oi36u9839rfsn.apps.googleusercontent.com'
 
 const Login = () => {
   const onSuccess = (res) => {
@@ -15,12 +14,13 @@ const Login = () => {
   return <div id='signInButton'>
     <GoogleLogin
       clientId={clientId}
-      buttonText={'Войти'}
+      buttonText="Войти"
       onSuccess={onSuccess}
       onFailure={onFailure}
       cookiePolicy={'single_host_origin'}
       isSignedIn={true}
     />
+
   </div>
 }
 
