@@ -5,5 +5,5 @@
 
 // export { handler as GET, handler as POST }
 
-import { handlers } from "auth"
+import { handlers } from "@/app"
 export const { GET, POST } = handlers

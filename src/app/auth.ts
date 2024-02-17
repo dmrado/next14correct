@@ -45,16 +45,16 @@ export const authConfig: AuthOptions = {
 //     }
 // }
 //
-// export const { auth } = NextAuth({
-//     callbacks: {
-//         session({ session, token, user}){
-//             return{
-//                 ...session,
-//                 user: {
-//                     ...session.user,
-//                     address: user.email,
-//                 }
-//             }
-//         }
-//     }
-// })
+export const { auth } = NextAuth({
+    callbacks: {
+        session({ session, token, user}){
+            return{
+                ...session,
+                user: {
+                    ...session.user,
+                    address: user.email,
+                }
+            }
+        }
+    }
+})
