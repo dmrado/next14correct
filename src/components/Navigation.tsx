@@ -4,6 +4,7 @@ import {useSession, signIn, signOut} from 'next-auth/react'
 
 export default function Navigation() {
     const {data: session} = useSession()
+    console.log('session', session)
     if (session) {
         return (
             <div className="flex flex-col justify-center items-center">
