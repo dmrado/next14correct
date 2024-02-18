@@ -1,3 +1,5 @@
+import Image from 'next/image'
+import Link from 'next/link'
 import { getServerSession } from 'next-auth'
 
 export default async function Header() {
@@ -5,70 +7,35 @@ export default async function Header() {
    console.log('session', session)
    if (session && session.user) {
       return (
-         <>
-            <p>Signed in as {session.user.email} </p>
-            <a href="/api/auth/signout">Logout</a>
-         </>
+         <div
+            className='flex justify-between items-center h-24 min-w-full fixed top-0 left-o right-0 py-2 px-12 bg-black opacity-95 z-40 shadow-lg shadow-[#50d71e]'>
+            <div className='flex justify-between items-center py-2'>
+               <p className='mr-2 sm:px-2 sm:flex-nowrap'>{session.user.name}</p>
+               <div className='mr-4'>
+                  {
+                     !!session.user.image && !!session.user.name &&
+                          <Image
+                             src={session.user.image}
+                             alt={session.user.name}
+                             width={52}
+                             height={52}
+                             className='rounded-full'
+                          />
+                  }
+               </div>
+            </div>
+            <Link className='flex px-10 py-2 hover:border hover:border-[#D50000] hover:rounded hover:text-[#D50000]'
+               href="/api/auth/signout">Выйти</Link>
+         </div>
       )
    }
    return (
-      <>
-         <p>Not signed in</p>
-         <a href="/api/auth/signin">Login</a>
-      </>
+      <div
+         className='flex justify-between items-center h-24 min-w-full fixed top-0 left-o right-1 py-2 px-12 duration-300  bg-black opacity-95 z-40 shadow-xl shadow-[#004E98]'>
+         <p className='mr-20'>Вход не выполнен</p>
+         <Link
+            className='flex justify-center items-center min-w-40 hover:border hover:border-[#50d71e] hover:text-[#50d71e] py-1.5 rounded'
+            href="/api/auth/signin">Войти</Link>
+      </div>
    )
 }
-
-// 'use client'
-// import Image from 'next/image'
-// import Link from 'next/link'
-// import { usePathname } from 'next/navigation'
-// import { useSession, signIn } from 'next-auth/react'
-// import SignOut from '@/components/SignOut.tsx'
-//
-// type NavLink = {
-//     label: string,
-//     href: string
-// }
-// type Props = { navLinks: NavLink[] }
-//
-// const Header = ({ navLinks }: Props) => {
-//    const pathName = usePathname()
-//    const session = useSession()
-//    console.log(session)
-//
-//    return (
-//       <header className='bottom-1 border-b-blue-600 h-20'>
-//          <nav className='px-4 py-2.5'>
-//             <div className='flex flex-wrap justify-between items-center mx-auto max-w-screen-xl'>
-//                <h1>Блог</h1>
-//                <div>{session?.user ? (
-//                   <div className='flex item-center gap-4'>
-//                      {
-//                         // !!session.user.image &&
-//                         !!session.user.name && <Image
-//                            src={session.user.image}
-//                            alt={session.user.name}
-//                            width={32}
-//                            height={32}
-//                            className='rounded-full'
-//                         />}
-//                      {/*<SignOut/>*/}
-//                   </div>
-//                ) : (
-//                   <Link href='../app/api/auth/route.ts'>
-//                      <button
-//                         className="min-w-48 hover:bg-[#50d71e] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-//                         onClick={() => signIn('google')}
-//                      >Войти
-//                      </button>
-//                   </Link>
-//                )}
-//                </div>
-//                {/*<img src={session.user.image} alt='photo'/>*/}
-//             </div>
-//          </nav>
-//       </header>
-//    )
-// }
-// export default Header
