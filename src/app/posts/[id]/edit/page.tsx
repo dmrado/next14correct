@@ -39,7 +39,7 @@ const EditPost = async ({ params }: PostPageParams) => {
             <div className="flex justify-center mt-40"><h1 className="p-5">Отредактируем по-новому...</h1></div>
 
             <div className="items-center h-screen p-5">
-               <form className="bg-white rounded px-8 pt-6 pb-8 mb-4 ml-20 mr-20"
+               <form className="bg-white rounded px-8 pt-6 pb-8 mb-4"
                   action={updatePost}>
 
                   <div className="mb-4">
@@ -58,7 +58,7 @@ const EditPost = async ({ params }: PostPageParams) => {
                      <input type="hidden" name="id" value={post.id}/>
 
                      <button
-                        className="border-solid border-2 border-[#50d71e] pt-1.5 pr-5 pb-1.5 pl-5 hover:bg-[#50d71e] p-2 rounded"
+                        className='border-2 border-my_white border-solid text-[#000] hover:text-my_l_green hover:border-2 hover:border-my_l_green pt-1.5 pr-5 pb-1.5 pl-5 p-2 rounded'
                         type="submit">Записать
                      </button>
                   </div>
@@ -67,7 +67,8 @@ const EditPost = async ({ params }: PostPageParams) => {
                <div className="flex justify-center mb-10 p-10">
                   <Link href={'/posts'}>
                      <button
-                        className="hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Вернуться
+                        className='border-2 border-[#000] hover:text-my_l_blue hover:border-2 hover:border-my_l_blue py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+                     >Вернуться
                      </button>
                   </Link>
                </div>

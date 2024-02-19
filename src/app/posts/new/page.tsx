@@ -31,7 +31,7 @@ const AddPost = async () => {
                <div className="flex justify-center"><h1 className="p-5">Создадим новый пост...</h1></div>
 
                <div className="items-center h-screen p-5">
-                  <form className="bg-white rounded px-8 pt-6 pb-8 mb-4 ml-20 mr-20"
+                  <form className="bg-white rounded px-8 pt-6 pb-8 mb-4"
                      action={addPost}>
                      <div className="mb-4">
                         <input
@@ -41,13 +41,13 @@ const AddPost = async () => {
 
                      <div className="mb-6">
                         <textarea
-                           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                           className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                            rows={5} cols={50} name='text' placeholder="Текст"/>
                      </div>
                      <div className="flex items-center justify-center">
                         <button
-                           className="bg-main-blue hover:bg-hov-blue text-orange-500 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                           type="submit">Добавить
+                           className='border-2 border-my_white border-solid text-[#000] hover:text-my_l_green hover:border-2 hover:border-my_l_green pt-1.5 pr-5 pb-1.5 pl-5 p-2 rounded'
+                           type="submit">Записать
                         </button>
                      </div>
                   </form>
@@ -55,7 +55,8 @@ const AddPost = async () => {
                   <div className="flex justify-center mb-10 p-10">
                      <Link href={'/posts'}>
                         <button
-                           className="bg-main-blue hover:bg-hov-blue text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Вернуться
+                           className='border-2 border-[#000] hover:text-my_l_blue hover:border-2 hover:border-my_l_blue py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+                        >Вернуться
                         </button>
                      </Link>
                   </div>
@@ -64,7 +65,6 @@ const AddPost = async () => {
          </main>
       )
    }
-
 }
 
 export default AddPost
