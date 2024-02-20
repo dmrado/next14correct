@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { Post } from '../db/post.model'
 
 import { revalidatePath } from 'next/cache'
@@ -36,35 +35,7 @@ const Posts = async () => {
                 <div className='flex float-left p-0 mt-9'>{/*card-list*/}
 
                     <ul>
-                        {posts.map(post => PostsPage(post)
-
-                            // <li key={post.id} className="p-5 mb-3 text-justify hover:bg-[#004E98] rounded-md">
-                            //     <Link href={`posts/${post.id}`}>
-                            //         {/*todo правильное ли здесь решения дважды использовать Link что бы вывести кнопку удалить из под него?*/}
-                            //         <div className="flex justify-between">
-                            //             <h2 className="p-2 text-justify text-2xl">{post.title}</h2>
-                            //             <p className="p-2 text-justify">Post id: {post.id}</p>
-                            //         </div>
-                            //     </Link>
-                            //     <div className="flex justify-between">
-                            //         <Link href={`posts/${post.id}`}>
-                            //             <p className="p-2 text-justify mr-10">{post.text}</p>
-                            //         </Link>
-                            //
-                            //         {/*<form action={deletePost}>*/}
-                            //         {/*    <input type="hidden" name={post.id}/>*/}
-                            //         {/*    <button type="submit"*/}
-                            //         {/*            className="max-h-12 border-dotted border-2 border-red-500 bg-none hover:bg-red-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline">*/}
-                            //         {/*            onClick=*/}
-                            //         {/*        Удалить*/}
-                            //         {/*    </button>*/}
-                            //         {/*</form>*/}
-                            //
-
-                            //
-                            //     </div>
-                            // </li>
-                        )}
+                        {posts.map(post => PostsPage(post))}
                     </ul>
                 </div>
             </div>
