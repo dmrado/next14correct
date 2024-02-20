@@ -45,13 +45,18 @@ const PostPage = async ({ params }: PostPageParams) => {
 
             <div className="pl-5 pr-5 flex flex-col justify-center items-center text-justify">
                 {!!session && !!session.user && session.user.email === process.env.USER_EMAIL &&
-                    <h5 className="p-5">Post id: {post.id}</h5>
+                        <h5 className="p-5">Post id: {post.id}</h5>
                 }
                 <h1 className="p-5">{post.title}</h1>
                 <p className="">&nbsp;{post.text}</p>
 
                 <p className="justify-end text-white italic mt-10">Добавлено:&nbsp;
-                    {post.createdAt.toLocaleDateString('ru-RU', { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' })}
+                    {post.createdAt.toLocaleDateString('ru-RU', {
+                        weekday: 'short',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    })}
                 </p>
 
                 <div className="flex flex-wrap p-5 justify-between items-center">
@@ -71,7 +76,8 @@ const PostPage = async ({ params }: PostPageParams) => {
                 </div>
                 {!!session && !!session.user && session.user.email === process.env.USER_EMAIL &&
                         <form
-                            className='flex mt-10 px-6 py-2 ml-2 border-[#000] border-2 hover:border-2 hover:border-[#D50000] hover:rounded hover:text-[#D50000] hover:opacity-1 hover:animate-dangerous'
+                            className='flex mt-10 px-6 py-2 ml-2 border-[#000] border-2 hover:border-2 hover:border-[#D50000] hover:rounded hover:text-[#D50000] hover:opacity-1
+                            hover:animate-dangerous'
                             action={removePost.bind(null, post.id)}>
                             <input type='submit' value="Удалить пост"/>
                         </form>
