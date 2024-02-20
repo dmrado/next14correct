@@ -4,7 +4,6 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { Post } from '@/app/db/post.model.ts'
 import Custom404 from '@/app/404.tsx'
-import moment from 'moment'
 import { getServerSession } from 'next-auth'
 
 type PostPageParams = { params: { id: number } }
@@ -45,11 +44,15 @@ const PostPage = async ({ params }: PostPageParams) => {
             </div>
 
             <div className="pl-5 pr-5 flex flex-col justify-center items-center text-justify">
-                <h5 className="p-5">Post id: {post.id}</h5>
+                {!!session && !!session.user && session.user.email === process.env.USER_EMAIL &&
+                    <h5 className="p-5">Post id: {post.id}</h5>
+                }
                 <h1 className="p-5">{post.title}</h1>
-                <p className="">{post.text}</p>
+                <p className="">&nbsp;{post.text}</p>
 
-                <p className="justify-end text-white italic mt-10">Добавлено: {moment(post.updatedAt).format('DD.MM.YYYY')}</p>
+                <p className="justify-end text-white italic mt-10">Добавлено:&nbsp;
+                    {post.createdAt.toLocaleDateString('ru-RU', { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' })}
+                </p>
 
                 <div className="flex flex-wrap p-5 justify-between items-center">
                     <Link href={'/posts'}>

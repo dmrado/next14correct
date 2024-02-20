@@ -11,24 +11,6 @@ const Posts = async () => {
     console.log('session появления кнопки добавить пост', session)
 
     const posts = await Post.findAll({ order: [ [ 'updatedAt', 'DESC' ] ] })
-    //response мапим что бы получить объект секвелайз, а не огромной модели данных
-    // .then(res => res.map(r => r.dataValues))
-    // console.log(posts)
-
-    const formData = new FormData()
-    // formData.append('id', post.id);
-
-    // const deletePost = async (id: number) => {
-    //     "use server"
-    //     // const {id} = Object.fromEntries(formData)
-    //     console.log('formData', formData)
-    //
-    //     // const id = formData.get('id')
-    //     await Post.destroy({
-    //         where: {id}
-    //     })
-    //     revalidatePath('/posts')
-    // }
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between sm:pl-2 sm:pr-2">

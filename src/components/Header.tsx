@@ -41,7 +41,7 @@ export default async function Header() {
                 </div>
             </div>
             <div
-                className='h-24  min-w-full fixed top-0 left-0 right-1 py-2 px-12 duration-30 bg-black z-2 shadow-lg shadow-[#217c02] animate-glow'></div>
+                className='h-24  min-w-full fixed top-0 left-0 right-1 py-2 px-12 duration-30 bg-black z-2 shadow-xl shadow-[#217c02] animate-glow'></div>
             {/*второй Header для анимации тени*/}
         </>
         )
