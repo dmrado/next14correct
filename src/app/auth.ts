@@ -2,13 +2,6 @@ import GoogleProvider from 'next-auth/providers/google'
 import Credentials from 'next-auth/providers/credentials'
 import { DefaultSession } from 'next-auth'
 
-// declare module 'next-auth' {
-//     interface User {
-//         // email: string | null | undefined
-//         password: string | null | undefined
-//     }
-// }
-
 export const authConfig = {
     secret: process.env.NEXTAUTH_SECRET,
     callbacks: {
