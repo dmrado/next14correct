@@ -3,27 +3,16 @@ import React from 'react'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { Post } from '@/app/db/post.model.ts'
-import Custom404 from '@/app/404.tsx'
 import { getServerSession } from 'next-auth'
+import { notFound } from 'next/navigation'
 
 type PostPageParams = { params: { id: number } }
 const PostPage = async ({ params }: PostPageParams) => {
     const session = await getServerSession()
 
-    // try {
-    const post: Post | null = await Post.findByPk(params.id)
-    // if (!post) {
-    // revalidatePath('/404')
-    // }
-    // } catch (error) {
-    //     console.log(error)
-    // }
-
-    if (post === null) {
-        // await handler(req, res);
-
-        // todo: return 404 status
-        return <Custom404/>
+    const post = await Post.findByPk(params.id)
+    if (!post) {
+        return notFound()
     }
 
     async function removePost(id: number) {

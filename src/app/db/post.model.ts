@@ -1,36 +1,35 @@
-import {Model, InferAttributes, InferCreationAttributes, CreationOptional, ForeignKey, DataTypes} from 'sequelize';
-import {User} from "./user.model";
-import {sequelize} from "./connection";
+import { Model, InferAttributes, InferCreationAttributes, CreationOptional, ForeignKey, DataTypes } from 'sequelize'
+import { User } from './user.model'
+import { sequelize } from './connection'
 
 export class Post extends Model<InferAttributes<Post>, InferCreationAttributes<Post>> {
-    declare id: CreationOptional<number>;
-    declare title: string;
-    declare text: string;
-    declare createdAt: CreationOptional<Date>;
-    declare updatedAt: CreationOptional<Date>;
+    declare id: CreationOptional<number>
+    declare title: string
+    declare text: string
+    declare createdAt: CreationOptional<Date>
+    declare updatedAt: CreationOptional<Date>
 }
 
 Post.init({
-        id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true,
-        },
-        title: {
-            // unique: true,
-            type: DataTypes.STRING
-        },
-        text: {
-            // defaultValue: 'ЭТОТ ПОСТ НЕ ИМЕЛ ТЕКСТА ПРИ СОЗДАНИИ',
-            type: DataTypes.STRING,
-            defaultValue: "-- default --"
-        },
-        createdAt: {type: DataTypes.DATE},
-        updatedAt: {type: DataTypes.DATE}
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
     },
-    {
-        sequelize,
-        timestamps: true
-    })
+    title: {
+        // unique: true,
+        type: DataTypes.STRING
+    },
+    text: {
+        // defaultValue: 'ЭТОТ ПОСТ НЕ ИМЕЛ ТЕКСТА ПРИ СОЗДАНИИ',
+        type: DataTypes.TEXT,
+        defaultValue: '-- default --'
+    },
+    createdAt: { type: DataTypes.DATE },
+    updatedAt: { type: DataTypes.DATE }
+},
+{
+    sequelize,
+    timestamps: true
+})
 Post.belongsTo(User)
-
