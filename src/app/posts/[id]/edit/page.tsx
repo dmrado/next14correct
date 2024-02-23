@@ -4,27 +4,20 @@ import { Post } from '@/app/db/post.model.ts'
 import Link from 'next/link'
 import React from 'react'
 import { getServerSession } from 'next-auth'
+import { isAuth } from '@/components/IsAuth.ts'
 
 type PostPageParams = { params: { id: number } }
 
 const EditPost = async ({ params }: PostPageParams) => {
     const session = await getServerSession()
-    const post : Post | null = await Post.findByPk(params.id)
-
-    if (session && new Date(session.expires) < new Date()) {
-        // todo: Implement a function isAuthorised and include all logic there: expires and email check
-        throw new Error('Your session is expired|403')
-    }
-
-    if (!session || !session.user || session.user.email !== process.env.USER_EMAIL) {
-        throw new Error('Custom Forbidden|403')
-    }
+    isAuth(session)
+    const post: Post | null = await Post.findByPk(params.id)
 
     if (!post) {
         return notFound()
     }
 
-    async function updatePost (data: FormData) {
+    async function updatePost(data: FormData) {
         'use server'
         const title = data.get('title')
         const text = data.get('text')

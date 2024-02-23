@@ -7,7 +7,6 @@ import { getServerSession } from 'next-auth'
 
 const Posts = async () => {
     const session = await getServerSession()
-    console.log('session появления кнопки добавить пост', session)
 
     const posts = await Post.findAll({ order: [ [ 'updatedAt', 'DESC' ] ] })
 
