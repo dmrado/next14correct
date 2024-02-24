@@ -15,11 +15,12 @@ const config: Config = {
             },
             colors: {
                 'my_red': '#D50000',
-                'my_green': '#39c703',
-                'my_l_green': '#50d71e',
+                // 'my_green': '#39c703',
+                'my_l_green': '#02bb5f',
                 'my_blue': '#004E98',
                 'my_l_blue': '#0285d5',
                 'my_white': '#fff',
+                'header_green': '#02bb5f',
             },
             backgroundImage: {
                 'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

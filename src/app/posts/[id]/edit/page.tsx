@@ -23,10 +23,15 @@ const EditPost = async ({ params }: PostPageParams) => {
         return notFound()
     }
 
-    async function updatePost(data: FormData) {
+    async function updatePost(data: FormData, defaultValue) {
         'use server'
         const title = data.get('title')
-        const text = data.get('text')
+
+        //todo так как Quill не является стандартным input-ом, то нужно его содержимое передать в явном виде, но как это сделать в серверном компоненте?
+
+        const text = { defaultValue }
+        // const text = data.get('text')
+
         if (typeof title !== 'string' || typeof text !== 'string') {
             throw new Error('Files cannot be loaded through form')
         }
@@ -46,7 +51,9 @@ const EditPost = async ({ params }: PostPageParams) => {
 
             <div className="items-center h-screen p-5">
                 <form className="min-h-fit bg-white rounded px-8 pt-6 pb-8 mb-4 opacity-75"
-                    action={updatePost}>
+                    // action={updatePost}
+
+                    action={formData => updatePost(formData, defaultValue)}>
 
                     <div className="mb-4">
                         <input defaultValue={post.title}

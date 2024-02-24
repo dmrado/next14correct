@@ -4,9 +4,8 @@ import 'react-quill/dist/quill.snow.css'
 import { useEffect, useRef, useState } from 'react'
 
 const Editor = ({ defaultValue }) => {
-    const [ value, setValue ] = useState(defaultValue ? defaultValue : value)
+    const [ value, setValue ] = useState(defaultValue ? defaultValue : '')
     const ref = useRef(null)
-    // console.log('ref из компонента Quill', ref)
 
     useEffect(() => {
         if(!ref) {
@@ -15,11 +14,6 @@ const Editor = ({ defaultValue }) => {
         setValue(ref.current.getEditor().getText())
         console.log('ref.getText()', ref.current.getEditor().getText())
     }, [ value ])
-
-    const changeHandler = e => {
-        e.preventDefault()
-        setValue(ref.current.getEditor().getText())
-    }
 
     const modules = {
         toolbar: [
@@ -45,7 +39,7 @@ const Editor = ({ defaultValue }) => {
         <div className='h-24 text-2xl text-red-600'>
             <ReactQuill ReactQuill theme="snow"
                 value={value}
-                onChange={e => changeHandler}
+                onChange={setValue}
                 className='min-h-42 bg-blue-300'
                 modules={modules}
                 formats={formats}

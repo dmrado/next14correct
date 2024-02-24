@@ -41,10 +41,10 @@ body {
 
 @keyframes dangerous {
     0%, 60%, 80% {
-        transform: translateX(20%);
+        transform: translateX(100%);
     }
     30%, 70%, 90% {
-        transform: translateX(-20%);
+        transform: translateX(-100%);
     }
     100% {
         transform: translateX(0%);
@@ -52,7 +52,7 @@ body {
 }
 
 .animate-dangerous {
-    animation: dangerous 0.9s 5;
+    animation: dangerous 2s 1;
 }
 
 

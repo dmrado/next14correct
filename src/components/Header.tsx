@@ -9,7 +9,7 @@ export default async function Header() {
     if (session && session.user) {
         return (<>
             <div
-                className='flex justify-between items-center h-24 min-w-full fixed top-0 left-0 right-0 py-2 px-10 bg-black opacity-95 z-40 shadow-lg shadow-[#217c02]'>            {/* Header shadow-green*/}
+                className='flex justify-between items-center h-24 min-w-full fixed top-0 left-0 right-0 py-2 px-10 bg-black opacity-95 z-40 shadow-lg shadow-header_green'>            {/* Header shadow-green*/}
                 <div className='flex justify-between items-center py-2'>
                     <p className='mr-2 sm:px-2 sm:flex-nowrap'>{session.user.name}</p>
                     <div className='mr-4'>
@@ -41,7 +41,7 @@ export default async function Header() {
                 </div>
             </div>
             <div
-                className='h-24  min-w-full fixed top-0 left-0 right-1 py-2 px-12 duration-30 bg-black z-2 shadow-xl shadow-[#217c02] animate-glow'></div>
+                className='h-24  min-w-full fixed top-0 left-0 right-1 py-2 px-12 duration-30 bg-black z-2 shadow-xl shadow-header_green animate-glow'></div>
             {/*второй Header для анимации тени*/}
         </>
         )

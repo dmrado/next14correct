@@ -68,7 +68,7 @@ const PostPage = async ({ params }: PostPageParams) => {
                 {!!session && !!session.user && session.user.email === process.env.USER_EMAIL &&
                         <form
                             className='flex mt-10 px-6 py-2 ml-2 border-[#000] border-2 hover:border-2 hover:border-[#D50000] hover:rounded hover:text-[#D50000] hover:opacity-1
-                            hover:animate-dangerous'
+                            focus:animate-dangerous'
                             action={removePost.bind(null, post.id)}>
                             <input type='submit' value="Удалить пост"/>
                         </form>
