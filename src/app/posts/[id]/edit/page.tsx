@@ -4,7 +4,7 @@ import { Post } from '@/app/db/post.model.ts'
 import Link from 'next/link'
 import React from 'react'
 import { getServerSession } from 'next-auth'
-import { isAuth } from '@/components/IsAuth.ts'
+import { isAuth } from '@/app/isAuth.ts'
 
 type PostPageParams = { params: { id: number } }
 

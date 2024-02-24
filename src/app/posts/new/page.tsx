@@ -3,7 +3,7 @@ import { revalidatePath } from 'next/cache'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { getServerSession } from 'next-auth'
-import { isAuth } from '@/components/IsAuth.ts'
+import { isAuth } from '@/app/isAuth.ts'
 
 const AddPost = async () => {
     const session = await getServerSession()
