@@ -16,8 +16,8 @@ const EditPost = async ({ params }: PostPageParams) => {
         throw new Error('Your session is expired|403')
     }
 
-    if (!session || !session.user || session.user.email !== process.env.USER_EMAIL) {
-        throw new Error('Custom Forbidden|403')
+    if (!session || !session.user || session.user.email !== 'process.env.USER_EMAIL') {
+        redirect('/api/error')
     }
 
     if (!post) {
