@@ -5,6 +5,12 @@ import Link from 'next/link'
 import React from 'react'
 import { getServerSession } from 'next-auth'
 import { isAuth } from '@/app/isAuth.ts'
+// import Editor from '@/components/Editor'
+import dynamic from 'next/dynamic'
+
+const Editor = dynamic(() => import('@/components/Editor'), {
+    ssr: false,
+})
 
 type PostPageParams = { params: { id: number } }
 
@@ -39,7 +45,7 @@ const EditPost = async ({ params }: PostPageParams) => {
             <div className="flex justify-center mt-40"><h1 className="p-5">Отредактируем по-новому...</h1></div>
 
             <div className="items-center h-screen p-5">
-                <form className="bg-white rounded px-8 pt-6 pb-8 mb-4"
+                <form className="min-h-fit bg-white rounded px-8 pt-6 pb-8 mb-4 opacity-75"
                     action={updatePost}>
 
                     <div className="mb-4">
@@ -48,10 +54,11 @@ const EditPost = async ({ params }: PostPageParams) => {
                             type="text" name='title' placeholder="Заголовок"/>
                     </div>
 
-                    <div className="mb-6">
-                        <textarea defaultValue={post.text}
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            rows={5} cols={50} name='text' placeholder="Текст"/>
+                    <div className="mb-6 pt-4 h-12 z-6">
+                        <Editor defaultValue={post.text}/>
+                        {/*<textarea defaultValue={post.text}*/}
+                        {/*    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"*/}
+                        {/*    rows={5} cols={50} name='text' placeholder="Текст"/>*/}
                     </div>
                     <div className="flex items-center justify-center">
 

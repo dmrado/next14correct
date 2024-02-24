@@ -37,7 +37,9 @@ const PostPage = async ({ params }: PostPageParams) => {
                         <h5 className="p-5">Post id: {post.id}</h5>
                 }
                 <h1 className="p-5">{post.title}</h1>
-                <p className="">&nbsp;{post.text}</p>
+
+                <div dangerouslySetInnerHTML={{ __html: post.text }}
+                ></div>
 
                 <p className="justify-end text-white italic mt-10">Добавлено:&nbsp;
                     {post.createdAt.toLocaleDateString('ru-RU', {
