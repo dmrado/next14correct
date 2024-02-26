@@ -5,7 +5,6 @@ import Link from 'next/link'
 import React from 'react'
 import { getServerSession } from 'next-auth'
 import { isAuth } from '@/app/isAuth.ts'
-// import Editor from '@/components/Editor'
 import dynamic from 'next/dynamic'
 
 const Editor = dynamic(() => import('@/components/Editor'), {
@@ -23,14 +22,12 @@ const EditPost = async ({ params }: PostPageParams) => {
         return notFound()
     }
 
-    async function updatePost(data: FormData, defaultValue) {
+    async function updatePost(data: FormData) {
         'use server'
         const title = data.get('title')
 
-        //todo так как Quill не является стандартным input-ом, то нужно его содержимое передать в явном виде, но как это сделать в серверном компоненте?
-
-        const text = { defaultValue }
-        // const text = data.get('text')
+        // const text = { defaultValue }
+        const text = data.get('my_hidden_html')
 
         if (typeof title !== 'string' || typeof text !== 'string') {
             throw new Error('Files cannot be loaded through form')
@@ -51,9 +48,7 @@ const EditPost = async ({ params }: PostPageParams) => {
 
             <div className="items-center h-screen p-5">
                 <form className="min-h-fit bg-white rounded px-8 pt-6 pb-8 mb-4 opacity-75"
-                    // action={updatePost}
-
-                    action={formData => updatePost(formData, defaultValue)}>
+                    action={updatePost}>
 
                     <div className="mb-4">
                         <input defaultValue={post.title}
@@ -70,9 +65,10 @@ const EditPost = async ({ params }: PostPageParams) => {
                     <div className="flex items-center justify-center">
 
                         <input type="hidden" name="id" value={post.id}/>
+                        <input type="hidden" id='hidden_html' name="my_hidden_html" value='aaa'/>
 
                         <button
-                            className='border-2 border-my_white border-solid text-[#000] hover:text-my_l_green hover:border-2 hover:border-my_l_green pt-1.5 pr-5 pb-1.5 pl-5 p-2 rounded'
+                            className='mt-12 border-2 border-my_white border-solid text-[#000] hover:text-my_l_green hover:border-2 hover:border-my_l_green pt-1.5 pr-5 pb-1.5 pl-5 p-2 rounded'
                             type="submit">Записать
                         </button>
                     </div>

@@ -11,8 +11,10 @@ const Editor = ({ defaultValue }) => {
         if(!ref) {
             return
         }
-        setValue(ref.current.getEditor().getText())
-        console.log('ref.getText()', ref.current.getEditor().getText())
+        const textValue = ref.current.getEditor().getText()
+        setValue(textValue)
+        console.log('ref.getText()', textValue)
+        // document.querySelector('#hidden_html').setAttribute('value', textValue)
     }, [ value ])
 
     const modules = {
