@@ -27,7 +27,7 @@ const EditPost = async ({ params }: PostPageParams) => {
         const title = data.get('title')
 
         // const text = { defaultValue }
-        const text = data.get('my_hidden_html')
+        const text = data.get('text')
 
         if (typeof title !== 'string' || typeof text !== 'string') {
             throw new Error('Files cannot be loaded through form')
@@ -65,7 +65,6 @@ const EditPost = async ({ params }: PostPageParams) => {
                     <div className="flex items-center justify-center">
 
                         <input type="hidden" name="id" value={post.id}/>
-                        <input type="hidden" id='hidden_html' name="my_hidden_html" value='aaa'/>
 
                         <button
                             className='mt-12 border-2 border-my_white border-solid text-[#000] hover:text-my_l_green hover:border-2 hover:border-my_l_green pt-1.5 pr-5 pb-1.5 pl-5 p-2 rounded'
