@@ -3,11 +3,16 @@ import { revalidatePath } from 'next/cache'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { getServerSession } from 'next-auth'
-import { isAuth } from '@/app/isAuth.ts'
+import { isAuthorizedCheck } from '@/app/isAuthorizedCheck.ts'
+import { isSessionExpiresCheck } from '@/app/isSessionExpiresCheck.ts'
 
 const AddPost = async () => {
     const session = await getServerSession()
-    isAuth(session)
+
+    if(!isAuthorizedCheck(session) && !isSessionExpiresCheck(session)) {
+        return redirect('/posts')
+    }
+
     const posts = await Post.findAll().then(res => res.map(r => r.dataValues))
 
     const addPost = async (formData: FormData) => {

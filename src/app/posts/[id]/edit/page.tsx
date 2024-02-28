@@ -4,7 +4,8 @@ import { Post } from '@/app/db/post.model.ts'
 import Link from 'next/link'
 import React from 'react'
 import { getServerSession } from 'next-auth'
-import { isAuth } from '@/app/isAuth.ts'
+import { isAuthorizedCheck } from '@/app/isAuthorizedCheck.ts'
+import { isSessionExpiresCheck } from '@/app/isSessionExpiresCheck.ts'
 import dynamic from 'next/dynamic'
 
 const Editor = dynamic(() => import('@/components/Editor'), {
@@ -15,9 +16,11 @@ type PostPageParams = { params: { id: number } }
 
 const EditPost = async ({ params }: PostPageParams) => {
     const session = await getServerSession()
-    isAuth(session)
-    const post: Post | null = await Post.findByPk(params.id)
+    if(!isAuthorizedCheck(session) && !isSessionExpiresCheck(session)) {
+        return redirect('/posts')
+    }
 
+    const post: Post | null = await Post.findByPk(params.id)
     if (!post) {
         return notFound()
     }
