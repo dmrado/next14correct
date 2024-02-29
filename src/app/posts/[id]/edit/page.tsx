@@ -4,30 +4,38 @@ import { Post } from '@/app/db/post.model.ts'
 import Link from 'next/link'
 import React from 'react'
 import { getServerSession } from 'next-auth'
+import { isAuthorizedCheck } from '@/app/isAuthorizedCheck.ts'
+import { isSessionExpiresCheck } from '@/app/isSessionExpiresCheck.ts'
+import dynamic from 'next/dynamic'
+
+const Editor = dynamic(() => import('@/components/Editor'), {
+    ssr: false,
+})
 
 type PostPageParams = { params: { id: number } }
 
 const EditPost = async ({ params }: PostPageParams) => {
     const session = await getServerSession()
-    const post : Post | null = await Post.findByPk(params.id)
-
-    if (session && new Date(session.expires) < new Date()) {
-        // todo: Implement a function isAuthorised and include all logic there: expires and email check
-        throw new Error('Your session is expired|403')
+    if(!isAuthorizedCheck(session) && !isSessionExpiresCheck(session)) {
+        return redirect('/posts')
     }
 
-    if (!session || !session.user || session.user.email !== process.env.USER_EMAIL) {
-        throw new Error('Custom Forbidden|403')
-    }
-
+    const post: Post | null = await Post.findByPk(params.id)
     if (!post) {
         return notFound()
     }
 
-    async function updatePost (data: FormData) {
+    async function updatePost(data: FormData) {
         'use server'
         const title = data.get('title')
+
         const text = data.get('text')
+
+        const file = data.get('post_picture')
+
+        // todo: clean html markup, cut only 100 (?) symbols and save it as preview
+        // const preview = data.get('text').replace().slice(0, 45)
+
         if (typeof title !== 'string' || typeof text !== 'string') {
             throw new Error('Files cannot be loaded through form')
         }
@@ -46,27 +54,25 @@ const EditPost = async ({ params }: PostPageParams) => {
             <div className="flex justify-center mt-40"><h1 className="p-5">Отредактируем по-новому...</h1></div>
 
             <div className="items-center h-screen p-5">
-                <form className="bg-white rounded px-8 pt-6 pb-8 mb-4"
+                <form className="h-auto max-h-none min-h-fit flex flex-col items-stretch bg-white rounded px-8 pt-6 pb-8 mb-4 opacity-75"
                     action={updatePost}>
 
                     <div className="mb-4">
                         <input defaultValue={post.title}
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="border w-full h-fit py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             type="text" name='title' placeholder="Заголовок"/>
                     </div>
 
-                    <div className="mb-6">
-                        <textarea defaultValue={post.text}
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            rows={5} cols={50} name='text' placeholder="Текст"/>
-                    </div>
-                    <div className="flex items-center justify-center">
+                    <Editor defaultValue={post.text}/>
 
-                        <input type="hidden" name="id" value={post.id}/>
+                    <input type="hidden" name="id" value={post.id}/>
 
+                    <input type="file" name="post_picture"/>
+
+                    <div className="flex items-center justify-center relative">
                         <button
-                            className='border-2 border-my_white border-solid text-[#000] hover:text-my_l_green hover:border-2 hover:border-my_l_green pt-1.5 pr-5 pb-1.5 pl-5 p-2 rounded'
-                            type="submit">Записать
+                            className='border-2 border-my_white border-solid text-[#000] hover:text-my_l_green hover:border-2 hover:border-my_l_green mt-4 pt-1.5 pr-5 pb-1.5 pl-5 p-2 rounded'
+                            type="submit">Сохранить
                         </button>
                     </div>
                 </form>
@@ -75,7 +81,7 @@ const EditPost = async ({ params }: PostPageParams) => {
                     <Link href={'/posts'}>
                         <button
                             className='border-2 border-[#000] hover:text-my_l_blue hover:border-2 hover:border-my_l_blue py-2 px-4 rounded focus:outline-none focus:shadow-outline'
-                        >Вернуться
+                        >Не сохранять
                         </button>
                     </Link>
                 </div>

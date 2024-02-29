@@ -26,10 +26,10 @@ body {
 }
 
 @keyframes glow {
-    0%, 40%, 85% {
+    0%, 60%, 85% {
         opacity: 0;
     }
-    30%, 70%, 100% {
+    50%, 70%, 100% {
         opacity: 1.5;
     }
 }
@@ -40,19 +40,19 @@ body {
 
 
 @keyframes dangerous {
-    0%, 60%, 80% {
-        transform: translateX(20%);
+    0%, 40%, 80% {
+        transform: translateX(50%);
     }
-    30%, 70%, 90% {
-        transform: translateX(-20%);
+    20%, 60% {
+        transform: translateX(-100%);
     }
     100% {
         transform: translateX(0%);
     }
 }
 
-.animate-dangerous {
-    animation: dangerous 0.9s 5;
+.animate-dangerous-hover:hover {
+    animation: dangerous 2s 1;
 }
 
 
