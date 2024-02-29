@@ -13,14 +13,14 @@ const PostsPage = (post: Post) => {
             </div>
 
             <div
-                className="flex flex-col h-52 sm:h-60 w-96 md:w-[24rem] min-h-40 -mt-4 sm:-mt-24 z-10 bottom-0 pt-2.5 pr-7 pb-2 pl-7 overflow-hidden bg-indigo-50  ease-in-out duration-300 border-t-8 border-transparent hover:border-t-8 hover:border-[#004E98]">{/*card-body*/}
-                <h5 className="text-center text-blue-950 font-semibold mt-8 mb-8">
-                    <Link className="hover:text-orange-500 transform hover:scale-150 ease-in-out duration-300 text-2xl"
-                        href={`/posts/${post.id}`}>{post.title}</Link>
+                className="flex flex-col h-52 sm:h-60 w-96 md:w-[24rem] min-h-40 -mt-4 sm:-mt-24 z-10 bottom-0 p-3 overflow-hidden bg-indigo-50  ease-in-out duration-300 border-t-8 border-transparent hover:border-t-8 hover:border-[#004E98]">{/*card-body*/}
+                <h5 className="text-center text-blue-950 font-semibold mt-4 mb-4">
+                    <Link className="w-12 p-4 hover:text-orange-500 transform hover:scale-150 ease-in-out duration-300 text-2xl"
+                        href={`/posts/${post.id}`}>{post.title.slice(0, 45)}...</Link>
                 </h5>
                 <p className="text-justify text-blue-950">&nbsp;{post.text.slice(0, 100)}...</p>
 
-                <p className="text-end text-blue-950 bottom-2 italic">Опубликовано:&nbsp;
+                <p className="text-end bottom-1 text-blue-950 bottom-2 italic">Опубликовано:&nbsp;
                     {post.createdAt.toLocaleDateString('ru-RU', { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' })}
                 </p>
             </div>

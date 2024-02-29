@@ -38,18 +38,17 @@ const Editor = ({ defaultValue }) => {
     ]
 
     return (
-        <div className='h-24 text-2xl text-red-600'>
-            {/* все инпуты которые попали в форму, в нативном JS */}
+        <>
             <textarea className='hidden h-0' name="text" value={value} id=""></textarea>
             <ReactQuill ReactQuill theme="snow"
                 value={value}
                 onChange={setValue}
-                className='min-h-42 bg-blue-300'
                 modules={modules}
                 formats={formats}
                 ref={ref}
+                className='text-gray-700'
             />
-        </div>
+        </>
     )
 }
 

@@ -50,28 +50,23 @@ const EditPost = async ({ params }: PostPageParams) => {
             <div className="flex justify-center mt-40"><h1 className="p-5">Отредактируем по-новому...</h1></div>
 
             <div className="items-center h-screen p-5">
-                <form className="min-h-fit bg-white rounded px-8 pt-6 pb-8 mb-4 opacity-75"
+                <form className="h-auto max-h-none min-h-fit flex flex-col items-stretch bg-white rounded px-8 pt-6 pb-8 mb-4 opacity-75"
                     action={updatePost}>
 
                     <div className="mb-4">
                         <input defaultValue={post.title}
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="border w-full h-fit py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             type="text" name='title' placeholder="Заголовок"/>
                     </div>
 
-                    <div className="mb-6 pt-4 h-12 z-6">
-                        <Editor defaultValue={post.text}/>
-                        {/*<textarea defaultValue={post.text}*/}
-                        {/*    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"*/}
-                        {/*    rows={5} cols={50} name='text' placeholder="Текст"/>*/}
-                    </div>
-                    <div className="flex items-center justify-center">
+                    <Editor defaultValue={post.text}/>
 
-                        <input type="hidden" name="id" value={post.id}/>
+                    <input type="hidden" name="id" value={post.id}/>
 
+                    <div className="flex items-center justify-center relative">
                         <button
-                            className='mt-12 border-2 border-my_white border-solid text-[#000] hover:text-my_l_green hover:border-2 hover:border-my_l_green pt-1.5 pr-5 pb-1.5 pl-5 p-2 rounded'
-                            type="submit">Записать
+                            className='border-2 border-my_white border-solid text-[#000] hover:text-my_l_green hover:border-2 hover:border-my_l_green mt-4 pt-1.5 pr-5 pb-1.5 pl-5 p-2 rounded'
+                            type="submit">Сохранить
                         </button>
                     </div>
                 </form>
@@ -80,7 +75,7 @@ const EditPost = async ({ params }: PostPageParams) => {
                     <Link href={'/posts'}>
                         <button
                             className='border-2 border-[#000] hover:text-my_l_blue hover:border-2 hover:border-my_l_blue py-2 px-4 rounded focus:outline-none focus:shadow-outline'
-                        >Вернуться
+                        >Не сохранять
                         </button>
                     </Link>
                 </div>

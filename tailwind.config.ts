@@ -14,7 +14,7 @@ const config: Config = {
                 '128': '32rem',
             },
             colors: {
-                'my_red': '#D50000',
+                // 'my_red': '#D50000',
                 // 'my_green': '#39c703',
                 'my_l_green': '#02bb5f',
                 'my_blue': '#004E98',
