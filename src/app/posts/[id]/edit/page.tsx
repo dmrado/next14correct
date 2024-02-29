@@ -29,8 +29,12 @@ const EditPost = async ({ params }: PostPageParams) => {
         'use server'
         const title = data.get('title')
 
-        // const text = { defaultValue }
         const text = data.get('text')
+
+        const file = data.get('post_picture')
+
+        // todo: clean html markup, cut only 100 (?) symbols and save it as preview
+        // const preview = data.get('text').replace().slice(0, 45)
 
         if (typeof title !== 'string' || typeof text !== 'string') {
             throw new Error('Files cannot be loaded through form')
@@ -62,6 +66,8 @@ const EditPost = async ({ params }: PostPageParams) => {
                     <Editor defaultValue={post.text}/>
 
                     <input type="hidden" name="id" value={post.id}/>
+
+                    <input type="file" name="post_picture"/>
 
                     <div className="flex items-center justify-center relative">
                         <button

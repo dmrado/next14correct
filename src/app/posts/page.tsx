@@ -1,14 +1,18 @@
 import { Post } from '../db/post.model'
 
 import { revalidatePath } from 'next/cache'
-import PostsPage from '@/components/PostsPage'
+import PostsPreview from '@/components/PostsPreview.tsx'
 import React from 'react'
 import { getServerSession } from 'next-auth'
 
 const Posts = async () => {
     const session = await getServerSession()
 
-    const posts = await Post.findAll({ order: [ [ 'updatedAt', 'DESC' ] ] })
+    // todo: 1. When fetching posts, fetch only title and preview (not text, which can be pretty heavy)
+    // todo: 2. Implement pagination or infinite scroll
+    const posts = await Post.findAll({ order: [ [ 'updatedAt', 'DESC' ] ],
+        // include: [ 'title', 'preview', 'date?' ]
+    })
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between sm:pl-2 sm:pr-2">
@@ -34,7 +38,7 @@ const Posts = async () => {
                 <div className='flex float-left p-0 mt-9'>{/*card-list*/}
 
                     <ul>
-                        {posts.map(post => PostsPage(post))}
+                        {posts.map(post => PostsPreview(post))}
                     </ul>
                 </div>
             </div>

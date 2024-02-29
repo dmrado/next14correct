@@ -39,7 +39,7 @@ const Editor = ({ defaultValue }) => {
 
     return (
         <>
-            <textarea className='hidden h-0' name="text" value={value} id=""></textarea>
+            <textarea className='hidden h-0' name="text" value={value} id="hidden_textarea" readOnly></textarea>
             <ReactQuill ReactQuill theme="snow"
                 value={value}
                 onChange={setValue}
