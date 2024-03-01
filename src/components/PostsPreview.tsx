@@ -19,7 +19,6 @@ const PostsPreview = (post: Post) => {
                         href={`/posts/${post.id}`}>{post.title.slice(0, 45)}...</Link>
                 </h5>
                 <p className="text-justify text-blue-950">&nbsp;{post.preview}...</p>
-                {/*<p className="text-justify text-blue-950">&nbsp;{post.text.replace(/<[^>]+>/g, '').slice(0, 100)}...</p>*/}
 
                 <p className="text-end bottom-1 text-blue-950 italic">Опубликовано:&nbsp;
                     {post.createdAt.toLocaleDateString('ru-RU', { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' })}

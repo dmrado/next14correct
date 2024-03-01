@@ -27,9 +27,9 @@ const EditPost = async ({ params }: PostPageParams) => {
 
     async function updatePost(data: FormData) {
         'use server'
-        const title = data.get('title')
-        const text = data.get('text')
-        const preview = text ? String(text).replace(/<[^>]+>/g, '').slice(0, 100) : ''
+        const title = data.get('title') as string
+        const text = data.get('text') as string
+        const preview = text ? text.replace(/<[^>]+>/g, '').slice(0, 100) : ''
 
         console.log('preview', preview)
 
@@ -62,7 +62,7 @@ const EditPost = async ({ params }: PostPageParams) => {
                     <div className="mb-4">
                         <input defaultValue={post.title}
                             className="border w-full h-fit py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            type="text" name='title' placeholder="Заголовок"/>
+                            type="text" name='title' placeholder="Заголовок не более 180 символов"/>
                     </div>
 
                     <Editor defaultValue={post.text}/>

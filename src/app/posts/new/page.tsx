@@ -5,11 +5,17 @@ import { redirect } from 'next/navigation'
 import { getServerSession } from 'next-auth'
 import { isAuthorizedCheck } from '@/app/isAuthorizedCheck.ts'
 import { isSessionExpiresCheck } from '@/app/isSessionExpiresCheck.ts'
+import React from 'react'
+import dynamic from 'next/dynamic'
+
+const Editor = dynamic(() => import('@/components/Editor'), {
+    ssr: false,
+})
 
 const AddPost = async () => {
     const session = await getServerSession()
 
-    if(!isAuthorizedCheck(session) && !isSessionExpiresCheck(session)) {
+    if (!isAuthorizedCheck(session) && !isSessionExpiresCheck(session)) {
         return redirect('/posts')
     }
 
@@ -18,13 +24,14 @@ const AddPost = async () => {
     const addPost = async (formData: FormData) => {
         'use server'
         const title: string = formData.get('title') as string
+        const text: string = formData.get('text') as string
+        const preview = text ? text.replace(/<[^>]+>/g, '').slice(0, 100) : ''
 
         if (title === '') {
             throw new Error('Title cannot be empty')
         }
         const newPost = await Post.create({
-            title,
-            text: formData.get('text') as string
+            title, text, preview
         })
         revalidatePath('/posts')
         redirect('/posts')
@@ -41,14 +48,13 @@ const AddPost = async () => {
                         <div className="mb-4">
                             <input
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                type="text" name='title' placeholder="Заголовок"/>
+                                type="text" name='title' placeholder="Заголовок не более 180 символов"/>
                         </div>
 
-                        <div className="mb-6">
-                            <textarea
-                                className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-                                rows={5} cols={50} name='text' placeholder="Текст"/>
-                        </div>
+                        <Editor/>
+
+                        <input type="file" name="post_picture"/>
+
                         <div className="flex items-center justify-center">
                             <button
                                 className='border-2 border-my_white border-solid text-[#000] hover:text-my_l_green hover:border-2 hover:border-my_l_green pt-1.5 pr-5 pb-1.5 pl-5 p-2 rounded'
