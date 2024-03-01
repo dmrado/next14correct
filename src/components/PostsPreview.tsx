@@ -18,9 +18,10 @@ const PostsPreview = (post: Post) => {
                     <Link className="w-12 p-4 hover:text-orange-500 transform hover:scale-150 ease-in-out duration-300 text-2xl"
                         href={`/posts/${post.id}`}>{post.title.slice(0, 45)}...</Link>
                 </h5>
-                <p className="text-justify text-blue-950">&nbsp;{post.text.replace(/<[^>]+>/g, '').slice(0, 100)}...</p>
+                <p className="text-justify text-blue-950">&nbsp;{post.preview}...</p>
+                {/*<p className="text-justify text-blue-950">&nbsp;{post.text.replace(/<[^>]+>/g, '').slice(0, 100)}...</p>*/}
 
-                <p className="text-end bottom-1 text-blue-950 bottom-2 italic">Опубликовано:&nbsp;
+                <p className="text-end bottom-1 text-blue-950 italic">Опубликовано:&nbsp;
                     {post.createdAt.toLocaleDateString('ru-RU', { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' })}
                 </p>
             </div>

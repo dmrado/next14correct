@@ -6,6 +6,7 @@ export class Post extends Model<InferAttributes<Post>, InferCreationAttributes<P
     declare id: CreationOptional<number>
     declare title: string
     declare text: string
+    declare preview: string
     declare createdAt: CreationOptional<Date>
     declare updatedAt: CreationOptional<Date>
 }
@@ -24,6 +25,10 @@ Post.init({
         // defaultValue: 'ЭТОТ ПОСТ НЕ ИМЕЛ ТЕКСТА ПРИ СОЗДАНИИ',
         type: DataTypes.TEXT,
         defaultValue: '-- default --'
+    },
+    preview: {
+        //для сохранения текста поста без HTML-разметки для PostsPrewiev
+        type: DataTypes.STRING
     },
     createdAt: { type: DataTypes.DATE },
     updatedAt: { type: DataTypes.DATE }

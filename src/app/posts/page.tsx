@@ -11,7 +11,7 @@ const Posts = async () => {
     // todo: 1. When fetching posts, fetch only title and preview (not text, which can be pretty heavy)
     // todo: 2. Implement pagination or infinite scroll
     const posts = await Post.findAll({ order: [ [ 'updatedAt', 'DESC' ] ],
-        // include: [ 'title', 'preview', 'date?' ]
+        // attributes: [ 'title', 'preview' ]
     })
 
     return (

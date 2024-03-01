@@ -28,8 +28,10 @@ const EditPost = async ({ params }: PostPageParams) => {
     async function updatePost(data: FormData) {
         'use server'
         const title = data.get('title')
-
         const text = data.get('text')
+        const preview = text ? String(text).replace(/<[^>]+>/g, '').slice(0, 100) : ''
+
+        console.log('preview', preview)
 
         const file = data.get('post_picture')
 
@@ -43,7 +45,7 @@ const EditPost = async ({ params }: PostPageParams) => {
         if (typeof idValue !== 'string' || Number.isNaN(idValue)) {
             throw new Error('Invalid id')
         }
-        await Post.update({ title: title, text: text }, { where: { id: Number(idValue) } })
+        await Post.update({ title: title, text: text, preview: preview }, { where: { id: Number(idValue) } })
 
         revalidatePath('/posts')
         redirect('/posts')
