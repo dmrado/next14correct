@@ -2,6 +2,7 @@ import { Post } from '../db/post.model'
 
 import { revalidatePath } from 'next/cache'
 import PostsPreview from '@/components/PostsPreview.tsx'
+import PaginateWrapper from '@/components/PaginateWrapper.js'
 import React from 'react'
 import { getServerSession } from 'next-auth'
 
@@ -38,7 +39,8 @@ const Posts = async () => {
                 <div className='flex float-left p-0 mt-9'>{/*card-list*/}
 
                     <ul>
-                        {posts.map(post => PostsPreview(post))}
+                        <PaginateWrapper posts={posts}/>
+                        {/*{posts.map(post => PostsPreview(post))}*/}
                     </ul>
                 </div>
             </div>
