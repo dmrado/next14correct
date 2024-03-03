@@ -1,7 +1,5 @@
 import { Post } from '../db/post.model'
 
-import { revalidatePath } from 'next/cache'
-import PostsPreview from '@/components/PostsPreview.tsx'
 import PaginateWrapper from '@/components/PaginateWrapper.js'
 import React from 'react'
 import { getServerSession } from 'next-auth'
@@ -26,11 +24,7 @@ const Posts = async () => {
                         adipisicing elit. Amet aspernatur commodi consequatur deleniti dignissimos dolor enim ex
                         excepturi facilis harum id illo ipsum laborum laudantium magnam maiores modi molestias natus
                         necessitatibus odit quam quia quod repellendus, reprehenderit saepe sit tempora tenetur ut,
-                        velit voluptatibus. Ab accusantium ad atque consequatur ea ex illo illum laudantium nesciunt
-                        nisi ratione repudiandae sapiente similique, vel vitae. At eaque excepturi libero minima,
-                        mollitia nesciunt nisi perspiciatis voluptate. Ab ad amet animi, autem blanditiis culpa cum
-                        cupiditate deleniti dolore doloremque eos est ex laborum laudantium magnam maiores natus nulla
-                        obcaecati provident quos, reiciendis sint tempore, ut!</p>
+                        velit voluptatibus. Ab accusantium ad atque consequatur ea ex illo illum laudantium nesciunt!</p>
 
                 </div>
             </div>
