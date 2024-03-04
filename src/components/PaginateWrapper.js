@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import PostsPreview from './PostsPreview.tsx'
+import { revalidatePath } from 'next/cache'
 
 const PaginateWrapper = ({ posts }) => {
     //устанавливаем отображаемые посты
@@ -15,7 +16,7 @@ const PaginateWrapper = ({ posts }) => {
         const countPostsPreview = document.querySelectorAll('.posts_preview')
         // если на странице три и менее превьюшки то не удаляем
         if (countPostsPreview.length <= 3) {
-            return
+            window.location.reload()
         }
         // Если на странице более трех превьюшек
         if (countPostsPreview.length >= 3) {
