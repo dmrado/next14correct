@@ -33,12 +33,11 @@ const Posts = async () => {
                 <div className='flex float-left p-0 mt-9'>{/*card-list*/}
 
                     <ul>
-                        <PaginateWrapper className='posts' posts={posts}/>
+                        <PaginateWrapper posts={posts}/>
                         {/*{posts.map(post => PostsPreview(post))}*/}
                     </ul>
                 </div>
             </div>
-
         </main>
     )
 }

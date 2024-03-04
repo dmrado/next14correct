@@ -2,7 +2,8 @@ import React from 'react'
 import Link from 'next/link'
 import { Post } from '@/app/db/post.model'
 
-const PostsPreview = (post: Post) => {
+const PostsPreview = ({ post }: Post) => {
+    console.log('post on PostsPreview', post)
     return <li key={post.id}>
 
         <div className="flex flex-col mt-20 h-full pt-0 pr-30 pb-0 pl-30 content-center items-center">{/*card*/}
@@ -17,12 +18,12 @@ const PostsPreview = (post: Post) => {
                 <h5 className="text-center text-blue-950 font-semibold mt-4">
                     <Link
                         className="w-12 p-2 hover:text-orange-500 transform hover:scale-150 ease-in-out duration-300 text-2xl"
-                        href={`/posts/${post.id}`}>{post.title.slice(0, 45)}...</Link>
+                        href={`/posts/${post.id}`}>{post.title?.slice(0, 45)}...</Link>
                 </h5>
                 <p className="text-justify text-blue-950 px-2">&nbsp;{post.preview}...</p>
 
                 <p className="text-end text-blue-950 italic pr-2">Опубликовано:&nbsp;
-                    {post.createdAt.toLocaleDateString('ru-RU', {
+                    {post.createdAt?.toLocaleDateString('ru-RU', {
                         // weekday: 'short',
                         year: 'numeric',
                         month: 'long',
