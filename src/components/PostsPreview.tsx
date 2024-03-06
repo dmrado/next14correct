@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Post } from '@/app/db/post.model'
 
 const PostsPreview = ({ post }: Post) => {
-    console.log('post on PostsPreview', post)
+    // console.log('post on PostsPreview', post)
     return <li key={post.id}>
 
         <div className="flex flex-col mt-20 h-full pt-0 pr-30 pb-0 pl-30 content-center items-center">{/*card*/}
