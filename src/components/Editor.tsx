@@ -3,19 +3,9 @@ import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { useEffect, useRef, useState } from 'react'
 
-const Editor = ({ defaultValue }) => {
+const Editor = ({ defaultValue }: {defaultValue : string}) => {
     const [ value, setValue ] = useState(defaultValue ? defaultValue : '')
     const ref = useRef(null)
-
-    // useEffect(() => {
-    //     if(!ref) {
-    //         return
-    //     }
-    //     const textValue = ref.current.getEditor().getText()
-    //     setValue(textValue)
-    //     console.log('ref.getText()', textValue)
-    //     // document.querySelector('#hidden_html').setAttribute('value', textValue)
-    // }, [ value ])
 
     const modules = {
         toolbar: [
@@ -40,7 +30,8 @@ const Editor = ({ defaultValue }) => {
     return (
         <>
             <textarea className='hidden h-0' name="text" value={value} id="hidden_textarea" readOnly></textarea>
-            <ReactQuill ReactQuill theme="snow"
+            <ReactQuill
+                theme="snow"
                 value={value}
                 onChange={setValue}
                 modules={modules}

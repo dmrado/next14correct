@@ -38,3 +38,5 @@ Post.init({
     timestamps: true
 })
 Post.belongsTo(User)
+
+export type PostPreview = Pick< Post, 'id' | 'title' | 'preview' | 'createdAt' >

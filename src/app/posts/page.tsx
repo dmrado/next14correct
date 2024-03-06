@@ -1,5 +1,4 @@
-import { Post } from '../db/post.model'
-
+import { Post, PostPreview } from '../db/post.model'
 import PaginateWrapper from '@/components/PaginateWrapper.js'
 import React from 'react'
 import { getServerSession } from 'next-auth'
@@ -12,6 +11,8 @@ const Posts = async () => {
     const posts = await Post.findAll({ order: [ [ 'updatedAt', 'DESC' ] ],
         attributes: [ 'id', 'title', 'preview', 'createdAt' ]
     })
+        .then(res => res.map(post => post.toJSON()))
+        .catch(e => console.error(e))
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between sm:pl-2 sm:pr-2">

@@ -4,14 +4,6 @@ import PostsPreview from './PostsPreview.tsx'
 import { revalidatePath } from 'next/cache'
 
 const PaginateWrapper = ({ posts }) => {
-    //При передаче данных из Компонента Сервера в Клиентский Компонент в Next.js от Vercel важно убедиться, что вы передаете только простые объекты JavaScript, а не объекты с пользовательскими методами, такими как toJSON(). Компоненты Сервера от Vercel не поддерживают передачу объектов с пользовательскими методами напрямую в Клиентские Компоненты.  Only plain objects can be passed to Client Components from Server Components. Objects with toJSON methods are not supported. Convert it manually to a simple value before passing it to props. Все равно не исчез warning
-    const simplifiedPostObject = posts.map(post => ({
-        id: post.id,
-        title: post.title,
-        preview: post.preview,
-        createdAt: post.createdAt
-    }))
-    console.log('post on PaginateWrapper', posts)
 
     //устанавливаем отображаемые посты
     const [ displayedPostCount, setDisplayedPostCount ] = useState(4)
@@ -21,6 +13,9 @@ const PaginateWrapper = ({ posts }) => {
 
     //нужен стейт для направления скролла
     const [ scrollTop, setScrollTop ] = useState(false)
+
+    //restoredPreviews
+    const [ restoredPreviews, setRestoredPreviews ] = useState([])
 
     const displayMorePosts = () => {
         setDisplayedPostCount(prevCount => prevCount + 3)
@@ -38,11 +33,14 @@ const PaginateWrapper = ({ posts }) => {
             // Удаляем первые три
             for (let i = 0; i < 3; i++) {
                 countPostsPreview[i].remove()
-                deletedPreviews.push(countPostsPreview[i])
+                const arr = []
+                arr.push(countPostsPreview[i])
+                setDeletedPreviews(arr)
             }
         }
     }
     console.log('deletedPreviews', deletedPreviews)
+
     //вызываем displayMorePosts и removePosts при достижении прокрутки до 100px от нижней грани видимой области
     const scrollHandler = (e) => {
         console.log('scroll')
@@ -51,24 +49,25 @@ const PaginateWrapper = ({ posts }) => {
             displayMorePosts()
         }
         if (e.target.documentElement.scrollTop < 300) {
-
-            const restoredPreviews = deletedPreviews.slice(0, posts.length - 1).reverse()
-            console.log('restoredPreviews', restoredPreviews)
+            const array = []
+            array.push(deletedPreviews.slice(0, posts.length).reverse())
+            setRestoredPreviews(array)
         }
     }
+    console.log('restoredPreviews', restoredPreviews)
 
-    useEffect(() => {
-        //todo когда получится пофиксить эту функцию, логику прокрутки вверх или вниз можно будет разделить здесь
-        document.addEventListener('wheel', function(e) {
-            if (e.originalEvent.wheelDelta >= 0) {
-                setScrollTop(true)
-                console.log('Прокрутка вверх')
-            } else {
-                setScrollTop(false)
-                console.log('Прокрутка вниз')
-            }
-        })
-    }, [])
+    // useEffect(() => {
+    //     //todo когда получится пофиксить эту функцию, логику прокрутки вверх или вниз можно будет разделить здесь
+    //     document.addEventListener('wheel', function(e) {
+    //         if (e.originalEvent.wheelDelta >= 0) {
+    //             setScrollTop(true)
+    //             console.log('Прокрутка вверх')
+    //         } else {
+    //             setScrollTop(false)
+    //             console.log('Прокрутка вниз')
+    //         }
+    //     })
+    // }, [])
 
     //прослушивание события прокрутки для удаления постов сверху и добавления снизу
     useEffect(() => {
@@ -85,7 +84,7 @@ const PaginateWrapper = ({ posts }) => {
                     </div>
                 </React.Fragment>
             )) :
-            simplifiedPostObject.slice(0, displayedPostCount).map(post => (
+            posts.slice(0, displayedPostCount).map(post => (
                 <React.Fragment key={post.id}>
                     <div className='posts_preview'>
                         <PostsPreview post={post}/>

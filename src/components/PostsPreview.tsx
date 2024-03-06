@@ -1,8 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
-import { Post } from '@/app/db/post.model'
+import { PostPreview } from '@/app/db/post.model'
 
-const PostsPreview = ({ post }: Post) => {
+const PostsPreview = ({ post }: { post : PostPreview }) => {
     // console.log('post on PostsPreview', post)
     return <li key={post.id}>
 

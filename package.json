@@ -10,7 +10,7 @@
     "lint": "next lint",
     "sync": "npx tsx src/db-sync.ts",
     "seed": "npx tsx src/db-seed.ts",
-    "unseed": "tsc seeders/unseed.ts && node seeders/unseed.js",
+    "unseed": "npx tsx src/db-unseed.ts",
     "tick": "tsc tasks/tickTak.ts",
     "peoples": "npx tsx tasks/peoples.ts"
   },
