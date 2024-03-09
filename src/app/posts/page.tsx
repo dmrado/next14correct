@@ -1,18 +1,10 @@
 import { Post, PostPreview } from '../db/post.model'
-import PaginateWrapper from '@/components/PaginateWrapper.js'
+import PaginateWrapper from '@/components/PaginateWrapper.tsx'
 import React from 'react'
 import { getServerSession } from 'next-auth'
 
 const Posts = async () => {
     const session = await getServerSession()
-
-    // todo: 1. When fetching posts, fetch only title and preview (not text, which can be pretty heavy)
-    // todo: 2. Implement pagination or infinite scroll
-    const posts = await Post.findAll({ order: [ [ 'updatedAt', 'DESC' ] ],
-        attributes: [ 'id', 'title', 'preview', 'createdAt' ]
-    })
-        .then(res => res.map(post => post.toJSON()))
-        .catch(e => console.error(e))
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between sm:pl-2 sm:pr-2">
@@ -34,7 +26,7 @@ const Posts = async () => {
                 <div className='flex float-left p-0 mt-9'>{/*card-list*/}
 
                     <ul>
-                        <PaginateWrapper posts={posts}/>
+                        <PaginateWrapper/>
                         {/*{posts.map(post => PostsPreview(post))}*/}
                     </ul>
                 </div>

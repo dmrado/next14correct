@@ -4,7 +4,7 @@ import { PostPreview } from '@/app/db/post.model'
 
 const PostsPreview = ({ post }: { post : PostPreview }) => {
     // console.log('post on PostsPreview', post)
-    return <li key={post.id}>
+    return <li>
 
         <div className="flex flex-col mt-20 h-full pt-0 pr-30 pb-0 pl-30 content-center items-center">{/*card*/}
 
