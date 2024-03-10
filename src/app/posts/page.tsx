@@ -1,11 +1,13 @@
 import { Post, PostPreview } from '../db/post.model'
-import PaginateWrapper from '@/components/PaginateWrapper.tsx'
+import PostList from '@/components/PostList.tsx'
 import React from 'react'
 import { getServerSession } from 'next-auth'
+import { getPosts } from '@/app/actions/getPosts.ts'
+import { NUMBER_OF_POSTS_TO_FETCH } from '@/app/constants.ts'
 
 const Posts = async () => {
-    const session = await getServerSession()
-
+    // const session = await getServerSession()
+    const { posts } = await getPosts(0, NUMBER_OF_POSTS_TO_FETCH)
     return (
         <main className="flex min-h-screen flex-col items-center justify-between sm:pl-2 sm:pr-2">
             <div className='max-w-4xl overflow-hidden mt-0 mr-auto mb-0 ml-auto italic'>{/*container*/}
@@ -26,7 +28,7 @@ const Posts = async () => {
                 <div className='flex float-left p-0 mt-9'>{/*card-list*/}
 
                     <ul>
-                        <PaginateWrapper/>
+                        <PostList initialPosts={posts}/>
                         {/*{posts.map(post => PostsPreview(post))}*/}
                     </ul>
                 </div>

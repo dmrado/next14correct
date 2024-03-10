@@ -3,23 +3,27 @@ import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { Post, PostPreview } from '@/app/db/post.model'
 import PostsPreview from '@/components/PostsPreview.tsx'
-import { getPosts } from '@/app/getPosts.ts'
-
-const NUMBER_OF_POSTS_TO_FETCH = 10
+import { getPosts } from '@/app/actions/getPosts.ts'
+import { NUMBER_OF_POSTS_TO_FETCH } from '@/app/constants.ts'
 
 export default function PostList({ initialPosts }: { initialPosts: PostPreview[] }) {
     const [ offset, setOffset ] = useState(NUMBER_OF_POSTS_TO_FETCH)
+    const [ count, setCount ] = useState(0)
+    // const [ loading, setLoading ] = useState(false)
+
     const [ posts, setPosts ] = useState<PostPreview[]>(initialPosts)
     const { ref, inView } = useInView()
 
     const loadMorePosts = async () => {
-        const apiPosts = await getPosts(offset, NUMBER_OF_POSTS_TO_FETCH)
-        setPosts([ ...posts, ...apiPosts ])
+        //присваиваем значение posts в переменную newPosts деструктуризация с переимнованием
+        const { posts: newPosts, count } = await getPosts(offset, NUMBER_OF_POSTS_TO_FETCH)
+        setPosts([ ...posts, ...newPosts ])
         setOffset(offset + NUMBER_OF_POSTS_TO_FETCH)
+        setCount(count)
     }
 
     useEffect(() => {
-        if (inView) {
+        if (inView && posts.length !== count) {
             loadMorePosts()
         }
     }, [ inView ])
@@ -29,10 +33,10 @@ export default function PostList({ initialPosts }: { initialPosts: PostPreview[]
             {posts.map((post) => (
                 <PostsPreview key={post.id} post={post}/>
             ))}
-            <div ref={ref}>
-                Loading...
+
+            <div className='flex justify-center my-10 text-my_l_green' ref={ref}>
+                {posts.length !== count ? 'Загружаем еще...' : 'Простите, это весь список, больше пока не написали!'}
             </div>
-            {/* <button onClick={loadMorePosts}>Load more</button> */}
         </div>
     )
 }
