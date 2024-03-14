@@ -7,6 +7,7 @@ import { isAuthorizedCheck } from '@/app/isAuthorizedCheck.ts'
 import { isSessionExpiresCheck } from '@/app/isSessionExpiresCheck.ts'
 import React from 'react'
 import dynamic from 'next/dynamic'
+import { Input } from '@/components/Input.tsx'
 
 const Editor = dynamic(() => import('@/components/Editor'), {
     ssr: false,
@@ -53,7 +54,7 @@ const AddPost = async () => {
 
                         <Editor/>
 
-                        <input type="file" name="post_picture"/>
+                        <Input/>
 
                         <div className="flex items-center justify-center">
                             <button
