@@ -8,7 +8,6 @@ export class Post extends Model<InferAttributes<Post>, InferCreationAttributes<P
     declare text: string
     declare preview: string
     declare path: string
-    declare fileName: string
     declare createdAt: CreationOptional<Date>
     declare updatedAt: CreationOptional<Date>
 }
@@ -33,7 +32,6 @@ Post.init({
         type: DataTypes.STRING
     },
     path: { type: DataTypes.STRING },
-    fileName: { type: DataTypes.STRING },
     createdAt: { type: DataTypes.DATE },
     updatedAt: { type: DataTypes.DATE }
 },

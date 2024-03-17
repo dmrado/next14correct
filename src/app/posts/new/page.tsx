@@ -1,3 +1,5 @@
+import path from 'path'
+import fs from 'fs'
 import {Post} from '@/app/db/post.model'
 import {revalidatePath} from 'next/cache'
 import Link from 'next/link'
@@ -26,14 +28,18 @@ const AddPost = async () => {
         const title: string = formData.get('title') as string
         const text: string = formData.get('text') as string
         const preview = text ? text.replace(/<[^>]+>/g, '').slice(0, 100) : ''
-        const file = formData.get('post_picture')
-        console.log('>>>>>>>> file', file)
+        const formFile = formData.get('post_picture') as File
+        //todo improve TS
+        const buffer = Buffer.from(await formFile.arrayBuffer())
+        const filePath = path.join(process.cwd(), 'public/img', formFile.name)
+        fs.writeFileSync(filePath, buffer)
+        console.log('>>>>>>>> formFile', formFile)
 
         if (title === '') {
             throw new Error('Title cannot be empty')
         }
         const newPost = await Post.create({
-            title, text, preview
+            title, text, preview,
         })
         revalidatePath('/posts')
         redirect('/posts')

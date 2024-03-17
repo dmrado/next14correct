@@ -18,14 +18,13 @@ const checkUserFolder =  (userId) => {
     // return userFolderPath
 }
 
-// export const uploadFile = async (req, res, next) => {
-export const uploadFile = async (file) => {
+export const uploadFile = async (req, res, next) => {
     try {
-        // const { file, userId } = req
+        const { file, userId } = req
         if (!file) {
-            // res.status(500).json({
-            //     message: 'Необходимо выбрать файл',
-            // })
+            res.status(500).json({
+                message: 'Необходимо выбрать файл',
+            })
             return
         }
         //originalname - это изначальное название файла, которое было при загрузке, а filename - название под которым файл сохранился во временной директории
