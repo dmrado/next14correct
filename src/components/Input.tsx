@@ -32,9 +32,7 @@ export const Input = () => {
     return <>
         <label htmlFor="title" className="form-label">Выбор картинки</label>
 
-        <form>
             <input type="file" multiple={true} onChange={e => loadPostPictureToStorage(e.target.files[0])}/>
-        </form>
     </>
 }
 export default Input
