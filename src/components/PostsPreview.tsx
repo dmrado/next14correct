@@ -1,8 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
-import { PostPreview } from '@/app/db/post.model'
+import {PostPreview} from '@/app/db/post.model'
 
-const PostsPreview = ({ post }: { post : PostPreview }) => {
+const PostsPreview = ({post}: { post: PostPreview }) => {
     // console.log('post on PostsPreview', post)
     return <li>
 
@@ -10,7 +10,7 @@ const PostsPreview = ({ post }: { post : PostPreview }) => {
 
             <div className="overflow-hidden h-full">{/*card wrapper для эффекта hover-scale картинки*/}
                 <img className="transform hover:scale-150 ease-in-out duration-700 w-full h-fit rounded-lg"
-                    src='img/postspage/cloudsWIDE.webp' alt="Post image"/>{/*card-img*/}
+                     src={post.path ? post.path : 'img/postspage/cloudsWIDE.webp'} alt="Post image"/>{/*card-img*/}
             </div>
 
             <div

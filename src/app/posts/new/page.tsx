@@ -39,7 +39,7 @@ const AddPost = async () => {
             throw new Error('Title cannot be empty')
         }
         const newPost = await Post.create({
-            title, text, preview,
+            title, text, preview, path: `/img/${formFile.name}`
         })
         revalidatePath('/posts')
         redirect('/posts')
@@ -64,7 +64,6 @@ const AddPost = async () => {
                         <label htmlFor="title" className="form-label">Выбор картинки</label>
 
                         <input type='file' name='post_picture'/>
-
 
                         <div className="flex items-center justify-center">
                             <button

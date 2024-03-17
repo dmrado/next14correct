@@ -55,14 +55,21 @@ const EditPost = async ({ params }: PostPageParams) => {
         <main className="flex flex-col">
             <div className="flex justify-center mt-40"><h1 className="p-5">Отредактируем по-новому...</h1></div>
 
+            <div
+                className="flex items-center align-c w-full h-full bg-no-repeat bg-center bg-cover bg-fixed text-center">
+                <img className="one-post-banner__img"
+                     src={post.path ? post.path : '../img/postspage/cloudsWIDE.webp'}
+                     alt="Картинка поста"/>
+            </div>
             <div className="items-center h-screen p-5">
-                <form className="h-auto max-h-none min-h-fit flex flex-col items-stretch bg-white rounded px-8 pt-6 pb-8 mb-4 opacity-75"
+                <form
+                    className="h-auto max-h-none min-h-fit flex flex-col items-stretch bg-white rounded px-8 pt-6 pb-8 mb-4 opacity-75"
                     action={updatePost}>
 
                     <div className="mb-4">
                         <input defaultValue={post.title}
-                            className="border w-full h-fit py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            type="text" name='title' placeholder="Заголовок не более 180 символов"/>
+                               className="border w-full h-fit py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                               type="text" name='title' placeholder="Заголовок не более 180 символов"/>
                     </div>
 
                     <Editor defaultValue={post.text}/>

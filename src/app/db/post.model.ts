@@ -41,4 +41,4 @@ Post.init({
 })
 Post.belongsTo(User)
 
-export type PostPreview = Pick< Post, 'id' | 'title' | 'preview' | 'createdAt' >
+export type PostPreview = Pick< Post, 'id' | 'title' | 'preview' | 'path' | 'createdAt' >
