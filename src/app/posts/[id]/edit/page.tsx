@@ -7,6 +7,8 @@ import { getServerSession } from 'next-auth'
 import { isAuthorizedCheck } from '@/app/isAuthorizedCheck.ts'
 import { isSessionExpiresCheck } from '@/app/isSessionExpiresCheck.ts'
 import dynamic from 'next/dynamic'
+import path from "path";
+import fs from "fs";
 
 const Editor = dynamic(() => import('@/components/Editor'), {
     ssr: false,
@@ -30,8 +32,13 @@ const EditPost = async ({ params }: PostPageParams) => {
         const title = data.get('title') as string
         const text = data.get('text') as string
         const preview = text ? text.replace(/<[^>]+>/g, '').slice(0, 100) : ''
-
+        const formFile = data.get('post_picture') as File
+        //todo improve TS
+        const buffer = Buffer.from(await formFile.arrayBuffer())
+        const filePath = path.join(process.cwd(), 'public/img', formFile.name)
+        fs.writeFileSync(filePath, buffer)
         console.log('preview', preview)
+        console.log('>>>>>>>> formFile', formFile)
 
         const file = data.get('post_picture')
 
@@ -45,7 +52,7 @@ const EditPost = async ({ params }: PostPageParams) => {
         if (typeof idValue !== 'string' || Number.isNaN(idValue)) {
             throw new Error('Invalid id')
         }
-        await Post.update({ title: title, text: text, preview: preview }, { where: { id: Number(idValue) } })
+        await Post.update({ title: title, text: text, preview: preview, path: `/img/${formFile.name}` }, { where: { id: Number(idValue) } })
 
         revalidatePath('/posts')
         redirect('/posts')
