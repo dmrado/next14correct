@@ -2,15 +2,30 @@ import path from 'path'
 import fs from 'fs'
 const tmpPath = path.join(__dirname, '../data/tmp')
 const storagePath = path.join(__dirname, '../data/storage')
-import { Post, PostPreview } from '@/app/db/post.model'
+import { Post } from '@/app/db/post.model'
 
-export const uploadFile = async (req, res, next) => {
+const checkUserFolder =  (userId) => {
+    const userFolderPath = path.join(storagePath, `./${userId}`);
+
+    if (!fs.existsSync(userFolderPath)) {
+        fs.mkdirSync(userFolderPath)
+    }
+    return userFolderPath
+    //
+    // if (!fs.exists(userFolderPath)) {
+    //     await fs.mkdir(userFolderPath)
+    // }
+    // return userFolderPath
+}
+
+// export const uploadFile = async (req, res, next) => {
+export const uploadFile = async (file) => {
     try {
-        const { file, userId } = req
+        // const { file, userId } = req
         if (!file) {
-            res.status(500).json({
-                message: 'Необходимо выбрать файл',
-            })
+            // res.status(500).json({
+            //     message: 'Необходимо выбрать файл',
+            // })
             return
         }
         //originalname - это изначальное название файла, которое было при загрузке, а filename - название под которым файл сохранился во временной директории
@@ -28,14 +43,15 @@ export const uploadFile = async (req, res, next) => {
 
         //сохраняем в БД информацию о файле
         //path - ставим путь внутри сайта, т.е. после хоста (здесь после localhost:3005/)
-        const createdFile = new File({ userId, name: newFileName, path: `/storage/${userId}/${newFileName}` })
+        const createdFile = new Post({ userId, fileName: newFileName, path: `/storage/${userId}/${newFileName}` })
 
         await createdFile.save()
 
-        res.json({
-            item: createdFile
-        })
+        // res.json({
+        //     item: createdFile
+        // })
     } catch (err) {
-        next(err)
+        console.log(err)
+        // next(err)
     }
 }

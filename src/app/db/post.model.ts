@@ -7,7 +7,8 @@ export class Post extends Model<InferAttributes<Post>, InferCreationAttributes<P
     declare title: string
     declare text: string
     declare preview: string
-    declare imgLink: string
+    declare path: string
+    declare fileName: string
     declare createdAt: CreationOptional<Date>
     declare updatedAt: CreationOptional<Date>
 }
@@ -31,7 +32,8 @@ Post.init({
         //для сохранения текста поста без HTML-разметки для PostsPrewiev
         type: DataTypes.STRING
     },
-    imgLink: { type: DataTypes.STRING },
+    path: { type: DataTypes.STRING },
+    fileName: { type: DataTypes.STRING },
     createdAt: { type: DataTypes.DATE },
     updatedAt: { type: DataTypes.DATE }
 },
