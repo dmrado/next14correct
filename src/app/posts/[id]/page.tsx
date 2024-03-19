@@ -35,9 +35,9 @@ const PostPage = async ({ params }: PostPageParams) => {
                 {!!session && !!session.user && session.user.email === process.env.USER_EMAIL &&
                         <h5 className="p-5 opacity-70">Post id: {post.id}</h5>
                 }
-                <h1 className="p-5 opacity-70">{post.title}</h1>
+                <h1 className="text-white p-5 opacity-70">{post.title}</h1>
 
-                <div className="p-5 opacity-70" dangerouslySetInnerHTML={{ __html: post.text }}
+                <div className="text-white p-5 opacity-70" dangerouslySetInnerHTML={{ __html: post.text }}
                 ></div>
 
                 <p className="justify-end text-white italic mt-10p-5 opacity-65">Добавлено:&nbsp;
@@ -52,7 +52,7 @@ const PostPage = async ({ params }: PostPageParams) => {
                 <div className="flex flex-wrap p-5 justify-between items-center">
                     <Link href={'/posts'}>
                         <button
-                            className='opacity-70 hover:opacity-100 py-2 px-4 border-2 border-[#000] hover:text-my_l_blue hover:border-2 hover:border-my_l_blue  rounded focus:outline-none focus:shadow-outline'
+                            className='text-white opacity-70 hover:opacity-100 py-2 px-4 border-2 border-[#000] hover:text-my_l_blue hover:border-2 hover:border-my_l_blue  rounded focus:outline-none focus:shadow-outline'
                         >Вернуться
                         </button>
                     </Link>
