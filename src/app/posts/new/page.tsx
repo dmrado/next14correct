@@ -100,7 +100,7 @@ const AddPost = async () => {
                     <div className="flex justify-center mb-10 p-10">
                         <Link href={'/posts'}>
                             <button
-                                className='border-2 border-[#000] hover:text-my_l_blue hover:border-2 hover:border-my_l_blue py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+                                className='text-white border-2 border-[#000] hover:text-my_l_blue hover:border-2 hover:border-my_l_blue py-2 px-4 rounded focus:outline-none focus:shadow-outline'
                             >Вернуться
                             </button>
                         </Link>

@@ -51,7 +51,7 @@ export default async function Header() {
             className='flex justify-between items-center h-24 min-w-full fixed top-0 left-0 right-1 py-2 px-12 duration-30 bg-black z-40 '>{/*Header shadow-blue*/}
             <p className='mr-20 text-[#004E98]'>Вход не выполнен</p>
             <Link
-                className='flex justify-center items-center min-w-40 hover:border hover:border-[#50d71e] hover:text-[#50d71e] py-1.5 rounded'
+                className='flex justify-center items-center min-w-40 text-white hover:border hover:border-[#50d71e] hover:text-[#50d71e] py-1.5 rounded'
                 href="/api/auth/signin">Войти</Link>
         </div>
         <div
