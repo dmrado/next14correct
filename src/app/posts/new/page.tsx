@@ -5,8 +5,8 @@ import {revalidatePath} from 'next/cache'
 import Link from 'next/link'
 import {redirect} from 'next/navigation'
 import {getServerSession} from 'next-auth'
-import {isAuthorizedCheck} from '@/app/isAuthorizedCheck.ts'
-import {isSessionExpiresCheck} from '@/app/isSessionExpiresCheck.ts'
+import {isAuthorized} from '@/app/isAuthorized.ts'
+import {isSessionExpired} from '@/app/isSessionExpired.ts'
 import React from 'react'
 import dynamic from 'next/dynamic'
 import sharp from 'sharp'
@@ -18,34 +18,32 @@ const Editor = dynamic(() => import('@/components/Editor'), {
 const AddPost = async () => {
     const session = await getServerSession()
 
-    if (!isAuthorizedCheck(session) && !isSessionExpiresCheck(session)) {
+    if (!session || !isAuthorized(session) || isSessionExpired(session)) {
         return redirect('/posts')
     }
-
-    const posts = await Post.findAll().then(res => res.map(r => r.dataValues))
 
     const addPost = async (formData: FormData) => {
         'use server'
         const title: string = formData.get('title') as string
         const text: string = formData.get('text') as string
         const preview = text ? text.replace(/<[^>]+>/g, '').slice(0, 100) : ''
-        const formFile = formData.get('post_picture') as File
-        //todo improve TS
+        const formFile = formData.get('post_picture') as File | null
 
-        if (!formFile) {
-            throw new Error('No file selected');
+        if (formFile.name === 'undefined') {
+            throw new Error('No file selected')
+            //todo отправить сообщение об ошибке на фронтенд
         }
-//todo здесь разобрать: в sharp должен быть передан путь по документации а потребовался весь buffer
+
         const buffer = Buffer.from(await formFile.arrayBuffer())
         // const filePath = path.join(process.cwd(), 'public/img', formFile.name)
-
+        //todo место Date.now примеить uuid
         const outputImagePath = `public/img/${Date.now()}_${formFile.name}`
 
         sharp(buffer)
             //todo ничего не ломается но по факту ресайз не происходит
             .resize(1356, 668)
             //todo все равно сохраняется с исходным расширением хоть и по документации все сделал
-            .webp({ lossless: true })
+            .webp({lossless: true})
             .toFile(outputImagePath, (err, info) => {
                 if (err) {
                     console.error(err)
@@ -53,8 +51,6 @@ const AddPost = async () => {
                     console.log('Изображение успешно изменено и сохранено.')
                 }
             })
-
-
 
         // fs.writeFileSync(filePath, outputBuffer)
         console.log('>>>>>>>> formFile', formFile)

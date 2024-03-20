@@ -4,8 +4,8 @@ import { Post } from '@/app/db/post.model.ts'
 import Link from 'next/link'
 import React from 'react'
 import { getServerSession } from 'next-auth'
-import { isAuthorizedCheck } from '@/app/isAuthorizedCheck.ts'
-import { isSessionExpiresCheck } from '@/app/isSessionExpiresCheck.ts'
+import { isAuthorizedCheck } from '@/app/isAuthorized.ts'
+import { isSessionExpiresCheck } from '@/app/isSessionExpired.ts'
 import dynamic from 'next/dynamic'
 import path from "path";
 import fs from "fs";
@@ -42,7 +42,7 @@ const EditPost = async ({ params }: PostPageParams) => {
 
         const file = data.get('post_picture')
 
-        // todo: clean html markup, cut only 100 (?) symbols and save it as preview
+
         // const preview = data.get('text').replace().slice(0, 45)
 
         if (typeof title !== 'string' || typeof text !== 'string') {
@@ -76,6 +76,7 @@ const EditPost = async ({ params }: PostPageParams) => {
                     <div className="mb-4">
                         <input defaultValue={post.title}
                                className="border w-full h-fit py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                               required
                                type="text" name='title' placeholder="Заголовок не более 180 символов"/>
                     </div>
 

@@ -1,6 +1,6 @@
 import { Session } from 'next-auth'
 
-export const isAuthorizedCheck = (session: Session) => {
+export const isAuthorized = (session: Session) => {
     if (!session || !session.user || session.user.email !== process.env.USER_EMAIL) {
         return false // Пользователь не авторизован
     } else {
