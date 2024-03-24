@@ -1,3 +1,4 @@
+'use client'
 import path from 'path'
 import fs from 'fs'
 import {Post} from '@/app/db/post.model'
@@ -10,18 +11,15 @@ import {isSessionExpired} from '@/app/isSessionExpired.ts'
 import React from 'react'
 import dynamic from 'next/dynamic'
 import sharp from 'sharp'
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import * as Yup from 'yup'
+import {addPost} from "@/app/addPost.ts"
+
 
 const Editor = dynamic(() => import('@/components/Editor'), {
     ssr: false,
 })
 
-interface PostFormData {
-    title: string;
-    text: string;
-    post_picture: File | null
-}
 
 const AddPost = async () => {
     const session = await getServerSession()
@@ -30,48 +28,9 @@ const AddPost = async () => {
         return redirect('/posts')
     }
 
-    const addPost = async (formData: FormData & PostFormData) => {
-        'use server'
-        const title: string = formData.get('title') as string
-        const text: string = formData.get('text') as string
-        const preview = text ? text.replace(/<[^>]+>/g, '').slice(0, 100) : ''//убираем HTML-разметку
-        const formFile = formData.get('post_picture') as File | null
-
-        if (formFile.name === 'undefined') {
-            throw new Error('No file selected')
-            //todo отправить сообщение об ошибке на фронтенд
-        }
-
-        const buffer = Buffer.from(await formFile.arrayBuffer())
-        //todo место Date.now примеить uuid
-        const outputImagePath = `public/img/${Date.now()}_${formFile.name}`
-
-        sharp(buffer)
-            .resize(1356, 668)
-            .webp({lossless: true})
-            .toFile(outputImagePath, (err, info) => {
-                if (err) {
-                    console.error(err)
-                } else {
-                    console.log('Изображение успешно изменено и сохранено.')
-                }
-            })
-
-        console.log('>>>>>>>> formFile', formFile)
-
-        // if (title === '') {
-        //     throw new Error('Title cannot be empty')
-        // }
-        const newPost = await Post.create({
-            title, text, preview, path: `/img/${formFile.name}`
-        })
-        revalidatePath('/posts')
-        redirect('/posts')
-    }
-
     const validationSchema = Yup.object().shape({
         title: Yup.string().required('Для сохранения поста нужно заполнить заголовок'),
-        text: Yup.string().required('Нужно написать статью'),
+        // text: Yup.string().required('Нужно написать статью'),
     })
 
 
@@ -83,8 +42,13 @@ const AddPost = async () => {
                 <div className="items-center h-screen p-5">
                     <Formik className="bg-white rounded px-8 pt-6 pb-8 mb-4"
                             //todo странная ошибка при наличии null  в строк post_picture: File | null
-                          initialValues={{ title: '', text: '' }}
+                          initialValues={{
+                              title: '',
+                              text: '',
+                              // post_picture:  File | null
+                          }}
                           validationSchema={validationSchema}
+                            //todo у Formik onSubmit - обязательный параметр
                           onSubmit={addPost}
                           // action={addPost}
                     >
