@@ -10,6 +10,7 @@ import {isSessionExpired} from '@/app/isSessionExpired.ts'
 import React from 'react'
 import dynamic from 'next/dynamic'
 import sharp from "sharp"
+import {fileTypeFromBuffer} from 'file-type'
 
 const Editor = dynamic(() => import('@/components/Editor'), {
     ssr: false,
@@ -24,6 +25,29 @@ const AddPost = async () => {
 
     const addPost = async (formData: FormData) => {
         'use server'
+        //Описываем функцию проверки типа файла
+        const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
+        async function checkFileType(buffer) {
+            const type = await fileTypeFromBuffer(buffer)
+            console.log('fileTypeFromFile(buffer)', type)
+
+            if (type) {
+                console.log(`Тип файла: ${type.mime}`)
+                console.log(`Расширение файла: ${type.ext}`)
+
+                // Проверка, является ли обнаруженный тип файла допустимым
+                if (allowedTypes.includes(type.mime)) {
+                    console.log('Тип файла допустим')
+                    return true;
+                } else {
+                    console.log('Тип файла не допустим')
+                    return false;
+                }
+            } else {
+                console.log('Не удалось определить тип файла')
+                return false;
+            }
+        }
         const title: string = formData.get('title') as string
         const text: string = formData.get('text') as string
         const preview = text ? text.replace(/<[^>]+>/g, '').slice(0, 100) : ''//убираем HTML-разметку
@@ -35,6 +59,8 @@ const AddPost = async () => {
         }
 
         const buffer = Buffer.from(await formFile.arrayBuffer())
+        await checkFileType(buffer)
+
         //todo место Date.now примеить uuid
         const outputImagePath = `public/img/${Date.now()}_${formFile.name}`
 
@@ -72,7 +98,7 @@ const AddPost = async () => {
                     <form className="bg-white rounded px-8 pt-6 pb-8 mb-4"
                           action={addPost}>
                         <div className="mb-4">
-                            <input
+                            <input required
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 type="text" name='title' placeholder="Заголовок не более 180 символов"/>
                         </div>
