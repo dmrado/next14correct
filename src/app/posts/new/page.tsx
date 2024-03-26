@@ -43,7 +43,6 @@ const AddPost = async () => {
             //     console.log('output', output)
             //     type = output? output: type
             // }
-            //
 
             if (type) {
                 console.log(`Тип файла: ${type.mime}`)
