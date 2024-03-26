@@ -11,6 +11,7 @@ import React from 'react'
 import dynamic from 'next/dynamic'
 import sharp from "sharp"
 import {fileTypeFromBuffer} from 'file-type'
+import {heicConvert} from 'heic-convert'
 
 const Editor = dynamic(() => import('@/components/Editor'), {
     ssr: false,
@@ -26,10 +27,27 @@ const AddPost = async () => {
     const addPost = async (formData: FormData) => {
         'use server'
         //Описываем функцию проверки типа файла
-        const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
+        const allowedTypes = ['image/jpeg', 'image/jpg', 'image/JPG', 'image/png', 'image/webp', 'image/HEIC', 'image/heic']
+
         async function checkFileType(buffer) {
             const type = await fileTypeFromBuffer(buffer)
             console.log('fileTypeFromFile(buffer)', type)
+
+            if (type.mime.toLowerCase()  !== 'heic') {
+                return
+            } else {
+                heicConvert({
+                    buffer: buffer, // Buffer с содержимым файла HEIC
+                    format: 'JPEG'      // Желаемый формат - JPEG
+                }).then(resJpegBuffer => {
+                    // Присвоение типа файла JPEG
+                    const type = fileTypeFromBuffer(resJpegBuffer)
+                    console.log(type)
+                }).catch(error => {
+                    console.error(error)
+                })
+
+            }
 
             if (type) {
                 console.log(`Тип файла: ${type.mime}`)
@@ -48,6 +66,7 @@ const AddPost = async () => {
                 return false;
             }
         }
+
         const title: string = formData.get('title') as string
         const text: string = formData.get('text') as string
         const preview = text ? text.replace(/<[^>]+>/g, '').slice(0, 100) : ''//убираем HTML-разметку
@@ -88,7 +107,6 @@ const AddPost = async () => {
     }
 
 
-
     return (
         <main className="flex flex-col">
             <div className="mt-40">{/*вылезаем из под header*/}
@@ -99,8 +117,8 @@ const AddPost = async () => {
                           action={addPost}>
                         <div className="mb-4">
                             <input required
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                type="text" name='title' placeholder="Заголовок не более 180 символов"/>
+                                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                   type="text" name='title' placeholder="Заголовок не более 180 символов"/>
                         </div>
 
                         <Editor/>
