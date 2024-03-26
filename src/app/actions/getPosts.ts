@@ -5,7 +5,7 @@ export const getPosts = async (offset: number, limit: number) => {
     try {
         const posts = await Post.findAll({
             offset: offset, limit: limit, order: [ [ 'updatedAt', 'DESC' ] ],
-            attributes: [ 'id', 'title', 'preview', 'createdAt' ]
+            attributes: [ 'id', 'title', 'preview', 'path', 'createdAt' ]
         })
         const count = await Post.count()
         return {

@@ -7,6 +7,7 @@ export class Post extends Model<InferAttributes<Post>, InferCreationAttributes<P
     declare title: string
     declare text: string
     declare preview: string
+    declare path: string
     declare createdAt: CreationOptional<Date>
     declare updatedAt: CreationOptional<Date>
 }
@@ -30,6 +31,7 @@ Post.init({
         //для сохранения текста поста без HTML-разметки для PostsPrewiev
         type: DataTypes.STRING
     },
+    path: { type: DataTypes.STRING },
     createdAt: { type: DataTypes.DATE },
     updatedAt: { type: DataTypes.DATE }
 },
@@ -39,4 +41,4 @@ Post.init({
 })
 Post.belongsTo(User)
 
-export type PostPreview = Pick< Post, 'id' | 'title' | 'preview' | 'createdAt' >
+export type PostPreview = Pick< Post, 'id' | 'title' | 'preview' | 'path' | 'createdAt' >

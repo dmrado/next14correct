@@ -1,12 +1,17 @@
-import { Post } from '@/app/db/post.model'
-import { revalidatePath } from 'next/cache'
+import path from 'path'
+import fs from 'fs'
 import Link from 'next/link'
-import { redirect } from 'next/navigation'
-import { getServerSession } from 'next-auth'
-import { isAuthorizedCheck } from '@/app/isAuthorizedCheck.ts'
-import { isSessionExpiresCheck } from '@/app/isSessionExpiresCheck.ts'
+import {Post} from '@/app/db/post.model'
+import {revalidatePath} from 'next/cache'
+import {redirect} from 'next/navigation'
+import {getServerSession} from 'next-auth'
+import {isAuthorized} from '@/app/isAuthorized.ts'
+import {isSessionExpired} from '@/app/isSessionExpired.ts'
 import React from 'react'
 import dynamic from 'next/dynamic'
+import sharp from "sharp"
+import {fileTypeFromBuffer} from 'file-type'
+import {convert} from 'heic-convert'
 
 const Editor = dynamic(() => import('@/components/Editor'), {
     ssr: false,
@@ -15,27 +20,87 @@ const Editor = dynamic(() => import('@/components/Editor'), {
 const AddPost = async () => {
     const session = await getServerSession()
 
-    if (!isAuthorizedCheck(session) && !isSessionExpiresCheck(session)) {
+    if (!session || !isAuthorized(session) || isSessionExpired(session)) {
         return redirect('/posts')
     }
 
-    const posts = await Post.findAll().then(res => res.map(r => r.dataValues))
-
     const addPost = async (formData: FormData) => {
         'use server'
+        //Описываем функцию проверки типа файла
+        const allowedTypes = ['image/jpeg', 'image/jpg', 'image/JPG', 'image/png', 'image/webp', 'image/HEIC', 'image/heic']
+
+        async function checkFileType(buffer) {
+            console.log('buffer', buffer)
+            let type = await fileTypeFromBuffer(buffer)
+            console.log('fileTypeFromFile(buffer)', type)
+
+            // if(type.ext && type.ext.toLowerCase() === 'heic'){
+            //     const output = await convert({
+            //         buffer: type, // the HEIC file buffer
+            //         format: 'JPEG',      // output format
+            //         quality: 1           // the jpeg compression quality, between 0 and 1
+            //     })
+            //     console.log('output', output)
+            //     type = output? output: type
+            // }
+
+            if (type) {
+                console.log(`Тип файла: ${type.mime}`)
+                console.log(`Расширение файла: ${type.ext}`)
+
+                // Проверка, является ли обнаруженный тип файла допустимым
+                if (allowedTypes.includes(type.mime)) {
+                    console.log('Тип файла допустим')
+                    return true;
+                } else {
+                    console.log('Тип файла не допустим')
+                    return false;
+                }
+            } else {
+                console.log('Не удалось определить тип файла')
+                return false;
+            }
+        }
+
         const title: string = formData.get('title') as string
         const text: string = formData.get('text') as string
-        const preview = text ? text.replace(/<[^>]+>/g, '').slice(0, 100) : ''
+        const preview = text ? text.replace(/<[^>]+>/g, '').slice(0, 100) : ''//убираем HTML-разметку
+        const formFile = formData.get('post_picture') as File | null
+
+        if (formFile.name === 'undefined') {
+            throw new Error('No file selected')
+            //todo отправить сообщение об ошибке на фронтенд
+        }
+
+        const buffer = Buffer.from(await formFile.arrayBuffer())
+        await checkFileType(buffer)
+
+        //todo место Date.now примеить uuid
+        const outputImagePath = `public/img/${Date.now()}_${formFile.name}`
+
+        sharp(buffer)
+            .resize(1356, 668)
+            .webp({lossless: true})
+            .toFile(outputImagePath, (err, info) => {
+                if (err) {
+                    console.error(err)
+                } else {
+                    console.log('Изображение успешно изменено и сохранено.')
+                }
+            })
+
+        console.log('>>>>>>>> formFile', formFile)
 
         if (title === '') {
             throw new Error('Title cannot be empty')
         }
         const newPost = await Post.create({
-            title, text, preview
+            title, text, preview, path: `/img/${formFile.name}`
         })
         revalidatePath('/posts')
         redirect('/posts')
     }
+
 
     return (
         <main className="flex flex-col">
@@ -44,16 +109,18 @@ const AddPost = async () => {
 
                 <div className="items-center h-screen p-5">
                     <form className="bg-white rounded px-8 pt-6 pb-8 mb-4"
-                        action={addPost}>
+                          action={addPost}>
                         <div className="mb-4">
-                            <input
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                type="text" name='title' placeholder="Заголовок не более 180 символов"/>
+                            <input required
+                                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                   type="text" name='title' placeholder="Заголовок не более 180 символов"/>
                         </div>
 
                         <Editor/>
 
-                        <input type="file" name="post_picture"/>
+                        <label htmlFor="title" className="form-label">Выбор картинки</label>
+
+                        <input type='file' name='post_picture'/>
 
                         <div className="flex items-center justify-center">
                             <button
@@ -62,11 +129,10 @@ const AddPost = async () => {
                             </button>
                         </div>
                     </form>
-
                     <div className="flex justify-center mb-10 p-10">
                         <Link href={'/posts'}>
                             <button
-                                className='border-2 border-[#000] hover:text-my_l_blue hover:border-2 hover:border-my_l_blue py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+                                className='text-white border-2 border-[#000] hover:text-my_l_blue hover:border-2 hover:border-my_l_blue py-2 px-4 rounded focus:outline-none focus:shadow-outline'
                             >Вернуться
                             </button>
                         </Link>

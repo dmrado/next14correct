@@ -1,5 +1,5 @@
 import { Session } from 'next-auth'
-export const isSessionExpiresCheck = (session: Session) => {
+export const isSessionExpired = (session: Session) => {
     if (session && new Date(session.expires) < new Date()) {
         return true // Сеанс истек
     } else {
