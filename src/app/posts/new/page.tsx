@@ -11,7 +11,7 @@ import React from 'react'
 import dynamic from 'next/dynamic'
 import sharp from "sharp"
 import {fileTypeFromBuffer} from 'file-type'
-import {heicConvert} from 'heic-convert'
+import {convert} from 'heic-convert'
 
 const Editor = dynamic(() => import('@/components/Editor'), {
     ssr: false,
@@ -30,24 +30,20 @@ const AddPost = async () => {
         const allowedTypes = ['image/jpeg', 'image/jpg', 'image/JPG', 'image/png', 'image/webp', 'image/HEIC', 'image/heic']
 
         async function checkFileType(buffer) {
-            const type = await fileTypeFromBuffer(buffer)
+            console.log('buffer', buffer)
+            let type = await fileTypeFromBuffer(buffer)
             console.log('fileTypeFromFile(buffer)', type)
 
-            if (type.mime.toLowerCase()  !== 'heic') {
-                return
-            } else {
-                heicConvert({
-                    buffer: buffer, // Buffer с содержимым файла HEIC
-                    format: 'JPEG'      // Желаемый формат - JPEG
-                }).then(resJpegBuffer => {
-                    // Присвоение типа файла JPEG
-                    const type = fileTypeFromBuffer(resJpegBuffer)
-                    console.log(type)
-                }).catch(error => {
-                    console.error(error)
-                })
-
-            }
+            // if(type.ext && type.ext.toLowerCase() === 'heic'){
+            //     const output = await convert({
+            //         buffer: type, // the HEIC file buffer
+            //         format: 'JPEG',      // output format
+            //         quality: 1           // the jpeg compression quality, between 0 and 1
+            //     })
+            //     console.log('output', output)
+            //     type = output? output: type
+            // }
+            //
 
             if (type) {
                 console.log(`Тип файла: ${type.mime}`)
