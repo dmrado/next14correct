@@ -5,7 +5,6 @@ import React from 'react'
 
 export default async function Header() {
     const session = await getServerSession()
-    console.log('session', session)
     if (session && session.user) {
         return (<>
             <div

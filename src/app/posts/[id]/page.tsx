@@ -15,6 +15,10 @@ const PostPage = async ({ params }: PostPageParams) => {
         return notFound()
     }
 
+    if (Math.random() > 0.3) {
+        throw new Error('Bigger than 0.3')
+    }
+
     async function removePost(id: number) {
         'use server'
         await Post.destroy({ where: { id } })

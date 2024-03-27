@@ -16,8 +16,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="en">
             <body className='box-border list-none decoration-0'>
-                <Header/>
-                {children}
+                <Header />
+                <main className='mt-36'>{children}</main>
             </body>
         </html>
     )
