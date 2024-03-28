@@ -94,6 +94,6 @@ export const handleForm = async (formData: FormData) => {
     // } catch (e) {
     //     return { message: 'Dummy message' }
     // }
-    revalidatePath('/posts')
-    redirect('/posts')
+    // revalidatePath('/posts')
+    // redirect('/posts')
 }

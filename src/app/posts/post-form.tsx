@@ -50,7 +50,7 @@ const PostForm = () => {
                         }
                     }}
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    type="text" name='title' placeholder="Заголовок не более 180 символов"/>
+                    type="text" name='title' placeholder="Заголовок не менее 3 и не более 180 символов"/>
                 { !isTitleValid() && <span style={{ color: 'red' }}>Error</span> }
             </div>
 
