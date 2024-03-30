@@ -55,18 +55,21 @@ const PostForm = () => {
             </div>
 
             <Editor defaultValue={''}/>
+            <div className="flex flex-col my-4">
 
-            <label htmlFor="title" className="form-label">Выбор картинки</label>
-            <input type='file' name='post_picture' accept={IMAGE_TYPES.join(',')}
-                onChange={(e) => {
-                    if (!e.target.files) return
-                    const fileSize = e.target?.files[0]?.size
-                    setFileSizeError(fileSize > FILE_LIMIT)
-                }}
-            />
-            { isFileSizeError && <span style={{ color: 'red' }}>Too big</span> }
+                <input type='file' name='post_picture' accept={IMAGE_TYPES.join(',')}
+                       onChange={(e) => {
+                           if (!e.target.files) return
+                           const fileSize = e.target?.files[0]?.size
+                           setFileSizeError(fileSize > FILE_LIMIT)
+                       }}
+                />
+                {isFileSizeError && <span style={{color: 'red'}}>Too big</span>}
+                <label htmlFor="title"
+                       className="text-gray-500 mt-1">Пожалуйста выберите файл с расширением .png, .jpeg, .jpg, .gif, .tiff, .heic</label>
 
-            <div className="flex items-center justify-center">
+            </div>
+            <div className="flex items-center justify-center mt-2">
                 <button
                     disabled={!isTitleValid() || isFileSizeError}
                     className={buttonStyle()}

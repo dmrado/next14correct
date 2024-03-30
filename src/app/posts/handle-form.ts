@@ -73,7 +73,7 @@ export const handleForm = async (formData: FormData) => {
     if (!title || title instanceof File) {
         throw new Error('Post title required. It should not be a file')
     }
-    if (title.length < 100) {
+    if (title.length < 10) {
         // todo: handle error
         // return { message: 'Database Error: Failed to Delete Invoice.' }
         throw new Error('Title too short')
@@ -94,6 +94,6 @@ export const handleForm = async (formData: FormData) => {
     // } catch (e) {
     //     return { message: 'Dummy message' }
     // }
-    // revalidatePath('/posts')
-    // redirect('/posts')
+    revalidatePath('/posts')
+    redirect('/posts')
 }

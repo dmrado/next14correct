@@ -40,7 +40,7 @@ const AddPost = async () => {
     return (
         <main className="flex flex-col">
             <div className="mt-40">{/*вылезаем из под header*/}
-                <div className="flex justify-center"><h1 className="p-5">Создадим новый пост...</h1></div>
+                <div className="flex justify-center text-white"><h1 className="p-5">Создадим новый пост...</h1></div>
 
                 <div className="items-center h-screen p-5">
                     <PostForm />
