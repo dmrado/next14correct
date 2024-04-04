@@ -15,8 +15,14 @@ const IMAGE_TYPES = [
     '.heic'
 ]
 
-const PostForm = () => {
-    const [ title, setTitle ] = useState('')
+type PostForm = {
+    title: string;
+    text: string;
+    id?: number;
+}
+
+const PostForm = ({ post }: { post:PostForm }) => {
+    const [ title, setTitle ] = useState(post.title)
     const [ touched, setTouched ] = useState(false)
     const [ isFileSizeError, setFileSizeError ] = useState(false)
 
@@ -37,9 +43,11 @@ const PostForm = () => {
     return (
         <form className="bg-white rounded px-8 pt-6 pb-8 mb-4"
             action={onSubmit}>
+            <input hidden type="number" name="id" value={post.id}/>
             <div className="mb-4">
                 <input
                     required
+                    value={title}
                     onBlur={() => setTouched(true)}
                     onChange={(e) => {
                         if (e.target?.value) {
@@ -51,7 +59,7 @@ const PostForm = () => {
                 { !isTitleValid() && <span style={{ color: 'red' }}>Error</span> }
             </div>
 
-            <Editor defaultValue={''}/>
+            <Editor defaultValue={post.text}/>
             <div className="flex flex-col my-4">
 
                 <input type='file' name='post_picture'
@@ -69,7 +77,7 @@ const PostForm = () => {
             </div>
             <div className="flex items-center justify-center mt-2">
                 <button
-                    // disabled={!isTitleValid() || isFileSizeError}
+                    disabled={!isTitleValid() || isFileSizeError}
                     className={buttonStyle()}
                     type="submit">Записать
                 </button>

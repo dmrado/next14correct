@@ -2,13 +2,16 @@ import Link from 'next/link'
 import { getServerSession } from 'next-auth'
 import React from 'react'
 import PostForm from '@/app/posts/post-form.tsx'
+import { isAuthorized } from '@/app/isAuthorized.ts'
+import { isSessionExpired } from '@/app/isSessionExpired.ts'
+import { redirect } from 'next/navigation'
 
 const AddPost = async () => {
     const session = await getServerSession()
 
-    // if (!session || !isAuthorized(session) || isSessionExpired(session)) {
-    //     return redirect('/api/auth/signin')
-    // }
+    if (!session || !isAuthorized(session) || isSessionExpired(session)) {
+        return redirect('/api/auth/signin')
+    }
 
     return (
         <main className="flex flex-col">
@@ -16,7 +19,7 @@ const AddPost = async () => {
                 <div className="flex justify-center text-white"><h1 className="p-5">Создадим новый пост...</h1></div>
 
                 <div className="items-center h-screen p-5">
-                    <PostForm />
+                    <PostForm post={{ title: '', text: '' }}/>
                     <div className="flex justify-center mb-10 p-10">
                         <Link href={'/posts'}>
                             <button

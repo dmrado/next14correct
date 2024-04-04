@@ -34,6 +34,7 @@ const saveFile = async (file: File) => {
 }
 
 export const handleForm = async (formData: FormData) => {
+    // fixme: this guy always crete posts, but designed to crete/update. this need to be fixed!
     const title = formData.get('title')
     if (!title || title instanceof File) {
         // todo: send error message in query params
@@ -42,6 +43,8 @@ export const handleForm = async (formData: FormData) => {
     if (title.length < TITLE_MIN_LENGTH) {
         return redirect('/api/error/400')
     }
+
+    const id = formData.get('id')
 
     const text = formData.get('text') as string
     const preview = text ? text.replace(/<[^>]+>/g, '').slice(0, 100) : ''//убираем HTML-разметку
