@@ -7,57 +7,26 @@ import sharp from 'sharp'
 import { Post } from '@/app/db/post.model.ts'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
-
-async function checkFileType(buffer: Buffer) {
-    const allowedTypes = [ 'image/jpeg', 'image/jpg', 'image/JPG', 'image/png', 'image/webp', 'image/HEIC', 'image/heic' ]
-
-    console.log('buffer', buffer)
-    let type = await fileTypeFromBuffer(buffer)
-    console.log('fileTypeFromFile(buffer)', type)
-
-    // if(type.ext && type.ext.toLowerCase() === 'heic'){
-    //     const output = await convert({
-    //         buffer: type, // the HEIC file buffer
-    //         format: 'JPEG',      // output format
-    //         quality: 1           // the jpeg compression quality, between 0 and 1
-    //     })
-    //     console.log('output', output)
-    //     type = output? output: type
-    // }
-
-    if (type) {
-        console.log(`Тип файла: ${type.mime}`)
-        console.log(`Расширение файла: ${type.ext}`)
-
-        // Проверка, является ли обнаруженный тип файла допустимым
-        if (allowedTypes.includes(type.mime)) {
-            console.log('Тип файла допустим')
-            return true
-        } else {
-            console.log('Тип файла не допустим')
-            return false
-        }
-    } else {
-        console.log('Не удалось определить тип файла')
-        return false
-    }
-}
+import { FILE_LIMIT, TITLE_MIN_LENGTH } from '@/app/posts/constants.ts'
 
 const saveFile = async (file: File) => {
+    if (file.size > FILE_LIMIT) {
+        return redirect('/api/error/400')
+    }
+
     const buffer = Buffer.from(await file.arrayBuffer())
-    // if (!await checkFileType(buffer)) {
-    //     throw new Error('File type is invalid')
-    // }
 
-    //todo место Date.now примеить uuid
-    const outputImagePath = `public/img/${Date.now()}_${file.name}`
+    //todo: (optional) место Date.now примеить uuid
+    const outputImagePath = `public/img/${file.name}`
 
+    //todo: (optional) let sharp modify buffer then, save buffer with native fs
     sharp(buffer)
         .resize(300, 400)
         .webp({ lossless: true })
         .toFile(outputImagePath, (err, info) => {
             if (err) {
                 console.error(err)
+                return redirect('/api/error/400')
             } else {
                 console.log('Изображение успешно изменено и сохранено.')
             }
@@ -65,35 +34,29 @@ const saveFile = async (file: File) => {
 }
 
 export const handleForm = async (formData: FormData) => {
-    // try {
-    // 'use server'
-    //Описываем функцию проверки типа файла
-
     const title = formData.get('title')
     if (!title || title instanceof File) {
-        throw new Error('Post title required. It should not be a file')
+        // todo: send error message in query params
+        return redirect('/api/error/400')
     }
-    if (title.length < 10) {
-        // todo: handle error
-        // return { message: 'Database Error: Failed to Delete Invoice.' }
-        throw new Error('Title too short')
+    if (title.length < TITLE_MIN_LENGTH) {
+        return redirect('/api/error/400')
     }
 
-    const text: string = formData.get('text') as string
+    const text = formData.get('text') as string
     const preview = text ? text.replace(/<[^>]+>/g, '').slice(0, 100) : ''//убираем HTML-разметку
     const formFile = formData.get('post_picture') as File | null
 
-    // if (formFile !== null) {
-    //     await saveFile(formFile)
-    // }
+    if (formFile !== null) {
+        await saveFile(formFile)
+    }
+
+    const filePath = formFile ? `/img/${formFile.name}` : ''
 
     await Post.create({
         // todo: when using this in Edit Post we rewrite with empty value
-        title, text, preview, path: formFile ? `/img/${formFile.name}` : ''
+        title, text, preview, path: filePath
     })
-    // } catch (e) {
-    //     return { message: 'Dummy message' }
-    // }
     revalidatePath('/posts')
     redirect('/posts')
 }

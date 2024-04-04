@@ -26,11 +26,7 @@ const Posts = async () => {
 
             <div className='max-w-2xl overflow-hidden mt-0 mr-auto mb-0 ml-auto'>{/*container*/}
                 <div className='flex float-left p-0 mt-9'>{/*card-list*/}
-
-                    <ul>
-                        <PostList initialPosts={posts}/>
-                        {/*{posts.map(post => PostsPreview(post))}*/}
-                    </ul>
+                    <PostList initialPosts={posts}/>
                 </div>
             </div>
         </main>

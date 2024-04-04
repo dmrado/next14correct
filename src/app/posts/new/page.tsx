@@ -1,40 +1,13 @@
-// 'use client'
-import path from 'path'
-import fs from 'fs'
 import Link from 'next/link'
-import { Post } from '@/app/db/post.model'
-import { revalidatePath } from 'next/cache'
-import { redirect } from 'next/navigation'
 import { getServerSession } from 'next-auth'
-import { isAuthorized } from '@/app/isAuthorized.ts'
-import { isSessionExpired } from '@/app/isSessionExpired.ts'
 import React from 'react'
-import dynamic from 'next/dynamic'
-// import sharp from 'sharp'
-// import { fileTypeFromBuffer } from 'file-type'
-// import { convert } from 'heic-convert'
-import { handleForm } from '@/app/posts/handle-form.ts'
 import PostForm from '@/app/posts/post-form.tsx'
-// import Error from 'next/error'
-
-// const Editor = dynamic(() => import('@/components/Editor'), {
-//     ssr: false,
-// })
 
 const AddPost = async () => {
-    // const [ emptyTitle, setEmptyTitle ] = useState(false)
     const session = await getServerSession()
 
-    if (!session || !isAuthorized(session) || isSessionExpired(session)) {
-        // return <Error statusCode={999}/>
-        throw new Error('not authorised')
-        // return redirect('/error')
-    }
-
-    // const addPost = (formData: FormData) => {
-    //     handleForm(formData)
-    //     revalidatePath('/posts')
-    //     redirect('/posts')
+    // if (!session || !isAuthorized(session) || isSessionExpired(session)) {
+    //     return redirect('/api/auth/signin')
     // }
 
     return (

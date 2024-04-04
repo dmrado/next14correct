@@ -2,8 +2,7 @@
 import React, { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { handleForm } from '@/app/posts/handle-form.ts'
-import { revalidatePath } from 'next/cache'
-import { redirect } from 'next/navigation'
+import { FILE_LIMIT, TITLE_MIN_LENGTH } from '@/app/posts/constants.ts'
 const Editor = dynamic(() => import('@/components/Editor'), {
     ssr: false,
 })
@@ -16,8 +15,6 @@ const IMAGE_TYPES = [
     '.heic'
 ]
 
-const FILE_LIMIT = 100_000
-
 const PostForm = () => {
     const [ title, setTitle ] = useState('')
     const [ touched, setTouched ] = useState(false)
@@ -27,7 +24,7 @@ const PostForm = () => {
         handleForm(formData)
     }
 
-    const isTitleValid = () => !touched || touched && title.length > 3
+    const isTitleValid = () => !touched || touched && title.length >= TITLE_MIN_LENGTH
 
     const buttonStyle = () => {
         const baseStyle : string = 'border-2 border-my_white border-solid pt-1.5 pr-5 pb-1.5 pl-5 p-2 rounded '
@@ -57,21 +54,22 @@ const PostForm = () => {
             <Editor defaultValue={''}/>
             <div className="flex flex-col my-4">
 
-                <input type='file' name='post_picture' accept={IMAGE_TYPES.join(',')}
-                       onChange={(e) => {
-                           if (!e.target.files) return
-                           const fileSize = e.target?.files[0]?.size
-                           setFileSizeError(fileSize > FILE_LIMIT)
-                       }}
+                <input type='file' name='post_picture'
+                    accept={IMAGE_TYPES.join(',')}
+                    onChange={(e) => {
+                        if (!e.target.files) return
+                        const fileSize = e.target?.files[0]?.size
+                        setFileSizeError(fileSize > FILE_LIMIT)
+                    }}
                 />
-                {isFileSizeError && <span style={{color: 'red'}}>Too big</span>}
+                {isFileSizeError && <span style={{ color: 'red' }}>Too big</span>}
                 <label htmlFor="title"
-                       className="text-gray-500 mt-1">Пожалуйста выберите файл с расширением .png, .jpeg, .jpg, .gif, .tiff, .heic</label>
+                    className="text-gray-500 mt-1">Пожалуйста выберите файл с расширением .png, .jpeg, .jpg, .gif, .tiff, .heic</label>
 
             </div>
             <div className="flex items-center justify-center mt-2">
                 <button
-                    disabled={!isTitleValid() || isFileSizeError}
+                    // disabled={!isTitleValid() || isFileSizeError}
                     className={buttonStyle()}
                     type="submit">Записать
                 </button>
