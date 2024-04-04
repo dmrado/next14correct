@@ -11,7 +11,7 @@ import { FILE_LIMIT, TITLE_MIN_LENGTH } from '@/app/posts/constants.ts'
 
 const saveFile = async (file: File) => {
     if (file.size > FILE_LIMIT) {
-        return redirect('/api/error/400')
+        return redirect('/api/error?code=400&message=TOO_BIG')
     }
 
     const buffer = Buffer.from(await file.arrayBuffer())
@@ -26,7 +26,7 @@ const saveFile = async (file: File) => {
         .toFile(outputImagePath, (err, info) => {
             if (err) {
                 console.error(err)
-                return redirect('/api/error/400')
+                return redirect('/api/error?code=400&message=FILE_FORMAT_WRONG')
             } else {
                 console.log('Изображение успешно изменено и сохранено.')
             }
