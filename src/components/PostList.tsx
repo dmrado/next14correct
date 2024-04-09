@@ -29,7 +29,7 @@ export default function PostList({ initialPosts }: { initialPosts: PostPreview[]
     }, [ inView ])
 
     return (
-        <div className='flex flex-col gap-3'>
+        <div>
             {posts.map((post) => (
                 <PostsPreview key={post.id} post={post}/>
             ))}

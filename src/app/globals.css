@@ -27,24 +27,24 @@ body {
 }
 
 @keyframes glow {
-    0%, 60%, 85% {
+    0%, 66%{
         opacity: 0;
     }
-    50%, 70%, 100% {
+    33%, 100% {
         opacity: 1.5;
     }
 }
 
 .animate-glow {
-    animation: glow linear 0.5s 3;
+    animation: glow linear 0.5s 1;
 }
 
 
 @keyframes dangerous {
-    0%, 40%, 80% {
+    0%, 80% {
         transform: translateX(50%);
     }
-    20%, 60% {
+    40% {
         transform: translateX(-100%);
     }
     100% {
@@ -53,7 +53,7 @@ body {
 }
 
 .animate-dangerous-hover:hover {
-    animation: dangerous 2s 1;
+    animation: dangerous 6s 1;
 }
 
 

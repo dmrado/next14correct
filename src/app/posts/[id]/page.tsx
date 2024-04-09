@@ -23,7 +23,7 @@ const PostPage = async ({ params }: PostPageParams) => {
     };
 
     return (<>
-        <div className="max-w-2xl overflow-hidden mt-40 mr-auto mb-0 ml-auto pr-1 pl-1">
+        <div className="max-w-2xl overflow-hidden mx-auto mb-0 pr-1 pl-1">
             <div
                 className="flex items-center align-c w-full h-full bg-no-repeat bg-center bg-cover bg-fixed text-center">
                 <img className="one-post-banner__img"
@@ -31,7 +31,7 @@ const PostPage = async ({ params }: PostPageParams) => {
                     alt="Картинка поста"/>
             </div>
 
-            <div className="pl-5 pr-5 flex flex-col justify-center items-center text-justify">
+            <div className="px-5 flex flex-col justify-center items-center text-justify">
                 {!!session && !!session.user && session.user.email === process.env.USER_EMAIL &&
                         <h5 className="p-5 opacity-70">Post id: {post.id}</h5>
                 }
@@ -40,7 +40,7 @@ const PostPage = async ({ params }: PostPageParams) => {
                 <div className="text-white p-5 opacity-70" dangerouslySetInnerHTML={{ __html: post.text }}
                 ></div>
 
-                <p className="justify-end text-white italic mt-10p-5 opacity-65">Добавлено:&nbsp;
+                <p className="justify-end text-white italic p-5 opacity-65">Добавлено:&nbsp;
                     {post.createdAt.toLocaleDateString('ru-RU', {
                         weekday: 'short',
                         year: 'numeric',
@@ -66,7 +66,7 @@ const PostPage = async ({ params }: PostPageParams) => {
                 </div>
                 {!!session && !!session.user && session.user.email === process.env.USER_EMAIL &&
                         <form
-                            className='text-white opacity-70 hover:opacity-100 flex mt-10 px-6 py-2 ml-2 border-[#000] border-2 hover:border-2 hover:border-[#D50000] hover:rounded hover:text-[#D50000]
+                            className='text-white opacity-70 hover:opacity-100 flex px-6 py-2 ml-2 border-[#000] border-2 hover:border-2 hover:border-[#D50000] hover:rounded hover:text-[#D50000]
                             animate-dangerous-hover'
                             action={removePost.bind(null, post.id)}>
                             <input type='submit' value="Удалить пост"/>
