@@ -18,7 +18,8 @@ const saveFile = async (file: File) => {
     const buffer = Buffer.from(await file.arrayBuffer())
 
     //todo: (optional) место Date.now примеить uuid ГОТОВО ПЕРЕМЕННАЯ СОДЕРЖИТ УНИКАЛЬНОЕ ИМЯ ФАЙЛА НО НЕ СОХРАНЯЕТСЯ
-    const uniqueFilename = `${uuidv4()}.jpg`
+    const uniqueFilename = uuidv4()
+    console.log('uniqueFilename', uniqueFilename)
     const outputImagePath = `public/img/${uniqueFilename}`
 
     //todo: (optional) let sharp modify buffer then, save buffer with native fs
