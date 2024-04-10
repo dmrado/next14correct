@@ -4,6 +4,7 @@ import { fileTypeFromBuffer } from 'file-type'
 import { NextError } from 'next/dist/lib/is-error'
 // import Error from 'next/error'
 import sharp from 'sharp'
+import { v4 as uuidv4 } from 'uuid'
 import { Post } from '@/app/db/post.model.ts'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
@@ -16,8 +17,9 @@ const saveFile = async (file: File) => {
 
     const buffer = Buffer.from(await file.arrayBuffer())
 
-    //todo: (optional) место Date.now примеить uuid
-    const outputImagePath = `public/img/${file.name}`
+    //todo: (optional) место Date.now примеить uuid ГОТОВО ПЕРЕМЕННАЯ СОДЕРЖИТ УНИКАЛЬНОЕ ИМЯ ФАЙЛА НО НЕ СОХРАНЯЕТСЯ
+    const uniqueFilename = `${uuidv4()}.jpg`
+    const outputImagePath = `public/img/${uniqueFilename}`
 
     //todo: (optional) let sharp modify buffer then, save buffer with native fs
     sharp(buffer)
