@@ -4,12 +4,18 @@ import React from 'react'
 import {getServerSession} from 'next-auth'
 import {getPosts} from '@/app/actions/getPosts.ts'
 import {NUMBER_OF_POSTS_TO_FETCH} from '@/app/constants.ts'
+import CookieConsent from "@/components/CookieConsent.tsx";
 
 const Posts = async () => {
     // const session = await getServerSession()
     const {posts} = await getPosts(0, NUMBER_OF_POSTS_TO_FETCH)
     return (<>
         <div className='max-w-4xl overflow-hidden my-0 mx-auto italic'>{/*container*/}
+
+            <div className='flex justify-center'>
+                <CookieConsent/>
+            </div>
+
             <div className="flex flex-col justify-center content-center items-center mt-32">{/*blog-header*/}
                 <img src="img/postspage/blog1.webp" alt="Photo" className="h-60 w-60 rounded-full mb-10"/>
 
@@ -18,7 +24,7 @@ const Posts = async () => {
                     amet, consectetur
                     adipisicing elit. Amet aspernatur commodi consequatur deleniti dignissimos dolor enim ex
                     excepturi facilis harum id illo ipsum laborum laudantium magnam maiores modi molestias natus
-                  </p>
+                </p>
 
             </div>
         </div>
