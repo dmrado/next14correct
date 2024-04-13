@@ -53,7 +53,8 @@ body {
 }
 
 .animate-dangerous-hover:hover {
-    animation: dangerous 6s 1;
+    animation: none
+    /*animation: dangerous 6s 1;*/
 }
 
 
