@@ -5,6 +5,15 @@ import {getServerSession} from 'next-auth'
 import {getPosts} from '@/app/actions/getPosts.ts'
 import {NUMBER_OF_POSTS_TO_FETCH} from '@/app/constants.ts'
 import CookieConsent from "@/components/CookieConsent.tsx";
+import {cookies} from "next/headers";
+
+
+// let cookie = cookies().set({
+//     name: 'name',
+//     value: 'cookieConsent',
+//     httpOnly: true,
+//     expires: 1000 * 60 * 60 * 24 * 365
+// })
 
 const Posts = async () => {
     // const session = await getServerSession()
@@ -13,7 +22,9 @@ const Posts = async () => {
         <div className='max-w-4xl overflow-hidden my-0 mx-auto italic'>{/*container*/}
 
             <div className='flex justify-center'>
-                <CookieConsent/>
+                <CookieConsent
+                    // cookie={cookie}
+                />
             </div>
 
             <div className="flex flex-col justify-center content-center items-center mt-32">{/*blog-header*/}
