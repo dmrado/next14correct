@@ -5,8 +5,7 @@ import {PostPreview} from '@/app/db/post.model'
 const PostsPreview = ({post}: { post: PostPreview }) => {
     // console.log('post on PostsPreview', post)
     return <li>
-
-        <div className="flex flex-col mt-20 h-full pt-0 pr-30 pb-0 pl-30 content-center items-center">{/*card*/}
+        <div className="flex flex-col mt-20 h-full px-0 py-30 content-center items-center">{/*card*/}
 
             <div className="overflow-hidden h-full">{/*card wrapper для эффекта hover-scale картинки*/}
                 <img className="transform hover:scale-150 ease-in-out duration-700 w-full h-fit rounded-lg"

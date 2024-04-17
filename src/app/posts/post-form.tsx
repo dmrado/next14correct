@@ -33,7 +33,7 @@ const PostForm = ({ post }: { post:PostForm }) => {
     const isTitleValid = () => !touched || touched && title.length >= TITLE_MIN_LENGTH
 
     const buttonStyle = () => {
-        const baseStyle : string = 'border-2 border-my_white border-solid pt-1.5 pr-5 pb-1.5 pl-5 p-2 rounded '
+        const baseStyle : string = 'border-2 border-my_white border-solid px-5 py-1.5 rounded '
         if (isTitleValid() && !isFileSizeError) {
             return baseStyle + 'hover:text-my_l_green hover:border-2 hover:border-my_l_green text-[#000]'
         }
@@ -41,7 +41,7 @@ const PostForm = ({ post }: { post:PostForm }) => {
     }
 
     return (
-        <form className="bg-white rounded px-8 pt-6 pb-8 mb-4"
+        <form className="bg-white rounded px-8 pt-6 pb-8"
             action={onSubmit}>
             <input hidden type="number" name="id" value={post.id}/>
             <div className="mb-4">
