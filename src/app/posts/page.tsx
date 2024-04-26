@@ -10,7 +10,7 @@ const Posts = async () => {
     const { posts } = await getPosts(0, NUMBER_OF_POSTS_TO_FETCH)
 
     return (<>
-        <div className='max-w-4xl overflow-hidden my-0 mx-auto italic'>{/*container*/}
+        <div className='flex flex-col items-center max-w-4xl overflow-hidden my-0 mx-auto italic'>{/*container*/}
 
             <CookieConsent isAccepted={!!isAcceptedCookie}/>
             <img src="img/postspage/blog1.webp" alt="Photo" className="h-60 w-60 rounded-full mb-10"/>
