@@ -21,7 +21,7 @@ type PostForm = {
     id?: number;
 }
 
-const PostForm = ({ post }: { post:PostForm }) => {
+const PostForm = ({ post }: { post: PostForm }) => {
     const [ title, setTitle ] = useState(post.title)
     const [ touched, setTouched ] = useState(false)
     const [ isFileSizeError, setFileSizeError ] = useState(false)
