@@ -9,11 +9,11 @@ import { FILE_LIMIT, TITLE_MIN_LENGTH } from '@/app/posts/constants.ts'
 
 const saveFile = async (file: File): Promise<string> => {
     const buffer = Buffer.from(await file.arrayBuffer())
-
     const uniqueFilename = uuidv4()
-    console.log('uniqueFilename', uniqueFilename)
-    const outputImagePath = `public/img/${uniqueFilename}`
-    //todo: add file extention
+    const fileExtension = '.' + file.name.split('.').pop()
+    const uniqueFullFilename = uuidv4() + fileExtension
+    console.log('uniqueFilename with fileExtension', uniqueFullFilename)
+    const outputImagePath = `public/img/${uniqueFullFilename}`
 
     // todo: (optional) let sharp modify buffer then, save buffer with native fs
     // todo: pseudocode to real code
