@@ -1,10 +1,10 @@
 import Link from 'next/link'
-import {getServerSession} from 'next-auth'
+import { getServerSession } from 'next-auth'
 import React from 'react'
 import PostForm from '@/app/posts/post-form.tsx'
-import {isAuthorized} from '@/app/isAuthorized.ts'
-import {isSessionExpired} from '@/app/isSessionExpired.ts'
-import {redirect} from 'next/navigation'
+import { isAuthorized } from '@/app/isAuthorized.ts'
+import { isSessionExpired } from '@/app/isSessionExpired.ts'
+import { redirect } from 'next/navigation'
 
 const AddPost = async () => {
     const session = await getServerSession()
@@ -19,7 +19,7 @@ const AddPost = async () => {
         </div>
 
         <div className="items-center h-screen p-5">
-            <PostForm post={{title: '', text: ''}}/>
+            <PostForm post={{ title: '', text: '' }}/>
             <div className="flex justify-center p-10">
                 <Link href={'/posts'}>
                     <button
