@@ -43,7 +43,7 @@ const PostForm = ({ post }: { post: PostForm }) => {
     return (
         <form className="bg-white rounded px-8 pt-6 pb-8"
             action={onSubmit}>
-            <input hidden type="number" name="id" value={post.id}/>
+            <input hidden type="number" name="id" value={post.id} readOnly/>
             <div className="mb-4">
                 <input
                     required

@@ -6,63 +6,54 @@ import { Post } from '@/app/db/post.model.ts'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { FILE_LIMIT, TITLE_MIN_LENGTH } from '@/app/posts/constants.ts'
+import fs from 'fs'
+
+class ValidationError extends Error {}
 
 const saveFile = async (file: File): Promise<string> => {
     const buffer = Buffer.from(await file.arrayBuffer())
     const uniqueFilename = uuidv4()
     const fileExtension = '.' + file.name.split('.').pop()
-    const uniqueFullFilename = uuidv4() + fileExtension
+    const uniqueFullFilename = uniqueFilename + fileExtension
     console.log('uniqueFilename with fileExtension', uniqueFullFilename)
     const outputImagePath = `public/img/${uniqueFullFilename}`
 
-    // todo: (optional) let sharp modify buffer then, save buffer with native fs
-    // todo: pseudocode to real code
-    // try {
-    //     const residedBuffer = sharp(buffer)
-    //         .resize(300, 400)
-    //         .toBuffer((er, data, info) => data)
-    // } catch (e) {
-    //     console.error(e)
-    //     return redirect('/api/')
-    // }
-    // try {
-    //     fs.writeFileSync(residedBuffer, '')
-    // } catch (e) {
-    //     console.error('writeFileSync error', e)
-    //     throw e
-    // }
+    const resizedBuffer = await sharp(buffer)
+        .resize(1356, 668)
+        .toBuffer().then(buffer => buffer).catch(err => console.error(err))
 
-    sharp(buffer)
-        .resize(300, 400)
-        .webp({ lossless: true })
-        .toFile(outputImagePath, (err, info) => {
-            if (err) {
-                console.error(err)
-                return redirect('/api/error?code=400&message=FILE_FORMAT_WRONG')
-            } else {
-                console.log('Изображение успешно изменено и сохранено.')
-            }
-        })
-    return uniqueFilename
+    if (!resizedBuffer) {
+        throw new ValidationError('File format not supported')
+    }
+
+    // Сохранение обработанного буфера в файл
+    fs.writeFile(outputImagePath, resizedBuffer, (err) => {
+        if (err) {
+            console.error('Error saving the image:', err)
+            throw err
+        }
+        console.log('Image saved successfully:', outputImagePath)
+    })
+    return uniqueFullFilename
 }
 
 type PostData = {
-    id: number | undefined,
-    title: string,
-    text: string
-}
+        id: number | undefined,
+        title: string,
+        text: string
+    }
 const cleanFormData = (formData: FormData): PostData => {
     const id = formData.get('id')
     const title = formData.get('title')
     const text = formData.get('text')
     if (id instanceof File || title instanceof File || text instanceof File) {
-        throw new Error('Filedata in text fields')
+        throw new ValidationError('Filedata in text fields')
     }
     if (!title || !text) {
-        throw new Error('Title or text is null')
+        throw new ValidationError('Title or text is null')
     }
     if (title.length < TITLE_MIN_LENGTH) {
-        throw new Error('Title too short')
+        throw new ValidationError('Title too short')
     }
     return { title, text, id: id ? Number(id) : undefined }
 }
@@ -73,14 +64,14 @@ const cleanFormFile = (formData: FormData): File | undefined => {
         return undefined
     }
     if (typeof file === 'string') {
-        throw new Error('Unexpected post_picture in string format')
+        throw new ValidationError('Unexpected post_picture in string format')
     }
 
     if (file.size === 0) {
         return undefined
     }
     if (file.size > FILE_LIMIT) {
-        throw new Error(`File is bigger than limit: "${FILE_LIMIT}"`)
+        throw new ValidationError(`File is bigger than limit: "${FILE_LIMIT}"`)
     }
     return file
 }
@@ -96,12 +87,16 @@ export const handleForm = async (formData: FormData) => {
 
         if (formFile) {
             const fileName = await saveFile(formFile)
+                .catch(e => {throw e})
+                // todo: check how error works
             await Post.update({ path: `/img/${fileName}` }, { where: { id: post.id } })
         }
-    } catch (e) {
-        // todo: send error message in query params
-        console.error('Error on handleForm:  ', e)
-        return redirect('/api/error/400')
+    } catch (err) {
+        console.error('Error on handleForm:  ', err)
+        if (err instanceof ValidationError) {
+            return redirect('/api/error/?code=400&message=VALIDATION_ERROR')
+        }
+        return redirect('/api/error/?code=500&message=SERVER_ERROR')
     }
     revalidatePath('/posts')
     redirect('/posts')
