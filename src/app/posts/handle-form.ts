@@ -27,12 +27,18 @@ const saveFile = async (file: File): Promise<string> => {
     }
 
     // Сохранение обработанного буфера в файл
-    fs.writeFile(outputImagePath, resizedBuffer, (err) => {
-        if (err) {
-            console.error('Error saving the image:', err)
-            throw err
-        }
-        console.log('Image saved successfully:', outputImagePath)
+    await new Promise<void>((resolve, reject) => {
+        fs.writeFile(outputImagePath, resizedBuffer, (err) => {
+            // todo: uncomment line below to check how it works
+            // fixme: remove this comment, once you are confident how it works
+            // reject(new Error('Disk is not enough'))
+            if (err) {
+                console.error('Error saving the image:', err)
+                reject(err)
+            }
+            console.log('Image saved successfully:', outputImagePath)
+            resolve()
+        })
     })
     return uniqueFullFilename
 }
@@ -87,8 +93,6 @@ export const handleForm = async (formData: FormData) => {
 
         if (formFile) {
             const fileName = await saveFile(formFile)
-                .catch(e => {throw e})
-                // todo: check how error works
             await Post.update({ path: `/img/${fileName}` }, { where: { id: post.id } })
         }
     } catch (err) {
