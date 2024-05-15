@@ -1,3 +1,4 @@
+import './tailwind.css'//Импортировали Tailwind CSS
 import PostList from '@/components/PostList.tsx'
 import React from 'react'
 import { getPosts } from '@/app/actions/getPosts.ts'
