@@ -24,19 +24,31 @@ export default async function Header() {
                             }
                         </div>
                     </div>
+
                     <div className='flex flex-wrap '>
                         {!!session && !!session.user && session.user.email === process.env.USER_EMAIL &&
                             <Link href={'/posts/new'}>
                                 <button
                                     className='text-green-600 px-6 py-2 border-[#000] border-2 hover:text-my_l_green hover:border-2 hover:border-my_l_green rounded'
-                                >Добавить
+                                >Добавить пост
                                 </button>
                             </Link>
                         }
 
-                        <Link
-                            className='text-gray-400 px-6 py-2 ml-2 border-[#000] border-2 hover:border-2 hover:border-[#D50000] hover:rounded hover:text-[#D50000]'
-                            href="/api/auth/signout">Выйти</Link>
+                        <Link href={'/public'}>
+                            <button
+                                className='text-white opacity-70 hover:opacity-100 py-2 px-4 border-2 border-[#000] hover:text-my_l_blue hover:border-2 hover:border-my_l_blue  rounded focus:outline-none focus:shadow-outline'
+                            >На сайт
+                            </button>
+                        </Link>
+
+                        <Link  href={'/api/auth/signout'}>
+                        <button
+                            className='opacity-50 px-6 py-2 ml-2 border-[#000] border-2 hover:border-2 hover:border-[#D50000] hover:rounded hover:text-[#D50000] hover:opacity-90'
+                           >Выйти из аккаунта
+                        </button>
+                        </Link>
+
                     </div>
                 </div>
                 <div
@@ -49,9 +61,20 @@ export default async function Header() {
             <div
                 className='flex justify-between items-center h-24 min-w-full fixed top-0 left-0 right-1 py-2 px-12 duration-30 bg-black z-40'>{/*Header shadow-blue*/}
                 <p className='mr-20 text-[#004E98]'>Вход не выполнен</p>
-                <Link
+
+                <Link href={'/public'}>
+                    <button
+                        className='text-white opacity-70 hover:opacity-100 py-2 px-4 border-2 border-[#000] hover:text-my_l_blue hover:border-2 hover:border-my_l_blue rounded focus:outline-none focus:shadow-outline'
+                    >На сайт
+                    </button>
+                </Link>
+
+                <Link href={'/api/auth/signin'}>
+                <button
                     className='flex justify-center items-center min-w-40 text-white hover:border hover:border-[#50d71e] hover:text-[#50d71e] py-1.5 rounded'
-                    href="/api/auth/signin">Войти</Link>
+                    >Войти
+                </button>
+                </Link>
             </div>
             <div
                 className='h-24 min-w-full fixed top-0 left-0 right-1 py-2 px-12 duration-30 bg-black z-2 shadow-xl shadow-[#004E98] animate-glow'></div>
