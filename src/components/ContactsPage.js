@@ -1,6 +1,6 @@
 'use client'
 import {useEffect, useState} from "react";
-import {BACKEND_URL} from "../../config";
+import {BACKEND_URL} from "../config.js";
 import {ReCAPTCHA} from "react-google-recaptcha";
 
 const CONTACTS = {

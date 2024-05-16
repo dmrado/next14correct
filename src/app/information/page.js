@@ -1,4 +1,4 @@
-import ContactsPage from "../components/ContactsPage.js";
+import ContactsPage from "../../components/ContactsPage.js";
 
 export const metadata = {
     title: 'Beit-Ieshua | Information',

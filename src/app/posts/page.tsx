@@ -1,4 +1,3 @@
-import './tailwind.css'//Импортировали Tailwind CSS
 import PostList from '@/components/PostList.tsx'
 import React from 'react'
 import { getPosts } from '@/app/actions/getPosts.ts'
@@ -15,7 +14,17 @@ const Posts = async () => {
         <img src="img/postspage/blog1.webp" alt="Photo" className="h-60 w-60 rounded-full mb-10"/>
 
         <h1 className='opacity-70'>Блог пастора</h1>
-        <p className='text-white mt-6 px-4 indent-12 opacity-70 italic'>Некий эпиграф к блогу Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet aspernatur commodi consequatur deleniti dignissimos dolor enim ex excepturi facilis harum id illo ipsum laborum laudantium magnam maiores modi molestias natus
+        <p className='text-white mt-6 px-4 indent-12 opacity-70 italic'>"Сила веры и духа"
+
+            В этом месте мы собираемся, чтобы искать Божью истину,
+            Вдохновляться Его словом и делиться любовью Христа.
+            Пусть каждый шаг будет направлен Духом Святым,
+            И каждая молитва возносится с верой и надеждой.
+
+            Здесь мы обретаем силу для преодоления трудностей,
+            И находим радость в служении друг другу.
+            Пусть этот блог станет светом на нашем пути,
+            И источником благословений для всех, кто ищет Бога.
         </p>
         <div className='max-w-2xl overflow-hidden my-0 mr-auto ml-auto'>{/*container*/}
             <div className='flex float-left p-0 mt-9'>{/*card-list*/}
