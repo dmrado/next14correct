@@ -30,9 +30,7 @@ const PostsPreview = ({post}: { post: PostPreview }) => {
                     })}
                 </p>
             </div>
-
         </div>
-
     </li>
 }
 

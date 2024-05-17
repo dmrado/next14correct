@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import AboutPage from "@/components/AboutPage";
-
+import AboutPage from "@/components/AboutPage.tsx";
 
 // export default function About() {
 //     return(
@@ -10,7 +9,6 @@ import AboutPage from "@/components/AboutPage";
 //         </>
 //     )
 // }
-
 
 export const metadata = {
     title: 'Beit-Ieshua | About us',

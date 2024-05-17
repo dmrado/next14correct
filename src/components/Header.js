@@ -37,7 +37,7 @@ const Header = () => {
             //то есть если кликнули по меню или бургеру - ничего не выполняем
             document.body.addEventListener('click', e => {
                 if (e._isClickWithInMenu) return
-                document.querySelector('.header').classList.remove('open')
+                document.querySelector('.header')?.classList.remove('open')
             })
         }
 
