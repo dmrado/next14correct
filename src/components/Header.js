@@ -54,7 +54,7 @@ const Header = () => {
                     {/*логотип менора с названием начало*/}
                     <div className="nav__logo">
                         {/*Minora*/}
-                        <Link href="/public" className="logo">
+                        <Link href="/" className="logo">
                             <svg xmlns="http://www.w3.org/2000/svg" width="68" height="68" viewBox="0 0 68 68"
                                  fill="none">
                                 <path xmlns="http://www.w3.org/2000/svg"
@@ -107,7 +107,7 @@ const Header = () => {
                     <div className="menu" id="menu">
                         <ul className="menu__list">
                             <li className="menu__item">
-                                <Link className="menu__link" href="/public">
+                                <Link className="menu__link" href="/">
                                     О нас
                                 </Link>
                             </li>
