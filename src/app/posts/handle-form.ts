@@ -29,9 +29,6 @@ const saveFile = async (file: File): Promise<string> => {
     // Сохранение обработанного буфера в файл
     await new Promise<void>((resolve, reject) => {
         fs.writeFile(outputImagePath, resizedBuffer, (err) => {
-            // todo: uncomment line below to check how it works
-            // fixme: remove this comment, once you are confident how it works
-            // reject(new Error('Disk is not enough'))
             if (err) {
                 console.error('Error saving the image:', err)
                 reject(err)
