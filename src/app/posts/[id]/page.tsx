@@ -25,7 +25,7 @@ const PostPage = async ({ params }: PostPageParams) => {
     };
 
     return (<>
-        <div className="max-w-6xl overflow-hidden mx-auto my-32 mb-0 pr-1 pl-1">
+        <div className="max-w-4xl overflow-hidden mx-auto my-32 mb-0 pr-1 pl-1">
             {!isAcceptedCookie && <div className="flex justify-center mt-36">
                 <CookieConsent isAccepted={!!isAcceptedCookie}/>
             </div>}
@@ -39,12 +39,12 @@ const PostPage = async ({ params }: PostPageParams) => {
                 {!!session && !!session.user && session.user.email === process.env.USER_EMAIL &&
                         <h5 className="p-5 opacity-70">Post id: {post.id}</h5>
                 }
-                <h1 className="text-[#505050] text-4xl font-bold p-5">{post.title}</h1>
+                <h1 className="text-[#505050] text-2xl font-bold p-5">{post.title}</h1>
 
-                <div className="text-[#505050] text-2xl p-5" dangerouslySetInnerHTML={{ __html: post.text }}
+                <div className="text-[#505050] text-xl p-5" dangerouslySetInnerHTML={{ __html: post.text }}
                 ></div>
 
-                <p className="justify-end text-white italic p-5 opacity-65">Добавлено:&nbsp;
+                <p className="justify-end italic p-5 opacity-65">Добавлено:&nbsp;
                     {post.createdAt.toLocaleDateString('ru-RU', {
                         weekday: 'short',
                         year: 'numeric',
@@ -59,18 +59,15 @@ const PostPage = async ({ params }: PostPageParams) => {
                     </Link>
 
                     {!!session && !!session.user && session.user.email === process.env.USER_EMAIL &&
-                            <Link
-                                className='text-white opacity-70 hover:opacity-100 py-2 px-4 border-[#000] border-2 hover:text-my_l_green hover:border-2 hover:border-my_l_green rounded'
-                                href={`/posts/${post.id}/edit`}>Редактировать
+                            <Link href={`/posts/${post.id}/edit`}>
+                                <button className='button_green text-dark'>Редактировать</button>
                             </Link>
                     }
                 </div>
+
                 {!!session && !!session.user && session.user.email === process.env.USER_EMAIL &&
-                        <form
-                            className='text-white opacity-70 hover:opacity-100 flex px-6 py-2 ml-2 border-[#000] border-2 hover:border-2 hover:border-[#D50000] hover:rounded hover:text-[#D50000]
-                            animate-dangerous-hover'
-                            action={removePost.bind(null, post.id)}>
-                            <input type='submit' value="Удалить пост"/>
+                        <form action={removePost.bind(null, post.id)}>
+                            <input className='button_red'  type='submit' value="Удалить пост"/>
                         </form>
                 }
             </div>
