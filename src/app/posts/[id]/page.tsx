@@ -23,11 +23,10 @@ const PostPage = async ({ params }: PostPageParams) => {
     };
 
     return (<>
-        <div className="max-w-2xl overflow-hidden mx-auto mb-0 pr-1 pl-1">
+        <div className="max-w-6xl overflow-hidden mx-auto my-32 mb-0 pr-1 pl-1">
             <div
                 className="flex items-center align-c w-full h-full bg-no-repeat bg-center bg-cover bg-fixed text-center">
-                <img className="one-post-banner__img"
-                    src={post.path ? post.path : '../img/postspage/cloudsWIDE.webp'}
+                <img  src={post.path ? post.path : '../img/postspage/cloudsWIDE.webp'}
                     alt="Картинка поста"/>
             </div>
 
@@ -35,9 +34,9 @@ const PostPage = async ({ params }: PostPageParams) => {
                 {!!session && !!session.user && session.user.email === process.env.USER_EMAIL &&
                         <h5 className="p-5 opacity-70">Post id: {post.id}</h5>
                 }
-                <h1 className="text-white p-5 opacity-70">{post.title}</h1>
+                <h1 className="text-[#505050] text-4xl font-bold p-5">{post.title}</h1>
 
-                <div className="text-white p-5 opacity-70" dangerouslySetInnerHTML={{ __html: post.text }}
+                <div className="text-[#505050] text-2xl p-5" dangerouslySetInnerHTML={{ __html: post.text }}
                 ></div>
 
                 <p className="justify-end text-white italic p-5 opacity-65">Добавлено:&nbsp;
@@ -52,7 +51,7 @@ const PostPage = async ({ params }: PostPageParams) => {
                 <div className="flex flex-wrap p-5 justify-between items-center">
                     <Link href={'/posts'}>
                         <button
-                            className='text-white opacity-70 hover:opacity-100 py-2 px-4 border-2 border-[#000] hover:text-my_l_blue hover:border-2 hover:border-my_l_blue  rounded focus:outline-none focus:shadow-outline'
+                            className='button_blue'
                         >Вернуться
                         </button>
                     </Link>

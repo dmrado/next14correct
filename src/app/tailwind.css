@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*button_blue_____________________________________*/
+.button_blue {
+    @apply relative inline-block px-4 py-2 text-[#0285d5] border-2 border-transparent transition-colors ease-in-out duration-300;
+}
+
+.button_blue::before {
+    content: '';
+    @apply absolute top-[-2px] left-[-2px] right-[-2px] bottom-[-2px] border-2 border-transparent transition-colors ease-in-out duration-300 rounded;
+}
+
+.button_blue:hover::before {
+    @apply border-[#0285d5] rounded;
+}
+
+/*button_red______________________________________*/
+.button_red {
+    @apply relative inline-block px-4 py-2 text-[#D50000] border-2 border-transparent transition-colors ease-in-out duration-300;
+}
+
+.button_red::before {
+    content: '';
+    @apply absolute top-[-2px] left-[-2px] right-[-2px] bottom-[-2px] border-2 border-transparent transition-colors ease-in-out duration-300 rounded;
+}
+
+.button_red:hover::before {
+    @apply border-[#D50000] rounded;
+}
+
+/*button_green___________________________________*/
+.button_green {
+    @apply relative inline-block px-4 py-2 text-[#02bb5f] border-2 border-transparent transition-colors ease-in-out duration-300;
+}
+
+.button_green::before {
+    content: '';
+    @apply absolute top-[-2px] left-[-2px] right-[-2px] bottom-[-2px] border-2 border-transparent transition-colors ease-in-out duration-300 rounded;
+}
+
+.button_green:hover::before {
+    @apply border-[#02bb5f] rounded;
+}
+
+
+/*:root {*/
+/*    --foreground-rgb: 0, 0, 0;*/
+/*    --background-start-rgb: 214, 219, 220;*/
+/*    --background-end-rgb: 255, 255, 255;*/
+/*}*/
+
+/*@media (prefers-color-scheme: dark) {*/
+/*    :root {*/
+/*        --foreground-rgb: 255, 255, 255;*/
+/*        --background-start-rgb: 0, 0, 0;*/
+/*        --background-end-rgb: 0, 0, 0;*/
+/*    }*/
+/*}*/
+
+/*body {*/
+    /*color: rgb(var(--foreground-rgb));*/
+    /*background-color: #000;*/
+    /*background: linear-gradient(*/
+    /*        to bottom,*/
+    /*        transparent,*/
+    /*        rgb(var(--background-end-rgb))*/
+    /*) rgb(var(--background-start-rgb));*/
+/*}*/
+
+/*@keyframes glow {*/
+/*    0%, 66%{*/
+/*        opacity: 0;*/
+/*    }*/
+/*    33%, 100% {*/
+/*        opacity: 1.5;*/
+/*    }*/
+/*}*/
+
+/*.animate-glow {*/
+/*    animation: glow linear 0.5s 1;*/
+/*}*/
+
+
+/*@keyframes dangerous {*/
+/*    0%, 80% {*/
+/*        transform: translateX(50%);*/
+/*    }*/
+/*    40% {*/
+/*        transform: translateX(-100%);*/
+/*    }*/
+/*    100% {*/
+/*        transform: translateX(0%);*/
+/*    }*/
+/*}*/
+
+/*.animate-dangerous-hover:hover {*/
+/*    animation: none*/
+    /*animation: dangerous 6s 1;*/
+/*}*/
+
+
+

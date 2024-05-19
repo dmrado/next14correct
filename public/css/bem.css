@@ -481,7 +481,7 @@ body {
     z-index: 4;
 }
 
-.quotes {
+.header__info h1 icon {
     font-size: 36px;
     font-weight: 300;
 }
@@ -1112,7 +1112,7 @@ body {
 /*    }*/
 /*}*/
 
-/*blog header on the posts/page.js START*/
+/*blog header on the posts/page.js START ВНИМАНИЕ!!! posts в этом проекте работает на tailwind.css/
 
 .blog-header {
     display: grid;
@@ -1130,7 +1130,7 @@ body {
 }
 
 .blog-header a {
-    /*font-family: Open Sans;*/
+    font-family: Open Sans;
     color: #004E98 !important;
 }
 
@@ -1154,7 +1154,7 @@ body {
     max-height: 450px;
     overflow: hidden;
 }
-
+*/
 /*blog header on the posts/page.js FINISH*/
 
 /*Card block*/
