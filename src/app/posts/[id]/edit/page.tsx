@@ -22,18 +22,22 @@ const EditPost = async ({ params }: PostPageParams) => {
 
     return <>
 
-        <div className="flex justify-center text-white">
+        <div className="flex justify-center">
             <h1 className="p-5">Отредактируем по новому...</h1>
+        </div>
+        <div
+            className="flex justify-center">
+            <img src={post.path ? post.path : '../img/postspage/cloudsWIDE.webp'}
+                 alt="Картинка поста"
+                 className="max-w-xl rounded-md"
+            />
         </div>
 
         <div className="items-center h-screen p-5">
-            <PostForm post={{ title: post.title, text: post.text, id: post.id }}/>
+            <PostForm post={{title: post.title, text: post.text, id: post.id}}/>
             <div className="flex justify-center p-10">
                 <Link href={'/posts'}>
-                    <button
-                        className='text-white border-2 border-[#000] hover:text-my_l_blue hover:border-2 hover:border-my_l_blue py-2 px-4 rounded focus:outline-none focus:shadow-outline'
-                    >Вернуться
-                    </button>
+                    <button className='button_blue'>Вернуться</button>
                 </Link>
             </div>
         </div>

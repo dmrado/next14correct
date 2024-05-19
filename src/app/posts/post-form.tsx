@@ -33,11 +33,11 @@ const PostForm = ({ post }: { post: PostForm }) => {
     const isTitleValid = () => !touched || touched && title.length >= TITLE_MIN_LENGTH
 
     const buttonStyle = () => {
-        const baseStyle : string = 'border-2 border-my_white border-solid px-5 py-1.5 rounded '
+        const baseStyle : string = 'border-2 border-my_white border-solid px-5 py-2 rounded '
         if (isTitleValid() && !isFileSizeError) {
             return baseStyle + 'hover:text-my_l_green hover:border-2 hover:border-my_l_green text-[#000]'
         }
-        return baseStyle + 'text-grey-600'
+        return baseStyle + 'text-green-600'
     }
 
     return (

@@ -5,11 +5,13 @@ import { redirect } from 'next/navigation'
 import { Post } from '@/app/db/post.model.ts'
 import { getServerSession } from 'next-auth'
 import { notFound } from 'next/navigation'
+import CookieConsent from "@/components/CookieConsent.tsx";
+import {getConsentAccepted} from "@/app/actions/getCookiesAccepted.ts";
 
 type PostPageParams = { params: { id: number } }
 const PostPage = async ({ params }: PostPageParams) => {
     const session = await getServerSession()
-
+    const isAcceptedCookie = await getConsentAccepted()
     const post = await Post.findByPk(params.id)
     if (!post) {
         return notFound()
@@ -24,8 +26,11 @@ const PostPage = async ({ params }: PostPageParams) => {
 
     return (<>
         <div className="max-w-6xl overflow-hidden mx-auto my-32 mb-0 pr-1 pl-1">
+            {!isAcceptedCookie && <div className="flex justify-center mt-36">
+                <CookieConsent isAccepted={!!isAcceptedCookie}/>
+            </div>}
             <div
-                className="flex items-center align-c w-full h-full bg-no-repeat bg-center bg-cover bg-fixed text-center">
+                className="flex items-center align-c w-full h-full bg-no-repeat bg-center bg-cover bg-fixed text-center overflow-hidden rounded-lg">
                 <img  src={post.path ? post.path : '../img/postspage/cloudsWIDE.webp'}
                     alt="Картинка поста"/>
             </div>
@@ -50,10 +55,7 @@ const PostPage = async ({ params }: PostPageParams) => {
 
                 <div className="flex flex-wrap p-5 justify-between items-center">
                     <Link href={'/posts'}>
-                        <button
-                            className='button_blue'
-                        >Вернуться
-                        </button>
+                        <button className='button_blue'>Вернуться</button>
                     </Link>
 
                     {!!session && !!session.user && session.user.email === process.env.USER_EMAIL &&
