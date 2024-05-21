@@ -4,7 +4,7 @@
 
 /*button_blue_____________________________________*/
 .button_blue {
-    @apply relative inline-block px-4 py-2 text-[#0285d5] border-2 border-transparent transition-colors ease-in-out duration-300;
+    @apply relative mx-2 inline-block px-4 py-2 text-[#0285d5] border-2 border-transparent transition-colors ease-in-out duration-300;
 }
 
 .button_blue::before {
@@ -18,7 +18,7 @@
 
 /*button_red______________________________________*/
 .button_red {
-    @apply relative inline-block px-4 py-2 text-[#D50000] border-2 border-transparent transition-colors ease-in-out duration-300;
+    @apply relative mx-2 inline-block px-4 py-2 text-[#D50000] border-2 border-transparent transition-colors ease-in-out duration-300;
 }
 
 .button_red::before {
@@ -32,7 +32,7 @@
 
 /*button_green___________________________________*/
 .button_green {
-    @apply relative inline-block px-4 py-2 text-[#02bb5f] border-2 border-transparent transition-colors ease-in-out duration-300;
+    @apply relative mx-2 inline-block px-4 py-2 text-[#02bb5f] border-2 border-transparent transition-colors ease-in-out duration-300;
 }
 
 .button_green::before {

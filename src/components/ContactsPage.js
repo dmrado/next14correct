@@ -2,6 +2,7 @@
 import {useEffect, useState} from "react";
 import {BACKEND_URL} from "../config.js";
 import {ReCAPTCHA} from "react-google-recaptcha";
+import PersonalDatesModal from "./PersonalDatesModal.tsx"
 
 const CONTACTS = {
     headerAddres1: 'Адрес: ',
@@ -20,6 +21,7 @@ const ContactsPage = () => {
     const [email, setEmail] = useState('')
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
+    const [personalDatesModal, setPersonalDatesModal] = useState(false)
 
     // useEffect(() => {
     //     if (typeof AOS !== 'undefined') {
@@ -221,6 +223,10 @@ const ContactsPage = () => {
                         {/*<div className="error-message"/>*/}
                         {/*<div className="sent-message">Ваше сообщение отправлено. Большое спасибо!</div>*/}
                         <div className="form__submit">
+                        <p>Нажимая кнопку отправить вы принимаете условие
+                            <button className="button_blue" onClick={e => setPersonalDatesModal(true)}>Соглашения</button>
+                            об обработке персональных данных</p>
+                            {!!personalDatesModal && <PersonalDatesModal setPersonalDatesModal={setPersonalDatesModal}/>}
                             <button className="btn contact__form_btn" type="submit">Отправить</button>
                         </div>
                     </form>
