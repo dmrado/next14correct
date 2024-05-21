@@ -1,8 +1,10 @@
 'use client'
 import Link from 'next/link'
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import HeaderButtons from './HeaderButtons.tsx'
 
 const Header = () => {
+    const [showHeaderButtons, setShowHeaderButtons] = useState(false)
     // todo useEffect для адаптивности меню навигации
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -221,8 +223,13 @@ const Header = () => {
                             </ul>
                         </div>
                     </div>
+                    {/*<button onClick={e => setShowHeaderButtons(true)}>In</button>*/}
+
                 </nav>
 
+                {/*{!!showHeaderButtons &&*/}
+                {/*<HeaderButtons/>*/}
+                {/*}*/}
             </div>
             {/*</div>*/}
         </>
