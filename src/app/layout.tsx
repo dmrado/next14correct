@@ -1,10 +1,11 @@
-import './tailwind.css'
+// import './tailwind.css'
 import '../../public/css/bem.css'
 import {Dosis} from 'next/font/google'
 
 import YandexMetrika from "@/components/YandexMetrika";
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import {useRouter} from 'next/navigation'
 
 
 const inter = Dosis({subsets: ['latin']})
@@ -15,6 +16,9 @@ export const metadata = {
 }
 
 export default function RootLayout({children}) {
+    const router = useRouter()
+    const isPostsPage = router.pathname.includes('posts')
+    console.log('isPostsPage', isPostsPage)
     return (
         <html lang="en">
 
@@ -25,7 +29,7 @@ export default function RootLayout({children}) {
         <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
                 async defer>
         </script>
-        <script src="https://kit.fontawesome.com/42b4beafb6.js" crossOrigin="anonymous"></script>
+        {/*<script src="https://kit.fontawesome.com/42b4beafb6.js" crossOrigin="anonymous"></script>*/}
 
         <Header/>
 
@@ -33,8 +37,8 @@ export default function RootLayout({children}) {
 
         <Footer/>
 
-        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
-        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        {/*<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>*/}
+        {/*<script src="https://unpkg.com/aos@next/dist/aos.js"></script>*/}
 
         </body>
         </html>
