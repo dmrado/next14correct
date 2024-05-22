@@ -1,10 +1,10 @@
 import PostList from '@/components/PostList.tsx'
 import React from 'react'
-import {getPosts} from '@/app/actions/getPosts.ts'
-import {NUMBER_OF_POSTS_TO_FETCH} from '@/app/constants.ts'
+import { getPosts } from '@/app/actions/getPosts.ts'
+import { NUMBER_OF_POSTS_TO_FETCH } from '@/app/constants.ts'
 import CookieConsent from '@/components/CookieConsent.tsx'
-import {getConsentAccepted} from '@/app/actions/getCookiesAccepted.ts'
-
+import { getConsentAccepted } from '@/app/actions/getCookiesAccepted.ts'
+import './tailwind.css'
 
 export const metadata = {
     title: 'Бейт-Иешуа | Блог'
@@ -12,7 +12,7 @@ export const metadata = {
 
 const Posts = async () => {
     const isAcceptedCookie = await getConsentAccepted()
-    const {posts} = await getPosts(0, NUMBER_OF_POSTS_TO_FETCH)
+    const { posts } = await getPosts(0, NUMBER_OF_POSTS_TO_FETCH)
 
     return (<>
         {!isAcceptedCookie && <div className="flex justify-center mt-36">

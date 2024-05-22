@@ -5,6 +5,7 @@ import PostForm from '@/app/posts/post-form.tsx'
 import { isAuthorized } from '@/app/isAuthorized.ts'
 import { isSessionExpired } from '@/app/isSessionExpired.ts'
 import { redirect } from 'next/navigation'
+import '../tailwind.css'
 
 const AddPost = async () => {
     const session = await getServerSession()

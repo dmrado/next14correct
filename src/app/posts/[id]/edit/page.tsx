@@ -6,6 +6,7 @@ import { getServerSession } from 'next-auth'
 import { isAuthorized } from '@/app/isAuthorized.ts'
 import { isSessionExpired } from '@/app/isSessionExpired.ts'
 import PostForm from '@/app/posts/post-form.tsx'
+import '../tailwind.css'
 
 type PostPageParams = { params: { id: number } }
 

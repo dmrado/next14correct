@@ -5,8 +5,9 @@ import { redirect } from 'next/navigation'
 import { Post } from '@/app/db/post.model.ts'
 import { getServerSession } from 'next-auth'
 import { notFound } from 'next/navigation'
-import CookieConsent from "@/components/CookieConsent.tsx";
-import {getConsentAccepted} from "@/app/actions/getCookiesAccepted.ts";
+import CookieConsent from '@/components/CookieConsent.tsx'
+import { getConsentAccepted } from '@/app/actions/getCookiesAccepted.ts'
+import '../tailwind.css'
 
 type PostPageParams = { params: { id: number } }
 const PostPage = async ({ params }: PostPageParams) => {
@@ -31,7 +32,7 @@ const PostPage = async ({ params }: PostPageParams) => {
             </div>}
             <div
                 className="flex items-center align-c w-full h-full bg-no-repeat bg-center bg-cover bg-fixed text-center overflow-hidden rounded-lg">
-                <img  src={post.path ? post.path : '../img/postspage/cloudsWIDE.webp'}
+                <img src={post.path ? post.path : '../img/postspage/cloudsWIDE.webp'}
                     alt="Картинка поста"/>
             </div>
 
@@ -67,7 +68,7 @@ const PostPage = async ({ params }: PostPageParams) => {
 
                 {!!session && !!session.user && session.user.email === process.env.USER_EMAIL &&
                         <form action={removePost.bind(null, post.id)}>
-                            <input className='button_red'  type='submit' value="Удалить пост"/>
+                            <input className='button_red' type='submit' value="Удалить пост"/>
                         </form>
                 }
             </div>
