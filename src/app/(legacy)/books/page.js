@@ -1,4 +1,4 @@
-import BooksPage from "@/components/BooksPage"
+import BooksPage from '@/components/BooksPage'
 
 export const metadata = {
     title: 'Beit-Ieshua | Library',
@@ -8,7 +8,7 @@ const Books = () => {
         <>
             <BooksPage/>
         </>
-    );
-};
+    )
+}
 
-export default Books;
+export default Books

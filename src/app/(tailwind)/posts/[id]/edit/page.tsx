@@ -6,7 +6,7 @@ import { getServerSession } from 'next-auth'
 import { isAuthorized } from '@/app/isAuthorized.ts'
 import { isSessionExpired } from '@/app/isSessionExpired.ts'
 import PostForm from '@/app/posts/post-form.tsx'
-import '../tailwind.css'
+// import '../tailwind.css'
 
 type PostPageParams = { params: { id: number } }
 
@@ -29,13 +29,13 @@ const EditPost = async ({ params }: PostPageParams) => {
         <div
             className="flex justify-center">
             <img src={post.path ? post.path : '../img/postspage/cloudsWIDE.webp'}
-                 alt="Картинка поста"
-                 className="max-w-xl rounded-md"
+                alt="Картинка поста"
+                className="max-w-xl rounded-md"
             />
         </div>
 
         <div className="items-center h-screen p-5">
-            <PostForm post={{title: post.title, text: post.text, id: post.id}}/>
+            <PostForm post={{ title: post.title, text: post.text, id: post.id }}/>
             <div className="flex justify-center p-10">
                 <Link href={'/posts'}>
                     <button className='button_blue'>Вернуться</button>

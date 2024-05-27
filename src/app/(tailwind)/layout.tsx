@@ -1,10 +1,11 @@
-// import './tailwind.css'
-import '../../public/css/bem.css'
+// import '../../public/css/bem.css'
 import { Dosis } from 'next/font/google'
 
 import YandexMetrika from '@/components/YandexMetrika'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import './tailwind.css'
+import '@/bem.css'
 
 const inter = Dosis({ subsets: [ 'latin' ] })
 export const metadata = {
@@ -15,7 +16,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en">
+        <html lang="ru">
 
             <body className={inter.className}>
 
