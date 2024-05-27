@@ -1,6 +1,6 @@
 'use client'
 import BooksModal from "./BooksModal";
-import {books} from "./books";
+import {books} from "./books.js";
 import {useEffect, useState} from "react";
 
 

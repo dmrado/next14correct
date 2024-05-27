@@ -2,7 +2,7 @@ import React from 'react';
 import Link from "next/link";
 import moment from "moment";
 
-const PostsPage = ({
+const _PostsPage = ({
                        item,
                        link,
                        // updateHandler,
@@ -30,4 +30,4 @@ const PostsPage = ({
     );
 };
 
-export default PostsPage;
+export default _PostsPage;

@@ -1,5 +1,5 @@
 'use client'
-const Success = () => {
+const _Success = () => {
 
 
     return (
@@ -9,7 +9,7 @@ const Success = () => {
     );
 };
 
-// const Success = ({props}) => {
+// const _Success = ({props}) => {
 //     return (
 //         <div className="success">
 //             {props}
@@ -18,4 +18,4 @@ const Success = () => {
 // };
 
 
-export default Success;
+export default _Success;

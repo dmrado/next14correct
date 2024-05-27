@@ -3,7 +3,7 @@ import {useEffect, } from "react";
 import Link from "next/link";
 import {useMainContext} from "../context/MainProvider";
 
-const LoginModal = () => {
+const _LoginModal = () => {
     const {
         submitLoginHandler,
         getTokenFromLocalstorage,
@@ -83,4 +83,4 @@ const LoginModal = () => {
         </>
     )
 }
-export default LoginModal
+export default _LoginModal

@@ -2,7 +2,7 @@
 import {useState, useEffect, useRouter} from "react";
 import Link from "next/link";
 import dynamic from 'next/dynamic'
-import LoginModal from "../LoginModal";
+import _LoginModal from "../_LoginModal.js";
 import {BACKEND_URL} from "../../../config";
 import {useMainContext} from "../../context/MainProvider";
 import {useFileContext} from "../../context/FileProvider";
@@ -38,7 +38,7 @@ const AddPost = ({createPost}) => {
     return (<>
             <div className="container">
 
-                {!token && <LoginModal/>}
+                {!token && <_LoginModal/>}
 
 
                 <div className="btn-blog-wrapper">

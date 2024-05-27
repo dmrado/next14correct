@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { getServerSession } from 'next-auth'
 import React from 'react'
-import PostForm from '@/app/posts/post-form.tsx'
+import PostForm from '@/components/PostForm.tsx'
 import { isAuthorized } from '@/app/isAuthorized.ts'
 import { isSessionExpired } from '@/app/isSessionExpired.ts'
 import { redirect } from 'next/navigation'

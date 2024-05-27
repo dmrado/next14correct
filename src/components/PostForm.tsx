@@ -1,9 +1,9 @@
 'use client'
 import React, { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { handleForm } from '@/app/posts/handle-form.ts'
-import { FILE_LIMIT, TITLE_MIN_LENGTH } from '@/app/posts/constants.ts'
-const Editor = dynamic(() => import('@/components/Editor'), {
+import { handleForm } from '@/app/actions/handleForm.ts'
+import { FILE_LIMIT, TITLE_MIN_LENGTH } from '@/app/constants.ts'
+const Editor = dynamic(() => import('@/components/Editor.tsx'), {
     ssr: false,
 })
 

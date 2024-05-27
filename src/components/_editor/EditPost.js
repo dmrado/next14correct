@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import Link from "next/link";
 
 import dynamic from 'next/dynamic'
-import LoginModal from "../LoginModal";
+import _LoginModal from "../_LoginModal.js";
 import {useMainContext} from "../../context/MainProvider";
 import {useFileContext} from "../../context/FileProvider";
 import {BACKEND_URL} from "../../../config";
@@ -69,7 +69,7 @@ const EditPost = ({post, updatePost}) => {
 
     return (<>
             <div className="container">
-                <LoginModal/>
+                <_LoginModal/>
 
                 <div className="one-post-banner">
 
