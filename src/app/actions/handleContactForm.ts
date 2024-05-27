@@ -1,0 +1,46 @@
+'use server'
+
+import {revalidatePath} from 'next/cache'
+import {redirect} from 'next/navigation'
+import {FILE_LIMIT, TITLE_MIN_LENGTH} from '@/app/constants.ts'
+
+class ValidationError extends Error {
+}
+
+type ContactData = {
+    name: string,
+    email: string,
+    title: string,
+    message: string
+}
+const cleanFormData = (formData: FormData): ContactData => {
+    const name = formData.get('name')
+    const email = formData.get('email')
+    const title = formData.get('title')
+    const message = formData.get('message')
+    if (name instanceof File || email instanceof File || title instanceof File || message instanceof File) {
+        throw new ValidationError('Filedata in text fields')
+    }
+    if (!title || !message || !name || !email) {
+        throw new ValidationError('Title or text is null')
+    }
+    if (title.length < TITLE_MIN_LENGTH) {
+        throw new ValidationError('Title too short')
+    }
+    return {name, email, title, message}
+}
+
+export const handleContactForm = async (formData: FormData) => {
+    try {
+        const {name, email, title, message} = cleanFormData(formData)
+        console.log('name, email, title, message', name, email, title, message)
+    } catch (err) {
+        console.error('Error on handleForm:  ', err)
+        if (err instanceof ValidationError) {
+            return redirect('/api/error/?code=400&message=VALIDATION_ERROR')
+        }
+        return redirect('/api/error/?code=500&message=SERVER_ERROR')
+    }
+    // revalidatePath('/information')
+    redirect('/')
+}

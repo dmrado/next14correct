@@ -1,4 +1,4 @@
-import ContactsPage from '@/components/ContactsPage'
+import ContactPage from '@/components/ContactPage'
 
 export const metadata = {
     title: 'Beit-Ieshua | Information',
@@ -12,7 +12,7 @@ const Page = () => {
             {/*</h1>*/}
             {/*<InformationPage/>*/}
 
-            <ContactsPage/>
+            <ContactPage/>
         </>
 
     )
