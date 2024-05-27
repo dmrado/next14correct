@@ -4,7 +4,7 @@ import { getPosts } from '@/app/actions/getPosts.ts'
 import { NUMBER_OF_POSTS_TO_FETCH } from '@/app/constants.ts'
 import CookieConsent from '@/components/CookieConsent.tsx'
 import { getConsentAccepted } from '@/app/actions/getCookiesAccepted.ts'
-import './tailwind.css'
+// import './tailwind.css'
 
 export const metadata = {
     title: 'Бейт-Иешуа | Блог'

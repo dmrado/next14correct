@@ -1,9 +1,8 @@
-import ContactsPage from "../../components/ContactsPage.js";
+import ContactsPage from '@/components/ContactsPage'
 
 export const metadata = {
     title: 'Beit-Ieshua | Information',
 }
-
 
 const Page = () => {
     return (
@@ -16,7 +15,7 @@ const Page = () => {
             <ContactsPage/>
         </>
 
-    );
-};
+    )
+}
 
-export default Page;
+export default Page

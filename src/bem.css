@@ -460,7 +460,7 @@ body {
     top: 100px;
     left: 0;
     /*это облака*/
-    background-image: url("../img/banner/cloudsWIDE.webp");
+    background-image: url("../public/cloudsWIDE.webp");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

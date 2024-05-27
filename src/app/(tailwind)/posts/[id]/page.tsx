@@ -7,7 +7,7 @@ import { getServerSession } from 'next-auth'
 import { notFound } from 'next/navigation'
 import CookieConsent from '@/components/CookieConsent.tsx'
 import { getConsentAccepted } from '@/app/actions/getCookiesAccepted.ts'
-import '../tailwind.css'
+// import '../tailwind.css'
 
 type PostPageParams = { params: { id: number } }
 const PostPage = async ({ params }: PostPageParams) => {
