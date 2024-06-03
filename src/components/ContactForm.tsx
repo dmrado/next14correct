@@ -53,8 +53,8 @@ const ContactForm = () => {
             {/*<div className="error-message"/>*/}
             {/*<div className="sent-message">Ваше сообщение отправлено. Большое спасибо!</div>*/}
             <div className="form__submit">
-                <p>Нажимая кнопку отправить вы принимаете условие
-                    <button className="button_blue" onClick={e => setPersonalDatesModal(true)}>Соглашения</button>
+                <p><span style={{color: '#FF6700', fontWeight: 'bold'}}>ВНИМАНИЕ:</span> нажимая кнопку "ОТПРАВИТЬ" Вы принимаете условие
+                    <button className="btn-personalDatesModalOpen" onClick={e => setPersonalDatesModal(true)}>Соглашения</button>
                     об обработке персональных данных
                 </p>
                 {!!personalDatesModal && <PersonalDatesModal setPersonalDatesModal={setPersonalDatesModal}/>}
