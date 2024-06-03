@@ -1,4 +1,3 @@
-// import './tailwind.css'
 import '@/bem.css'
 import { Dosis } from 'next/font/google'
 

@@ -29,7 +29,7 @@ const AboutPage = () => {
                 <div className="header__banner">
 
                     <div className="header__info">
-<h1>ОБЩИНА <br/>МЕССИАНСКИХ ХРИСТИАН <span className='quotes'>«</span>БЕЙТ ЙЕШУА<span className='quotes'>»</span> <br/> В ГОРОДЕ АРТЁМЕ <span className='quotes'>*</span></h1>
+<h1>ОБЩИНА МЕССИАНСКИХ ХРИСТИАН <br/><span className='quotes'>«</span>БЕЙТ ЙЕШУА<span className='quotes'>»</span> <br/> В ГОРОДЕ АРТЁМЕ <span className='quotes'>*</span></h1>
 
                         <a href="#mission">
                             <button className="btn header__btn">Наша миссия</button>
