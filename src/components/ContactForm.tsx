@@ -66,7 +66,7 @@ const ContactForm = () => {
                 sitekey={KEY}
                 size="normal"
             />
-            <br style={{ padding: '0', margin: '0' }}/>
+            {/*<br style={{ padding: '0', margin: '0' }}/>*/}
 
             {/*<div className="loading">Загрузка...</div>*/}
             {/*<div className="error-message"/>*/}

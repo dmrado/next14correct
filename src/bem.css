@@ -2129,7 +2129,7 @@ body {
 }
 
 .form {
-    height: 75%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     /*background-color: #004E98;*/
@@ -2222,6 +2222,12 @@ body {
     cursor: pointer;
 }
 
+.contact__form_btn:disabled {
+    background-color: gray;
+    color: #bebebe;
+}
+
+
 .input_name {
     width: 100%;
 }
@@ -2236,7 +2242,7 @@ body {
 
 .input_message {
     /*margin-top: 70px;*/
-    max-height: 145px;
+    max-height: 110px;
     width: 100%;
     height: 100%;
 }

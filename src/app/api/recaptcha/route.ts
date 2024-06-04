@@ -14,6 +14,7 @@ async function GET(request: Request) {
     const isSuccess = await fetch(url, { method: 'POST' })
         .then(res => res.json())
         .then((data:any) => {
+            //todo handle errors
             return !!data.success
 
         }).catch(err => {
