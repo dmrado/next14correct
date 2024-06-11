@@ -7,11 +7,6 @@ import ReCAPTCHA from 'react-google-recaptcha'
 const KEY = '6LeLOkgpAAAAAMP0GZre1UiAWepWg52rKPXPWXiZ'
 
 const ContactForm = () => {
-    // todo: remove state from here
-    const [ name, setName ] = useState('')
-    const [ email, setEmail ] = useState('')
-    const [ title, setTitle ] = useState('')
-    const [ body, setBody ] = useState('')
     const [ personalDatesModal, setPersonalDatesModal ] = useState(false)
     const [ isUserARobot, setIsUserARobot ] = useState(true)
 
@@ -37,28 +32,20 @@ const ContactForm = () => {
             <div className="form__person">
                 <input type="text" name="name" className="form-control input_name" id="name"
                     placeholder="Ваше имя" required
-                    value={name}
-                    onChange={e => setName(e.target.value)}
                 />
 
                 <input type="email" className="form-control input_email" name="email" id="email"
                     placeholder="Ваш Email" required
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
                 />
             </div>
 
             <div className="form__message">
                 <input type="text" className="form-control input_title" name="title" id="subject"
                     placeholder="Заголовок сообщения" required
-                    value={title}
-                    onChange={e => setTitle(e.target.value)}
                 />
 
                 <textarea className="form-control input_message" name="message" placeholder="Сообщение"
                     required
-                    value={body}
-                    onChange={e => setBody(e.target.value)}
                 />
             </div>
             <ReCAPTCHA

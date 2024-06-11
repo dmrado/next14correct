@@ -3,6 +3,7 @@
 import {revalidatePath} from 'next/cache'
 import {redirect} from 'next/navigation'
 import {FILE_LIMIT, TITLE_MIN_LENGTH} from '@/app/constants.ts'
+import {sendMail} from "@/app/actions/nodemailer.ts";
 
 class ValidationError extends Error {
 }
@@ -34,6 +35,7 @@ export const handleContactForm = async (formData: FormData) => {
     try {
         const {name, email, title, message} = cleanFormData(formData)
         console.log('name, email, title, message', name, email, title, message)
+        await sendMail({name, email, title, message})
     } catch (err) {
         console.error('Error on handleForm:  ', err)
         if (err instanceof ValidationError) {
