@@ -77,7 +77,7 @@ const ContactForm = () => {
                                 об обработке персональных данных
                         </p>
                         {!!personalDatesModal && <PersonalDatesModal setPersonalDatesModal={setPersonalDatesModal}/>}
-                        <SubmitButton disabled={isUserARobot && false}/>
+                        <SubmitButton disabled={isUserARobot && true}/>
                     </div>
                 </>)}
         </form>
