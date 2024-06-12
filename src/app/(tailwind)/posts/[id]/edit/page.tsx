@@ -34,7 +34,7 @@ const EditPost = async ({ params }: PostPageParams) => {
             />
         </div>
 
-        <div className="items-center h-screen p-5">
+        <div className="items-center p-5">
             <PostForm post={{ title: post.title, text: post.text, id: post.id }}/>
             <div className="flex justify-center p-10">
                 <Link href={'/posts'}>

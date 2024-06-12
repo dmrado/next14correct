@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
     return (
         <html lang="ru">
 
-            <body className={inter.className}>
+            <body className={'flex flex-col min-h-screen' + inter.className}>
 
                 <YandexMetrika/>
 
@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
 
                 <Header/>
 
-                <main>{children}</main>
+                <main className="flex-grow">{children}</main>
 
                 <Footer/>
 

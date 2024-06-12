@@ -18,7 +18,7 @@ const AddPost = async () => {
             <h1 className="mt-6 pb-2">Создадим новый пост...</h1>
         </div>
 
-        <div className="items-center h-screen p-5">
+        <div className="items-center p-5">
             <PostForm post={{ title: '', text: '' }}/>
             <div className="flex justify-center p-10">
                 <Link href={'/posts'}>
