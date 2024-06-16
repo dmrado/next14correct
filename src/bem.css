@@ -2303,7 +2303,7 @@ body {
     /*background-color: #004E98;*/
     background: #EBEBEB;
     color: #004E98;
-    z-index: 20;
+    /*z-index: 20;*/
     padding: 15px 118px;
     transition: .7s;
     margin-top: 30px;
@@ -2498,8 +2498,7 @@ body {
 }
 
 .btn-personalDatesModalOpen:hover{
-    background-color: #004E98;
-    color: #fff;
+    color: #004E98;
     border: 2px solid #004E98;
 }
 .btn-personalDatesModalOpen:active{
