@@ -44,5 +44,5 @@ export const handleContactForm = async (formState: {message: string}, formData: 
         return redirect('/api/error/?code=500&message=SERVER_ERROR')
     }
     revalidatePath('/information')
-    return { message: 'success' }
+    return { message: 'Ваша информация успешно отправлена' }
 }
