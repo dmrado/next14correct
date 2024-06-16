@@ -1,6 +1,5 @@
 'use client'
 import {useEffect, useState} from "react";
-// import {BACKEND_URL} from "../_config.js";
 import {ReCAPTCHA} from "react-google-recaptcha";
 import PersonalDatesModal from "./PersonalDatesModal.tsx"
 import ContactForm from "@/components/ContactForm.tsx";
