@@ -1,23 +1,26 @@
 'use client'
-import { useEffect, useState } from 'react'
-import { useInView } from 'react-intersection-observer'
-import { Post, PostPreview } from '@/app/db/post.model'
+import {useEffect, useState} from 'react'
+import React, {Suspense} from 'react'
+import {useInView} from 'react-intersection-observer'
+import {Post, PostPreview} from '@/app/db/post.model'
 import PostsPreview from '@/components/PostsPreview.tsx'
-import { getPosts } from '@/app/actions/getPosts.ts'
-import { NUMBER_OF_POSTS_TO_FETCH } from '@/app/constants.ts'
+import {getPosts} from '@/app/actions/getPosts.ts'
+import {NUMBER_OF_POSTS_TO_FETCH} from '@/app/constants.ts'
+import PostsLoading from "@/components/PostLoading.tsx";
 
-export default function PostList({ initialPosts }: { initialPosts: PostPreview[] }) {
-    const [ offset, setOffset ] = useState(NUMBER_OF_POSTS_TO_FETCH)
-    const [ count, setCount ] = useState(0)
+export default function PostList({initialPosts}: { initialPosts: PostPreview[] }) {
+    const [offset, setOffset] = useState(NUMBER_OF_POSTS_TO_FETCH)
+    const [count, setCount] = useState(0)
     // const [ loading, setLoading ] = useState(false)
 
-    const [ posts, setPosts ] = useState<PostPreview[]>(initialPosts)
-    const { ref, inView } = useInView()
+    const [posts, setPosts] = useState<PostPreview[]>(initialPosts)
+    const {ref, inView} = useInView()
+    // new Promise(resolve => setTimeout(resolve, 5000))
 
     const loadMorePosts = async () => {
         //присваиваем значение posts в переменную newPosts деструктуризация с переимнованием
-        const { posts: newPosts, count } = await getPosts(offset, NUMBER_OF_POSTS_TO_FETCH)
-        setPosts([ ...posts, ...newPosts ])
+        const {posts: newPosts, count} = await getPosts(offset, NUMBER_OF_POSTS_TO_FETCH)
+        setPosts([...posts, ...newPosts])
         setOffset(offset + NUMBER_OF_POSTS_TO_FETCH)
         setCount(count)
     }
@@ -26,13 +29,16 @@ export default function PostList({ initialPosts }: { initialPosts: PostPreview[]
         if (inView && posts.length !== count) {
             loadMorePosts()
         }
-    }, [ inView ])
+    }, [inView])
 
     return (
         <div>
-            {posts.map((post) => (
-                <PostsPreview key={post.id} post={post}/>
-            ))}
+
+            {posts.map((post) =>
+                // <Suspense fallback={<PostsLoading/>}>
+                    <PostsPreview key={post.id} post={post}/>
+                //*</Suspense>*/}
+            )}
 
             <div className='flex justify-center my-10 text-my_l_green' ref={ref}>
                 {posts.length !== count ? 'Загружаем еще...' : 'Простите, это весь список, больше пока не написали!'}
