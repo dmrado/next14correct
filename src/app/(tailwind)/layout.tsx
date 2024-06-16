@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
     return (
         <html lang="ru">
 
-            <body className={'flex flex-col min-h-screen' + inter.className}>
+            <body className={'flex flex-col min-h-screen ' + inter.className}>
 
                 <YandexMetrika/>
 

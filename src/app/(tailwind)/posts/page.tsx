@@ -14,8 +14,6 @@ const Posts = async () => {
     const isAcceptedCookie = await getConsentAccepted()
     const {posts} = await getPosts(0, NUMBER_OF_POSTS_TO_FETCH)
 
-    await new Promise(resolve => setTimeout(resolve, 5000))
-
     return (<>
         {!isAcceptedCookie && <div className="flex justify-center mt-36">
             <CookieConsent isAccepted={!!isAcceptedCookie}/>
