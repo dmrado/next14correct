@@ -19,7 +19,7 @@ const PostsPreview = ({post}: { post: PostPreview }) => {
                         className="w-12 p-2 !text-[#004E98] hover:!text-orange-500 transform hover:scale-150 ease-in-out duration-300 text-2xl"
                         href={`/posts/${post.id}`}>{post.title?.slice(0, 45)}...</Link>
                 </h5>
-                <p className="text-justify text-blue-950 px-2">&nbsp;{post.preview}...</p>
+                <p className="text-justify text-blue-950 px-2 break-all">&nbsp;{post.preview}...</p>
 
                 <p className="text-end text-blue-950 italic pr-2">Опубликовано:&nbsp;
                     {post.createdAt?.toLocaleDateString('ru-RU', {

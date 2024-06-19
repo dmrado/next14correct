@@ -25,16 +25,12 @@ export default function RootLayout({ children }) {
                 <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
                     async defer>
                 </script>
-                {/*<script src="https://kit.fontawesome.com/42b4beafb6.js" crossOrigin="anonymous"></script>*/}
 
                 <Header/>
 
                 <main className="flex-grow">{children}</main>
 
                 <Footer/>
-
-                {/*<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>*/}
-                {/*<script src="https://unpkg.com/aos@next/dist/aos.js"></script>*/}
 
             </body>
         </html>

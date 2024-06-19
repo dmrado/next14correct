@@ -37,7 +37,7 @@ const Editor = ({ defaultValue }: {defaultValue : string}) => {
                 modules={modules}
                 formats={formats}
                 ref={ref}
-                className='text-gray-700'
+                className='text-gray-700 break-all'
             />
         </>
     )

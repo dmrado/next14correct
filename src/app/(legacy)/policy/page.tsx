@@ -1,9 +1,10 @@
 import React from 'react'
 import Link from "next/link";
+import {col} from "sequelize";
 
 const Policy = () => {
-    return <div className='flex flex-col justify-center items-center'>
-        <h2 ><strong>Политика конфиденциальности в отношении персональных данных</strong></h2>
+    return <div className='container'>
+        <h1 style={{ textAlign: "center"}}><strong>Политика конфиденциальности в отношении персональных данных</strong></h1>
         <br/>
         <p>
             Настоящая политика конфиденциальности определяет порядок обработки и защиты персональных данных

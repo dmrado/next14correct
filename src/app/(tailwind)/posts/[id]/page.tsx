@@ -42,7 +42,7 @@ const PostPage = async ({ params }: PostPageParams) => {
                 }
                 <h1 className="text-[#505050] text-2xl font-bold p-5">{post.title}</h1>
 
-                <div className="text-[#505050] text-xl p-5" dangerouslySetInnerHTML={{ __html: post.text }}
+                <div className="text-[#505050] text-xl p-5 break-all" dangerouslySetInnerHTML={{ __html: post.text }}
                 ></div>
 
                 <p className="justify-end italic p-5 opacity-65">Добавлено:&nbsp;
