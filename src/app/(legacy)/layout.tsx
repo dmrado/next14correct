@@ -1,5 +1,6 @@
 import '@/bem.css'
 import { Dosis } from 'next/font/google'
+import { ReactNode } from 'react'
 
 import YandexMetrika from '@/components/YandexMetrika'
 import Header from '@/components/Header'
@@ -12,7 +13,7 @@ export const metadata = {
     }
 }
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: {children: ReactNode}) {
     return (
         <html lang="ru">
 

@@ -8,4 +8,5 @@ const runDbSync = async () => {
     await sequelize.sync({ alter: true })
     console.log('...done syncing DB schema')
 }
+// @ts-ignore
 await runDbSync()

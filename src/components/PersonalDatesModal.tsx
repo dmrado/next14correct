@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
-const PersonalDatesModal = ({ setPersonalDatesModal }) => {
+const PersonalDatesModal = ({ setPersonalDatesModal }: {setPersonalDatesModal: (value: boolean)=>void}) => {
 
     useEffect(() => {
 
