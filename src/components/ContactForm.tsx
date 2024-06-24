@@ -70,7 +70,7 @@ const ContactForm = () => {
                     />
 
                     <div className="form__submit">
-                        <p><span style={{ color: '#FF6700', fontWeight: 'bold' }}>ВНИМАНИЕ:</span> нажимая кнопку "ОТПРАВИТЬ"
+                        <p><span style={{ color: '#FF6700', fontWeight: 'bold' }}>ВНИМАНИЕ:</span> нажимая кнопку &quot;ОТПРАВИТЬ&quot;
                                 Вы принимаете условие
                         <button className="btn-personalDatesModalOpen"
                             onClick={e => setPersonalDatesModal(true)}>Соглашения</button>
