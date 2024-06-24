@@ -4,8 +4,8 @@ const tmpPath = path.join(__dirname, '../data/tmp')
 const storagePath = path.join(__dirname, '../data/storage')
 import { Post } from '@/app/db/post.model'
 
-const checkUserFolder =  (userId) => {
-    const userFolderPath = path.join(storagePath, `./${userId}`);
+const checkUserFolder = (userId) => {
+    const userFolderPath = path.join(storagePath, `./${userId}`)
 
     if (!fs.existsSync(userFolderPath)) {
         fs.mkdirSync(userFolderPath)

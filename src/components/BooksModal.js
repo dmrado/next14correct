@@ -1,8 +1,7 @@
 'use client'
-import {useEffect, useState} from "react";
-import Link from "next/link";
+import { useEffect } from 'react'
 
-const BooksModal = ({book, setOpenBookModal}) => {
+const BooksModal = ({ book, setOpenBookModal }) => {
 
     useEffect(() => {
 
@@ -38,7 +37,7 @@ const BooksModal = ({book, setOpenBookModal}) => {
                 </div>
             </div>
         </>
-    );
-};
+    )
+}
 
-export default BooksModal;
+export default BooksModal

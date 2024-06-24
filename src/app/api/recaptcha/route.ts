@@ -8,7 +8,7 @@ async function GET(request: Request) {
     const queryString = new URL(request.url).search
     const params = new URLSearchParams(queryString)
     const token = params.get('token')
-    if(!token){
+    if(!token) {
         return new NextResponse('Token is invalid', { status: 400 })
     }
     // todo: try to send userIp to google for better bot recognising

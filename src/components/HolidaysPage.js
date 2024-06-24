@@ -1,17 +1,14 @@
 'use client'
 
-import {useEffect, useState} from "react";
-import Link from "next/link";
-import BooksModal from "@/components/BooksModal";
-// import {holidays} from "@/components/holidays";
-import {holidays} from "./holidays";
+import { useState } from 'react'
+import { holidays } from './holidays'
 
-import HolidaysModal from "@/components/HolidaysModal";
+import HolidaysModal from '@/components/HolidaysModal'
 
 const HolidaysPage = () => {
 
-    const [item, setItem] = useState('')
-    const [openHolidayModal, setOpenHolidayModal] = useState(false)
+    const [ item, setItem ] = useState('')
+    const [ openHolidayModal, setOpenHolidayModal ] = useState(false)
     const handleClick = (holiday) => {
         setOpenHolidayModal(true)
         setItem(holiday)
@@ -23,21 +20,21 @@ const HolidaysPage = () => {
     // }, [])
 
     return (<>
-            {/*header-block*/}
-            {/*    body-wrapper нужен для меню навигации справа в режиме телефона именно здесь тогад корректно работает и нет горизонтального скролла*/}
-            <div className="body-wrapper">
-                <div className="header__banner_holidays">
-                    <img className="header__img" src="/img/holidays/holidaysBanner.webp" alt=""/>
-                </div>
+        {/*header-block*/}
+        {/*    body-wrapper нужен для меню навигации справа в режиме телефона именно здесь тогад корректно работает и нет горизонтального скролла*/}
+        <div className="body-wrapper">
+            <div className="header__banner_holidays">
+                <img className="header__img" src="/img/holidays/holidaysBanner.webp" alt=""/>
             </div>
+        </div>
 
-            <div className="container">
+        <div className="container">
 
-                <div className="wrapper_holidays">
-                    <h2>ГОСПОДНИ ПРАЗДНИКИ</h2>
-                </div>
-                <div className="holidays__description">
-                    <p style={{textIndent: '50px'}}>Еврейский год. У каждого народа на земле есть свои праздники,
+            <div className="wrapper_holidays">
+                <h2>ГОСПОДНИ ПРАЗДНИКИ</h2>
+            </div>
+            <div className="holidays__description">
+                <p style={{ textIndent: '50px' }}>Еврейский год. У каждого народа на земле есть свои праздники,
                         которые являются памятью о событиях в истории государства. У нашего народа тоже есть свои
                         праздники, но они были не просто учреждены людьми, но даны были Самим Богом. Основой еврейского
                         календаря является движение луны; лунный год состоит из неполных 355 суток, соответствующих
@@ -49,7 +46,7 @@ const HolidaysPage = () => {
                         в Бытие 4:3, в оригинале - (микец йамим) - означаем «в конце года» и указывает празднование
                         потомками Адама осенних еврейских праздников и, следовательно, на наличие у них религиозного
                         календаря, дарованного Адаму свыше.
-                        <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Все еврейские
+                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Все еврейские
                         национальные праздники можно условно разделить на две большие группы. К первой группе относятся
                         библейские праздники, установленные Богом и записанные в Торе. Тора предписывает отмечать такие
                         праздники, как Рош-Гашана, Йом Кипур, Суккот, Песах и Шавуот. Но у нас есть и другие праздники
@@ -59,7 +56,7 @@ const HolidaysPage = () => {
                         упоминается также в хрониках или трудах известных историков древности. Это - вторая группа
                         праздников Израиля (Ту би-шват, Лаг ба-омер, День Катастрофы (Йом Га- шоа), День Иерусалима и
                         т.д.).
-                        <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;В группе библейских
+                <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;В группе библейских
                         праздников можно отметить сельскохозяйственные праздники или праздники перехода к новому сезону:
                         Песах - весной, Шавуот - летом и Суккот - осенью. В течение первого тысячелетия еврейской
                         истории основным занятием народа Израиля было земледелие. Поэтому эти три праздника отмечались
@@ -71,28 +68,27 @@ const HolidaysPage = () => {
                         в Песах:... Праздника Мацот, этот святой праздничный день, день нашей свободы...
                         в Шавуот ... Праздника Шавуот, этот святой праздничный день, День дарования Торы нашей...
                         в Суккот ... Праздника Суккот, этот святой праздничный день, День нашего веселья...»
-                    </p>
-                </div>
-
-
-                {!!openHolidayModal && <HolidaysModal holiday={item} setOpenHolidayModal={setOpenHolidayModal}/>}
-                <div className="books__list">
-                    <ul>
-                        {holidays.map(holiday => <li key={holiday.id}>
-
-                            <div className="holiday__item"
-                                 onClick={() => handleClick(holiday)}
-                            >
-                                <img src={holiday.href} alt="Picture"/>
-                            </div>
-                        </li>)
-                        }
-                    </ul>
-                </div>
-
+                </p>
             </div>
-        </>
-    );
-};
+
+            {!!openHolidayModal && <HolidaysModal holiday={item} setOpenHolidayModal={setOpenHolidayModal}/>}
+            <div className="books__list">
+                <ul>
+                    {holidays.map(holiday => <li key={holiday.id}>
+
+                        <div className="holiday__item"
+                            onClick={() => handleClick(holiday)}
+                        >
+                            <img src={holiday.href} alt="Picture"/>
+                        </div>
+                    </li>)
+                    }
+                </ul>
+            </div>
+
+        </div>
+    </>
+    )
+}
 
 export default HolidaysPage

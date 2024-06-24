@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer'
 
 const config = {
-    host: "russian.education",
+    host: 'russian.education',
     port: 587,
     to: process.env.NODEMAILER_SEND_TO,
     auth: {
@@ -19,22 +19,22 @@ type SendMailProps = {
     title: string,
     message: string
 }
-const renderHtml = ({name, email, title, message}: SendMailProps) => {
+const renderHtml = ({ name, email, title, message }: SendMailProps) => {
     return `
         <h3>Имя: ${name}</h3>
         <p>email: ${email}</p>
         <p>Заголовок: ${title}</p>
         <h4>Сообщение: ${message}</h4>`
 }
-    export const sendMail = async (props: SendMailProps) => {
+export const sendMail = async (props: SendMailProps) => {
 
     const transporter = nodemailer.createTransport(config)
 
     const result = await transporter.sendMail({
         from: `"My team" <${config.auth.user}>`,
         to: config.to,
-        subject: "Сообщение с сайта Бейт-Иешуа",
-        text: "Посетитель оставил сообщение: ",
+        subject: 'Сообщение с сайта Бейт-Иешуа',
+        text: 'Посетитель оставил сообщение: ',
         html: renderHtml(props)
     })
 

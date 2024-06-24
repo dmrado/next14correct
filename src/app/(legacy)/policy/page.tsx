@@ -1,10 +1,9 @@
 import React from 'react'
-import Link from "next/link";
-import {col} from "sequelize";
+import Link from 'next/link'
 
 const Policy = () => {
     return <div className='container'>
-        <h1 style={{ textAlign: "center"}}><strong>Политика конфиденциальности в отношении персональных данных</strong></h1>
+        <h1 style={{ textAlign: 'center' }}><strong>Политика конфиденциальности в отношении персональных данных</strong></h1>
         <br/>
         <p>
             Настоящая политика конфиденциальности определяет порядок обработки и защиты персональных данных

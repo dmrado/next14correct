@@ -1,8 +1,8 @@
 'use client'
-import {useEffect, useState} from "react";
-import Link from "next/link";
+import { useEffect, useState } from 'react'
+import Link from 'next/link'
 
-const PersonalDatesModal = ({setPersonalDatesModal}) => {
+const PersonalDatesModal = ({ setPersonalDatesModal }) => {
 
     useEffect(() => {
 
@@ -35,7 +35,7 @@ const PersonalDatesModal = ({setPersonalDatesModal}) => {
                             Персональные данные - любая информация, относящаяся к определенному или определяемому на
                             основании такой информации физическому лицу.<br/>
                             Настоящее Согласие выдано мною на обработку в соответствии с &nbsp;
-                            <Link href={'/policy'} style={{color: '#505050' }}><u>Политикой конфиденциальности в отношении персональных данных</u></Link>
+                            <Link href={'/policy'} style={{ color: '#505050' }}><u>Политикой конфиденциальности в отношении персональных данных</u></Link>
                             &nbsp;следующих персональных данных:<br/>
                             - Имя;<br/>
                             - Телефон;<br/>
@@ -69,7 +69,7 @@ const PersonalDatesModal = ({setPersonalDatesModal}) => {
                 </div>
             </div>
         </>
-    );
-};
+    )
+}
 
 export default PersonalDatesModal

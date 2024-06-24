@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { setConsentAccepted } from '@/app/actions/setCookiesAccepted.ts'
-import Link from "next/link";
+import Link from 'next/link'
 
 const CookieConsent = ({ isAccepted }: {isAccepted: boolean}) => {
 
@@ -32,7 +32,6 @@ const CookieConsent = ({ isAccepted }: {isAccepted: boolean}) => {
             <br/>
             Продолжая использовать наш сайт, вы соглашаетесь с использованием указанных файлов cookie в
             соответствии с указанной Политикой конфиденциальности в отношении персональных данных.
-
 
             <form action={handleAccept}>
                 <button

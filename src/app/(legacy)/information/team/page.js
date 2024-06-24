@@ -7,7 +7,7 @@ const Team = () => {
         <h1>
            НАША КОМАНДА САМАЯ КОМАНДНАЯ КОМАНДА В МИРЕ
         </h1>
-    );
-};
+    )
+}
 
-export default Team;
+export default Team

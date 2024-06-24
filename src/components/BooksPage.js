@@ -1,14 +1,13 @@
 'use client'
-import BooksModal from "./BooksModal";
-import {books} from "./books.js";
-import {useEffect, useState} from "react";
-
+import BooksModal from './BooksModal'
+import { books } from './books.js'
+import { useState } from 'react'
 
 const BooksPage = () => {
-const [item, setItem] = useState('')
-const [openBookModal, setOpenBookModal] = useState(false)
+    const [ item, setItem ] = useState('')
+    const [ openBookModal, setOpenBookModal ] = useState(false)
 
-    const handleClick = (book) =>{
+    const handleClick = (book) => {
         setOpenBookModal(true)
         setItem(book)
         console.log('book это', book)
@@ -34,7 +33,7 @@ const [openBookModal, setOpenBookModal] = useState(false)
             </div>
 
         </div>
-    );
-};
+    )
+}
 
-export default BooksPage;
+export default BooksPage

@@ -1,14 +1,4 @@
-import Link from 'next/link'
-import AboutPage from "@/components/AboutPage.tsx";
-
-// export default function About() {
-//     return(
-//         <>
-//             Main Page
-//             <Link href={'/posts'}>Загрузить посты</Link>
-//         </>
-//     )
-// }
+import AboutPage from '@/components/AboutPage.tsx'
 
 export const metadata = {
     title: 'Beit-Ieshua | About us',

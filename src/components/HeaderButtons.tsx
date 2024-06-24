@@ -1,14 +1,14 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import {getServerSession} from 'next-auth'
+import { getServerSession } from 'next-auth'
 import React from 'react'
 
 export default async function HeaderButtons() {
     const session = await getServerSession()
     if (session && session.user) {
         return (<>
-                <div
-                    className='flex justify-between items-center relative left-0 right-0 py-2 px-10'>
+            <div
+                className='flex justify-between items-center relative left-0 right-0 py-2 px-10'>
                 <p className='mr-2 sm:px-2 sm:flex-nowrap'>{session.user.name}</p>
                 <div className='mr-4'>
                     {
@@ -36,14 +36,14 @@ export default async function HeaderButtons() {
                     </Link>
 
                 </div>
-                </div>
-            </>
+            </div>
+        </>
         )
     }
     return (<>
-            <Link href={'/api/auth/signin'}>
-               <button className='button_green'>Войти</button>
-            </Link>
-        </>
+        <Link href={'/api/auth/signin'}>
+            <button className='button_green'>Войти</button>
+        </Link>
+    </>
     )
 }

@@ -1,6 +1,6 @@
-import { sequelize } from "@/app/db/connection";
-import Sequelize, { QueryInterface, DataTypes, QueryTypes } from "sequelize";
-const queryInterface: QueryInterface = sequelize.getQueryInterface();
+import { sequelize } from '@/app/db/connection'
+import { QueryInterface } from 'sequelize'
+const queryInterface: QueryInterface = sequelize.getQueryInterface()
 
 export const up = (queryInterface: QueryInterface): Promise<void> => {
     return queryInterface.bulkInsert('posts', [
@@ -33,10 +33,9 @@ export const up = (queryInterface: QueryInterface): Promise<void> => {
             createdAt: new Date(),
             updatedAt: new Date(),
         },
-    ],  {}).then(() => {});
-};
-
+    ], {}).then(() => {})
+}
 
 export const down = (queryInterface: QueryInterface): Promise<void> => {
-    return queryInterface.bulkDelete('posts', {}, {}).then(() : void => {});
+    return queryInterface.bulkDelete('posts', {}, {}).then(() : void => {})
 }

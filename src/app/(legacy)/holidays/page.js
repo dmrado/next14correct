@@ -1,5 +1,4 @@
-import Image from 'next/image'
-import HolidaysPage from "@/components/HolidaysPage";
+import HolidaysPage from '@/components/HolidaysPage'
 
 export const metadata = {
     title: 'Beit-Ieshua | Holidays',

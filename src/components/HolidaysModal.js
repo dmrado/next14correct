@@ -1,8 +1,7 @@
 'use client'
-import {useEffect, useState} from "react";
-import Link from "next/link";
+import { useEffect } from 'react'
 
-const HolidaysModal = ({holiday, setOpenHolidayModal}) => {
+const HolidaysModal = ({ holiday, setOpenHolidayModal }) => {
 
     useEffect(() => {
 
@@ -40,7 +39,7 @@ const HolidaysModal = ({holiday, setOpenHolidayModal}) => {
                 </div>
             </div>
         </>
-    );
-};
+    )
+}
 
-export default HolidaysModal;
+export default HolidaysModal
