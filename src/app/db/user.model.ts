@@ -22,4 +22,4 @@ User.init({
         type: DataTypes.STRING
     },
 },
-{ sequelize })
+{ sequelize, tableName: 'users' })

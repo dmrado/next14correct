@@ -5,7 +5,10 @@ import { sequelize } from '@/app/db/connection'
 const registeredModels = [ User, Post ]
 const runDbSync = async () => {
     console.log('Syncing DB schema for: ', registeredModels.map(m => m.name).join(', '))
-    await sequelize.sync({ alter: true })
+    await sequelize.sync({
+        // todo: should not alter
+        alter: true
+    })
     console.log('...done syncing DB schema')
 }
 // @ts-ignore

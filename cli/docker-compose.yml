@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  backend:
+    container_name: beit-yehoshua-container
+    image: beit-yehoshua-image:latest
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    volumes:
+      - ${APP_PATH}/public:/app/public
+    environment:
+      - DB_HOST=beit-yehoshua-db-container
+      - DB_PORT=${DB_PORT}
+      - DB_NAME=${DB_NAME}
+      - DB_LOGIN=${DB_LOGIN}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+      - USER_EMAIL=${USER_EMAIL}
+      - RECAPTCHA_SERVER_SECRET=${RECAPTCHA_SERVER_SECRET}
+
+  db:
+    container_name: beit-yehoshua-db-container
+    image: beit-yehoshua-db-image:latest
+    restart: unless-stopped
+    ports:
+      - ${DB_PORT}:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_USER=${DB_LOGIN}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_NAME}
+    volumes:
+      - ${APP_PATH}/mysql-data:/var/lib/mysql
+
+  proxy:
+    container_name: root-nginx-proxy-container
+    image: root-nginx-proxy-image:latest
+    restart: unless-stopped
+    ports:
+      - 80:80
+    volumes:
+      - ${APP_PATH}/public:/app/public
+
+
