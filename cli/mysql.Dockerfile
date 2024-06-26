@@ -2,6 +2,7 @@ FROM mysql:8.4.0
 
 # Optionally, set the root password. If not specified, docker will generate one
 ENV MYSQL_ROOT_PASSWORD=qwerty123
+ENV MYSQL_DATABASE=nextjs
 
 # Optionally, specify a custom database to be created when MySQL starts
 # ENV MYSQL_DATABASE=my_database
