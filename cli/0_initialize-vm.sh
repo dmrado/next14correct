@@ -28,7 +28,25 @@ systemctl status docker
 #        Tasks: 12
 #       Memory: 74.6M (peak: 389.6M)
 #          CPU: 31.533s
-apt-get install docker-compose
+
+DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+mkdir -p $DOCKER_CONFIG/cli-plugins
+curl -SL https://github.com/docker/compose/releases/download/v2.14.2/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
+docker compose version
+
+
+apt-get install htop
+
+#apt-get install docker-compose
+#apt-get install docker-compose-plugin
+# some docker python dependency
+#apt-get install python3-venv
+# apt install python3-setuptools
+#apt-get install python3-distutils
+#apt-get install python3-pip
+#apt install python3-urllib3
+
 
 # install firewall
 apt install ufw

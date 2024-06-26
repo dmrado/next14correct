@@ -2,6 +2,8 @@ version: '3'
 
 services:
   backend:
+    env_file:
+      - "../.env"
     container_name: beit-yehoshua-container
     image: beit-yehoshua-image:latest
     restart: unless-stopped
@@ -20,6 +22,8 @@ services:
       - RECAPTCHA_SERVER_SECRET=${RECAPTCHA_SERVER_SECRET}
 
   db:
+    env_file:
+      - "../.env"
     container_name: beit-yehoshua-db-container
     image: beit-yehoshua-db-image:latest
     restart: unless-stopped
@@ -34,6 +38,8 @@ services:
       - ${APP_PATH}/mysql-data:/var/lib/mysql
 
   proxy:
+    env_file:
+      - "../.env"
     container_name: root-nginx-proxy-container
     image: root-nginx-proxy-image:latest
     restart: unless-stopped
