@@ -40,6 +40,7 @@ Post.init({
 },
 {
     sequelize,
+    tableName: 'posts',
     timestamps: true
 })
 Post.belongsTo(User)
