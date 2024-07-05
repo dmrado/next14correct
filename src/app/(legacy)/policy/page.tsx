@@ -40,7 +40,7 @@ const Policy = () => {
             <br/>
             По всем вопросам, касающимся политики конфиденциальности, вы можете связаться с нами по адресу halom6755@yandex.ru
         </p>
-        <Link href={'/information'} className='!text-[#505050] py-4 font-bold'>Назад</Link>
+        <button className='btn'><Link href={'/information'}>Назад</Link></button>
     </div>
 }
 export default Policy
