@@ -20,7 +20,7 @@ const Posts = async () => {
         </div>}
         <div className='flex flex-col justify-between items-center mt-32'>
 
-            <img src="img/postspage/blog1.webp" alt="Photo" className="h-60 w-60 rounded-full mb-10"/>
+            <img src="img/blog1.webp" alt="Photo" className="h-60 w-60 rounded-full mb-10"/>
             <HeaderButtons/>
             <h1 className='text-[#505050] font-bold text-4xl'>Блог пастора</h1>
             <p className='text-[#505050] font-bold text-2xl mt-6 px-12 indent-12'>

@@ -34,11 +34,7 @@ const CookieConsent = ({ isAccepted }: {isAccepted: boolean}) => {
             соответствии с указанной Политикой конфиденциальности в отношении персональных данных.
 
             <form action={handleAccept}>
-                <button
-                    className='my-8 justify-center items-center text-white text-2xl border-amber-600 hover:shadow-[#dedcdc] hover:shadow-xl py-2 px-8 rounded focus:outline-none focus:shadow-outline'
-                >
-                    Согласен
-                </button>
+                <button className='btn btn-blog'>Согласен</button>
             </form>
         </div>
     )
