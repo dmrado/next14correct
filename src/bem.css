@@ -1842,11 +1842,6 @@ body {
     transform: scale(1.05);
 }
 
-.book_box-header_holiday h3 {
-    font-size: 36px;
-    padding: 0 20px;
-}
-
 @media (max-width: 960px) {
     .header__banner_holidays,
     .header__banner_holidays img {
