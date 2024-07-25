@@ -1,14 +1,14 @@
 'use client'
-import BooksModal from './BooksModal'
+import Modal from './Modal.js'
 import { books } from './books.js'
 import { useState } from 'react'
 
 const BooksPage = () => {
     const [ item, setItem ] = useState('')
-    const [ openBookModal, setOpenBookModal ] = useState(false)
+    const [ openModal, setOpenModal ] = useState(false)
 
     const handleClick = (book) => {
-        setOpenBookModal(true)
+        setOpenModal(true)
         setItem(book)
         console.log('book это', book)
     }
@@ -19,7 +19,7 @@ const BooksPage = () => {
             <div className="books__wrapper">
                 <h2>Наши книги</h2>
             </div>
-            {!! openBookModal && <BooksModal book={item} setOpenBookModal={setOpenBookModal}/>}
+            {!! openModal && <Modal book={item} setOpenModal={setOpenModal}/>}
             <div className="books__list">
                 <ul>
                     {books.map(book => <li key={book.id}>

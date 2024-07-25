@@ -3,14 +3,14 @@
 import { useState } from 'react'
 import { holidays } from './holidays'
 
-import HolidaysModal from '@/components/HolidaysModal'
+import Modal from './Modal.js'
 
 const HolidaysPage = () => {
 
     const [ item, setItem ] = useState('')
-    const [ openHolidayModal, setOpenHolidayModal ] = useState(false)
+    const [ openModal, setOpenModal ] = useState(false)
     const handleClick = (holiday) => {
-        setOpenHolidayModal(true)
+        setOpenModal(true)
         setItem(holiday)
         console.log('holiday это', holiday)
     }
@@ -71,7 +71,7 @@ const HolidaysPage = () => {
                 </p>
             </div>
 
-            {!!openHolidayModal && <HolidaysModal holiday={item} setOpenHolidayModal={setOpenHolidayModal}/>}
+            {!!openModal && <Modal holiday={item} setOpenModal={setOpenModal}/>}
             <div className="books__list">
                 <ul>
                     {holidays.map(holiday => <li key={holiday.id}>

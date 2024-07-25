@@ -1,14 +1,14 @@
 'use client'
 import { useEffect } from 'react'
 
-const BooksModal = ({ book, setOpenBookModal }) => {
+const Modal = ({ book, holiday, setOpenModal }) => {
 
     useEffect(() => {
 
     }, [])
 
     const handleClick = () => {
-        setOpenBookModal(false)
+        setOpenModal(false)
     }
 
     return (
@@ -18,11 +18,11 @@ const BooksModal = ({ book, setOpenBookModal }) => {
                     <div className="modal__box book_box">
 
                         <div className="book_box-header">
-                            <img src={book.href} alt="Picture"/>
-                            <h2>{book.name}</h2>
+                            <img src={book ? book.href : holiday.href} alt="Picture"/>
+                            <h2>{book ? book.name : holiday.name}</h2>
                         </div>
 
-                        <p>{book.annot}</p>
+                        <p>{book ? book.annot : holiday.annot}</p>
 
                         <div className="book_box-header">
                             <div className="books__price">
@@ -40,4 +40,4 @@ const BooksModal = ({ book, setOpenBookModal }) => {
     )
 }
 
-export default BooksModal
+export default Modal
