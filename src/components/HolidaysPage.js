@@ -71,7 +71,7 @@ const HolidaysPage = () => {
                 </p>
             </div>
 
-            {!!openModal && <Modal holiday={item} setOpenModal={setOpenModal}/>}
+            {!!openModal && <Modal item={item} setOpenModal={setOpenModal}/>}
             <div className="books__list">
                 <ul>
                     {holidays.map(holiday => <li key={holiday.id}>

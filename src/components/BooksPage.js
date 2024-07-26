@@ -19,7 +19,7 @@ const BooksPage = () => {
             <div className="books__wrapper">
                 <h2>Наши книги</h2>
             </div>
-            {!! openModal && <Modal book={item} setOpenModal={setOpenModal}/>}
+            {!! openModal && <Modal item={item} setOpenModal={setOpenModal}/>}
             <div className="books__list">
                 <ul>
                     {books.map(book => <li key={book.id}>

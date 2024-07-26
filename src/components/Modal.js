@@ -1,7 +1,7 @@
 'use client'
 import { useEffect } from 'react'
 
-const Modal = ({ book, holiday, setOpenModal }) => {
+const Modal = ({ item, setOpenModal }) => {
 
     useEffect(() => {
 
@@ -18,11 +18,11 @@ const Modal = ({ book, holiday, setOpenModal }) => {
                     <div className="modal__box book_box">
 
                         <div className="book_box-header">
-                            <img src={book ? book.href : holiday.href} alt="Picture"/>
-                            <h2>{book ? book.name : holiday.name}</h2>
+                            <img src={item.href} alt="Picture"/>
+                            <h2>{item.name}</h2>
                         </div>
 
-                        <p>{book ? book.annot : holiday.annot}</p>
+                        <p>{item.annot}</p>
 
                         <div className="book_box-header">
                             <div className="books__price">
