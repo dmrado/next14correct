@@ -13,7 +13,7 @@ type PostPageParams = { params: { id: number } }
 const PostPage = async ({ params }: PostPageParams) => {
     const session = await getServerSession()
     const isAcceptedCookie = await getConsentAccepted()
-    const post = await Post.findByPk(params.id)
+    const post = await Post.findByPk(params.id, { attributes: [ 'id', 'title', 'text', 'preview', 'path', 'createdAt', 'updatedAt' ] })
     if (!post) {
         return notFound()
     }
