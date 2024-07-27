@@ -45,11 +45,12 @@ type PostData = {
         title: string,
         text: string
     }
+
 const cleanFormData = (formData: FormData): PostData => {
     const id = formData.get('id')
     const title = formData.get('title')
     const text = formData.get('text')
-    if (id instanceof File || title instanceof File || text instanceof File) {
+    if (typeof id !== 'string' || typeof title !== 'string' || typeof text !== 'string') {
         throw new ValidationError('Filedata in text fields')
     }
     if (!title || !text) {
