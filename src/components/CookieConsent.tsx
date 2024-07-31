@@ -18,7 +18,7 @@ const CookieConsent = ({ isAccepted }: {isAccepted: boolean}) => {
             className="flex flex-col fixed bottom-0 z-100 bg-gray-600 rounded pt-2 px-2 text-white text-s transform text-center z-20">
             На этом сайте мы используем файлы cookie, чтобы улучшить ваш опыт использования и предоставить
             персонализированный контент. Некоторые из этих файлов cookie устанавливаются сторонними сервисами, такими
-            как Google и Яндекс.
+            как Google (Google является зарегистрированным товарным знаком Google LLC) и Яндекс (Яндекс является зарегистрированным товарным знаком Яндекса).
 
             Мы используем Google reCAPTCHA для защиты нашего сайта от злоумышленников и
             спама. Google reCAPTCHA помогает нам убедиться, что вы человек, а не автоматизированная программа.
