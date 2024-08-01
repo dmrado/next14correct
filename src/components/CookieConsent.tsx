@@ -7,7 +7,7 @@ const CookieConsent = ({ isAccepted }: {isAccepted: boolean}) => {
 
     const [ showMessage, setShowMessage ] = useState(true)
     const handleAccept = async () => {
-        setConsentAccepted()
+        await setConsentAccepted()
         setShowMessage(false)
     }
     if (isAccepted) return <></>

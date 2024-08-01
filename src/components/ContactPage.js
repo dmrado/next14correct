@@ -1,5 +1,7 @@
 'use client'
 import ContactForm from '@/components/ContactForm.tsx'
+import CookieConsent from '@/components/CookieConsent.tsx'
+import React from 'react'
 
 const CONTACTS = {
     headerAddres1: 'Адрес: ',
@@ -13,10 +15,12 @@ const CONTACTS = {
     bankCard: '2202 2063 2702 1692'
 }
 
-const ContactPage = () => {
+const ContactPage = ({ isAcceptedCookie }) => {
 
     return <div>
-
+        {!isAcceptedCookie && <div className="flex justify-center mt-36">
+            <CookieConsent isAccepted={!!isAcceptedCookie}/>
+        </div>}
         <div className="contact__header">
             <h1>Приезжайте к нам</h1>
             <p>Приглашаем вас на Богослужения, каждую субботу в 11-00, по адресу г. Артем, ул Пушкина 16. <br/> Примите

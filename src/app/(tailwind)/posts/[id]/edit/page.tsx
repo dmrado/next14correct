@@ -16,7 +16,7 @@ const EditPost = async ({ params }: PostPageParams) => {
         return redirect('/api/auth/signin')
     }
 
-    const post = await Post.findByPk(params.id)
+    const post = await Post.findByPk(params.id, { attributes: [ 'id', 'title', 'text', 'preview', 'path', 'createdAt', 'updatedAt' ] })
     if (!post) {
         return notFound()
     }

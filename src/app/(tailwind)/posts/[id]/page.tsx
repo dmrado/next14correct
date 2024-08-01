@@ -32,7 +32,7 @@ const PostPage = async ({ params }: PostPageParams) => {
             </div>}
             <div
                 className="flex items-center align-c w-full h-full bg-no-repeat bg-center bg-cover bg-fixed text-center overflow-hidden rounded-lg">
-                <img src={post.path ? post.path : '../img/postspage/cloudsWIDE.webp'}
+                <img src={post.path ? post.path : 'img/cloudsWIDE.webp'}
                     alt="Картинка поста"/>
             </div>
 

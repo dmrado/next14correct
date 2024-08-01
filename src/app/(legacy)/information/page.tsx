@@ -1,10 +1,12 @@
 import ContactPage from '@/components/ContactPage'
+import { getConsentAccepted } from '@/app/actions/getCookiesAccepted.ts'
 
 export const metadata = {
     title: 'Beit-Ieshua | Information',
 }
 
-const Page = () => {
+const Page = async () => {
+    const isAcceptedCookie = await getConsentAccepted()
     return (
         <>
             {/*<h1 style={{textAlign: 'center', color: 'gray'}}>*/}
@@ -12,7 +14,7 @@ const Page = () => {
             {/*</h1>*/}
             {/*<InformationPage/>*/}
 
-            <ContactPage/>
+            <ContactPage isAcceptedCookie={isAcceptedCookie}/>
         </>
 
     )
