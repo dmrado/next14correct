@@ -15,7 +15,7 @@ const CookieConsent = ({ isAccepted }: {isAccepted: boolean}) => {
 
     return (
         <div
-            className="flex flex-col fixed bottom-0 z-100 bg-gray-600 rounded pt-2 px-2 text-white text-s transform text-center z-20">
+            className="flex flex-col fixed bottom-0 bg-gray-600 rounded pt-2 px-2 text-white text-s text-center z-20">
             На этом сайте мы используем файлы cookie, чтобы улучшить ваш опыт использования и предоставить
             персонализированный контент. Некоторые из этих файлов cookie устанавливаются сторонними сервисами, такими
             как Google (Google является зарегистрированным товарным знаком Google LLC) и Яндекс (Яндекс является зарегистрированным товарным знаком Яндекса).

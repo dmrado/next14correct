@@ -19,7 +19,9 @@ const ContactPage = ({ isAcceptedCookie }) => {
 
     return <div>
         {!isAcceptedCookie && <div className="flex justify-center mt-36">
-            <CookieConsent isAccepted={!!isAcceptedCookie}/>
+            <div className='cookie-consent-information'>
+                <CookieConsent isAccepted={!!isAcceptedCookie}/>
+            </div>
         </div>}
         <div className="contact__header">
             <h1>Приезжайте к нам</h1>
