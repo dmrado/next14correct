@@ -3,7 +3,7 @@ import { Post } from '@/app/db/post.model.ts'
 import Link from 'next/link'
 import React from 'react'
 import { getServerSession } from 'next-auth'
-import { isAuthorized } from '@/app/isAuthorized.ts'
+import { isAdmin } from '@/app/isAdmin.ts'
 import { isSessionExpired } from '@/app/isSessionExpired.ts'
 import PostForm from '@/components/PostForm.tsx'
 // import '../tailwind.css'
@@ -12,7 +12,7 @@ type PostPageParams = { params: { id: number } }
 
 const EditPost = async ({ params }: PostPageParams) => {
     const session = await getServerSession()
-    if (!session || !isAuthorized(session) || isSessionExpired(session)) {
+    if (!session || !isAdmin(session) || isSessionExpired(session)) {
         return redirect('/api/auth/signin')
     }
 

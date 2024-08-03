@@ -2,14 +2,14 @@ import Link from 'next/link'
 import { getServerSession } from 'next-auth'
 import React from 'react'
 import PostForm from '@/components/PostForm.tsx'
-import { isAuthorized } from '@/app/isAuthorized.ts'
+import { isAdmin } from '@/app/isAdmin.ts'
 import { isSessionExpired } from '@/app/isSessionExpired.ts'
 import { redirect } from 'next/navigation'
 
 const AddPost = async () => {
     const session = await getServerSession()
 
-    if (!session || !isAuthorized(session) || isSessionExpired(session)) {
+    if (!session || !isAdmin(session) || isSessionExpired(session)) {
         return redirect('/api/auth/signin')
     }
 

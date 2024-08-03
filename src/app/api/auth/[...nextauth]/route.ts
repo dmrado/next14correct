@@ -1,7 +1,7 @@
 import NextAuth, { DefaultSession } from 'next-auth'
 // import { authConfig } from '../../../auth.ts'
 import GoogleProvider from 'next-auth/providers/google'
-
+import YandexProvider from 'next-auth/providers/yandex'
 // todo: no sense to have this constant separately
 const handler = NextAuth({
     secret: process.env.NEXTAUTH_SECRET,
@@ -36,8 +36,12 @@ const handler = NextAuth({
                     access_type: 'offline',
                     response_type: 'code'
                 }
-            }
+            },
         }),
+        YandexProvider({
+            clientId: process.env.YANDEX_CLIENT_ID ?? '',
+            clientSecret: process.env.YANDEX_CLIENT_SECRET ?? ''
+        })
         // Credentials({
         // credentials: {
         //    email: { label: 'email', type: 'email', required: true },

@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { getServerSession } from 'next-auth'
 import React from 'react'
+import { isAdmin } from '@/app/isAdmin.ts'
 
 export default async function HeaderButtons() {
     const session = await getServerSession()
@@ -13,7 +14,7 @@ export default async function HeaderButtons() {
                 <div className='mr-4'>
                     {
                         !!session.user.image && !!session.user.name &&
-                        <Image
+                        <img
                             src={session.user.image}
                             alt={session.user.name}
                             width={52}
@@ -25,7 +26,7 @@ export default async function HeaderButtons() {
                 </div>
 
                 <div className='flex flex-wrap '>
-                    {!!session && !!session.user && session.user.email === process.env.USER_EMAIL &&
+                    {isAdmin(session) &&
                         <Link href={'/posts/new'}>
                             <button className='button_green'>Добавить пост</button>
                         </Link>

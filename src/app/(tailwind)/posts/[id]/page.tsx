@@ -7,6 +7,7 @@ import { getServerSession } from 'next-auth'
 import { notFound } from 'next/navigation'
 import CookieConsent from '@/components/CookieConsent.tsx'
 import { getConsentAccepted } from '@/app/actions/getCookiesAccepted.ts'
+import { isAdmin } from '@/app/isAdmin.ts'
 // import '../tailwind.css'
 
 type PostPageParams = { params: { id: number } }
@@ -37,9 +38,7 @@ const PostPage = async ({ params }: PostPageParams) => {
             </div>
 
             <div className="px-5 flex flex-col justify-center items-center text-justify">
-                {!!session && !!session.user && session.user.email === process.env.USER_EMAIL &&
-                        <h5 className="p-5 opacity-70">Post id: {post.id}</h5>
-                }
+
                 <h1 className="text-[#505050] text-2xl font-bold p-5">{post.title}</h1>
 
                 <div className="text-[#505050] text-xl p-5 break-all" dangerouslySetInnerHTML={{ __html: post.text }}
@@ -59,14 +58,14 @@ const PostPage = async ({ params }: PostPageParams) => {
                         <button className='button_blue'>Вернуться</button>
                     </Link>
 
-                    {!!session && !!session.user && session.user.email === process.env.USER_EMAIL &&
+                    {isAdmin(session) &&
                             <Link href={`/posts/${post.id}/edit`}>
                                 <button className='button_green text-dark'>Редактировать</button>
                             </Link>
                     }
                 </div>
 
-                {!!session && !!session.user && session.user.email === process.env.USER_EMAIL &&
+                {isAdmin(session) &&
                         <form action={removePost.bind(null, post.id)}>
                             <input className='button_red' type='submit' value="Удалить пост"/>
                         </form>
