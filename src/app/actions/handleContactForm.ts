@@ -19,7 +19,7 @@ const cleanFormData = (formData: FormData): ContactData => {
     const email = formData.get('email')
     const title = formData.get('title')
     const message = formData.get('message')
-    if (name instanceof File || email instanceof File || title instanceof File || message instanceof File) {
+    if (typeof name !== 'string' || typeof email !== 'string' || typeof title !== 'string' || typeof message !== 'string') {
         throw new ValidationError('Filedata in text fields')
     }
     if (!title || !message || !name || !email) {
