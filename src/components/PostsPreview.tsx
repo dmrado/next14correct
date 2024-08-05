@@ -8,7 +8,7 @@ const PostsPreview = ({ post }: { post: PostPreview }) => {
         <div className="flex flex-col mt-20 h-full px-0 py-30 content-center items-center">{/*card*/}
 
             <div className="overflow-hidden h-full rounded-lg">{/*card wrapper для эффекта hover-scale картинки*/}
-                <img className="transform hover:scale-150 ease-in-out duration-700 w-full h-fit rounded-lg"
+                <img className="transform hover:scale-150 ease-in-out duration-700 w-full max-h-full rounded-lg"
                     src={post.path ? post.path : 'img/cloudsWIDE.webp'} alt="Post image"/>{/*card-img*/}
             </div>
 
