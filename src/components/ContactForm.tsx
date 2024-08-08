@@ -4,6 +4,7 @@ import PersonalDatesModal from '@/components/PersonalDatesModal.tsx'
 import { useFormStatus, useFormState } from 'react-dom'
 import { handleContactForm } from '@/app/actions/handleContactForm.ts'
 import ReCAPTCHA from 'react-google-recaptcha'
+import { InvisibleCaptcha } from '@/components/InvisibleSmartCaptcha'
 
 const KEY = '6LeLOkgpAAAAAMP0GZre1UiAWepWg52rKPXPWXiZ'
 
@@ -68,13 +69,15 @@ const ContactForm = () => {
                         sitekey={KEY}
                         size="normal"
                     />
+                    <InvisibleCaptcha/>
 
                     <div className="form__submit">
-                        <p><span style={{ color: '#FF6700', fontWeight: 'bold' }}>ВНИМАНИЕ:</span> нажимая кнопку &quot;ОТПРАВИТЬ&quot;
-                                Вы принимаете условие
+                        <p><span style={{ color: '#FF6700', fontWeight: 'bold' }}>ВНИМАНИЕ:</span> нажимая
+                            кнопку &quot;ОТПРАВИТЬ&quot;
+                            Вы принимаете условие
                         <button type="button" className="btn-personalDatesModalOpen"
                             onClick={e => setPersonalDatesModal(true)}>Соглашения</button>
-                                об обработке персональных данных
+                            об обработке персональных данных
                         </p>
                         {!!personalDatesModal && <PersonalDatesModal setPersonalDatesModal={setPersonalDatesModal}/>}
                         <SubmitButton disabled={isUserARobot}/>
