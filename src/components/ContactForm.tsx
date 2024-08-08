@@ -26,6 +26,7 @@ const ContactForm = () => {
     const [ formState, action ] = useFormState(handleContactForm, {
         message: '',
     })
+    const [ token, setToken ] = useState('')
 
     const onCaptchaChange = (token: string|null) => {
         if (!token || token.length < 1) {
@@ -69,7 +70,10 @@ const ContactForm = () => {
                         sitekey={KEY}
                         size="normal"
                     />
-                    <InvisibleCaptcha/>
+
+                    <textarea className='hidden_field' name="token" value={token ?? ''} id="hidden_textarea" readOnly>
+                        <InvisibleCaptcha/>
+                    </textarea>
 
                     <div className="form__submit">
                         <p><span style={{ color: '#FF6700', fontWeight: 'bold' }}>ВНИМАНИЕ:</span> нажимая
