@@ -13,10 +13,11 @@ export const InvisibleCaptcha = () => {
         <>
             <button type="button" onClick={handleButtonClick}>Validate</button>
             <InvisibleSmartCaptcha
-                sitekey={process.env.YANDEX_CLIENT_ID}
+                sitekey={process.env.YANDEX_CLIENT_SECRET}
                 onSuccess={setToken}
                 onChallengeHidden={handleChallengeHidden}
                 visible={visible}
+                test={true}
             />
         </>
     )
