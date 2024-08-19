@@ -21,22 +21,17 @@ const SubmitButton = ({ disabled = false }) => {
 
 const ContactForm = () => {
     const [ personalDatesModal, setPersonalDatesModal ] = useState(false)
-    const [ isUserARobot, setIsUserARobot ] = useState(true)
     const [ formState, action ] = useFormState(handleContactForm, {
         message: '',
     })
+    const [ recaptchaToken, setRecaptchaToken ] = useState('')
 
     const onCaptchaChange = (token: string|null) => {
         if (!token || token.length < 1) {
+            console.warn('Token is empty')
             return
         }
-        fetch(`/api/recaptcha?token=${token}`).then(res => {
-            if (res.ok) {
-                setIsUserARobot(false)
-            }
-        }).catch((e) => {
-            console.error('Error on verifying recaptcha')
-        })
+        setRecaptchaToken(token)
     }
 
     return (
@@ -62,6 +57,7 @@ const ContactForm = () => {
                         <textarea className="form-control input_message" name="message" placeholder="Сообщение"
                             required
                         />
+                        <input hidden type="text" name="recaptcha_token" value={'___custom_prefix' + recaptchaToken + '___custom_suffix'} readOnly/>
                     </div>
                     <ReCAPTCHA
                         onChange={onCaptchaChange}
@@ -77,7 +73,7 @@ const ContactForm = () => {
                                 об обработке персональных данных
                         </p>
                         {!!personalDatesModal && <PersonalDatesModal setPersonalDatesModal={setPersonalDatesModal}/>}
-                        <SubmitButton disabled={isUserARobot}/>
+                        <SubmitButton disabled={recaptchaToken.length === 0}/>
                     </div>
                 </>)}
         </form>
