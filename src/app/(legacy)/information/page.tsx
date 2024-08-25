@@ -6,7 +6,7 @@ export const metadata = {
 }
 
 const Page = async () => {
-    const isAcceptedCookie = await getConsentAccepted()
+    // const isAcceptedCookie = await getConsentAccepted()
     return (
         <>
             {/*<h1 style={{textAlign: 'center', color: 'gray'}}>*/}
@@ -14,7 +14,9 @@ const Page = async () => {
             {/*</h1>*/}
             {/*<InformationPage/>*/}
 
-            <ContactPage isAcceptedCookie={isAcceptedCookie}/>
+            <ContactPage
+                // isAcceptedCookie={isAcceptedCookie}
+            />
         </>
 
     )
