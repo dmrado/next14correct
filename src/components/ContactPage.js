@@ -15,16 +15,9 @@ const CONTACTS = {
     bankCard: '2202 2063 2702 1692'
 }
 
-const ContactPage = ({ isAcceptedCookie }) => {
+const ContactPage = () => {
 
     return <div>
-        {/*{!isAcceptedCookie && <div className="flex justify-center mt-36">*/}
-        {/*    <div className='cookie-consent-information'>*/}
-        {/*        <CookieConsent*/}
-        {/*            isAccepted={!!isAcceptedCookie}*/}
-        {/*        />*/}
-        {/*    </div>*/}
-        {/*</div>}*/}
         <div className="contact__header">
             <h1>Приезжайте к нам</h1>
             <p>Приглашаем вас на Богослужения, каждую субботу в 11-00, по адресу г. Артем, ул Пушкина 16. <br/> Примите
