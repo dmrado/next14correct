@@ -1,27 +1,24 @@
 'use client'
 
 import { useState } from 'react'
-import { holidays } from './holidays'
+import { holidays } from '../data/holidays.tsx'
+import { DataItem } from '../data/types.tsx'
 
 import Modal from './Modal.js'
 
 const HolidaysPage = () => {
 
-    const [ item, setItem ] = useState('')
+    const [ item, setItem ] = useState<DataItem | null>(null)
     const [ openModal, setOpenModal ] = useState(false)
-    const handleClick = (holiday) => {
+    const handleClick = (holiday: DataItem) => {
         setOpenModal(true)
         setItem(holiday)
         console.log('holiday это', holiday)
     }
 
-    // useEffect(() => {
-
-    // }, [])
-
     return (<>
         {/*header-block*/}
-        {/*    body-wrapper нужен для меню навигации справа в режиме телефона именно здесь тогад корректно работает и нет горизонтального скролла*/}
+        {/*    body-wrapper нужен для меню навигации справа в режиме телефона именно здесь тогда корректно работает и нет горизонтального скролла*/}
         <div className="body-wrapper">
             <div className="header__banner_holidays">
                 <img className="header__img" src="/img/holidays/holidaysBanner.webp" alt=""/>
@@ -71,7 +68,7 @@ const HolidaysPage = () => {
                 </p>
             </div>
 
-            {!!openModal && <Modal item={item} setOpenModal={setOpenModal}/>}
+            {openModal && <Modal item={item} setOpenModal={setOpenModal}/>}
             <div className="books__list">
                 <ul>
                     {holidays.map(holiday => <li key={holiday.id}>

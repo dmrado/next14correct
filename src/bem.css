@@ -1126,7 +1126,7 @@ body {
 /*    }*/
 /*}*/
 
-/*blog header on the posts/page.js START ВНИМАНИЕ!!! posts в этом проекте работает на tailwind.css/
+/*blog header on the posts/page.tsx START ВНИМАНИЕ!!! posts в этом проекте работает на tailwind.css/
 
 .blog-header {
     display: grid;
@@ -1169,7 +1169,7 @@ body {
     overflow: hidden;
 }
 */
-/*blog header on the posts/page.js FINISH*/
+/*blog header on the posts/page.tsx FINISH*/
 
 /*Card block*/
 .one-post-banner {

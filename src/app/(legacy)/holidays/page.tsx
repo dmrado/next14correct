@@ -1,4 +1,4 @@
-import HolidaysPage from '@/components/HolidaysPage'
+import HolidaysPage from '@/components/HolidaysPage.tsx'
 
 export const metadata = {
     title: 'Beit-Ieshua | Holidays',

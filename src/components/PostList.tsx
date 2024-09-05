@@ -10,11 +10,8 @@ import { NUMBER_OF_POSTS_TO_FETCH } from '@/app/constants.ts'
 export default function PostList({ initialPosts }: { initialPosts: PostPreview[] }) {
     const [ offset, setOffset ] = useState(NUMBER_OF_POSTS_TO_FETCH)
     const [ count, setCount ] = useState(0)
-    // const [ loading, setLoading ] = useState(false)
-
     const [ posts, setPosts ] = useState<PostPreview[]>(initialPosts)
     const { ref, inView } = useInView()
-    // new Promise(resolve => setTimeout(resolve, 5000))
 
     const loadMorePosts = async () => {
         //присваиваем значение posts в переменную newPosts деструктуризация с переимнованием
@@ -27,6 +24,7 @@ export default function PostList({ initialPosts }: { initialPosts: PostPreview[]
     useEffect(() => {
         if (inView && posts.length !== count) {
             loadMorePosts()
+            //todo обработать ошибку
         }
     }, [ inView ])
 
@@ -34,9 +32,7 @@ export default function PostList({ initialPosts }: { initialPosts: PostPreview[]
         <div>
 
             {posts.map((post) =>
-                // <Suspense fallback={<PostsLoading/>}>
                 <PostsPreview key={post.id} post={post}/>
-                //*</Suspense>*/}
             )}
 
             <div className='flex justify-center my-10 text-my_l_green' ref={ref}>

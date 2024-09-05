@@ -1,4 +1,6 @@
-export const books = [
+import { Book } from '@/data/types.ts'
+
+export const books : Array<Book> = [
     {
         id: 1,
         name: 'Библия',

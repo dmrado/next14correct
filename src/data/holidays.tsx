@@ -1,4 +1,6 @@
-export const holidays = [
+import { DataItem } from './types'
+
+export const holidays : Array<DataItem> = [
     {
         id: 1,
         name: 'Шаббат',

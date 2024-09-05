@@ -1,7 +1,8 @@
 'use server'
 import { Post, PostPreview } from '@/app/db/post.model.ts'
 
-export const getPosts = async (offset: number, limit: number) => {
+export const getPosts = async (offset: number, limit: number)
+    : Promise<{count: number, posts: Array<PostPreview> }> => {
     try {
         const posts = await Post.findAll({
             offset: offset, limit: limit, order: [ [ 'updatedAt', 'DESC' ] ],
