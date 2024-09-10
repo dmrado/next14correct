@@ -2515,3 +2515,27 @@ body {
     background-color: #fff;
     color: #004E98;
 }
+.alert{
+    height: 300px;
+    width: 80vh;
+    background-color: #004E98;
+    position: fixed;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+}
+
+.alert_close_button{
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    .alert_close_button:hover {
+        color: #ccc;
+    }

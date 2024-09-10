@@ -2,8 +2,14 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import HeaderButtons from './HeaderButtons.tsx'
+import { Alert } from '@/components/Alert'
 
-const Header = () => {
+type Props = {
+    alertTitle?: string,
+    alertText?: string
+}
+const Header = ({ alertText, alertTitle } : Props) => {
+
     const [ showHeaderButtons, setShowHeaderButtons ] = useState(false)
     // todo useEffect для адаптивности меню навигации
     useEffect(() => {
@@ -11,29 +17,30 @@ const Header = () => {
             const header = document.querySelector('.header')
             const burger = document.getElementById('burger')
 
-            burger.addEventListener('click', () => {
+            burger?.addEventListener('click', () => {
                 // if (header.classList !== 'open') {
-                header.classList.add('open')
+                header?.classList.add('open')
                 // } else return
             })
 
             //скрыть при нажатии на пункт меню
             document.querySelectorAll('.menu__link').forEach(item => item.addEventListener('click', () => {
-                header.classList.remove('open')
+                header?.classList.remove('open')
             }))
 
             //  Закрыть по esc
             window.addEventListener('keydown', e => {
                 if (e.key === 'Escape') {
-                    header.classList.remove('open')
+                    header?.classList.remove('open')
                 }
             })
 
             //  Закрыть при клике вне его
+            // @ts-ignore
             document.getElementById('menu').addEventListener('click', e => {
                 e._isClickWithInMenu = true
             })
-            burger.addEventListener('click', e => {
+            burger?.addEventListener('click', e => {
                 e._isClickWithInMenu = true
             })
             //то есть если кликнули по меню или бургеру - ничего не выполняем
@@ -232,6 +239,10 @@ const Header = () => {
             {/*}*/}
         </div>
         {/*</div>*/}
+        {
+            !!alertText && !!alertTitle && <Alert text={alertText} title={alertTitle}/>
+        }
+
     </>
     )
 }
