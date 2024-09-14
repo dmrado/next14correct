@@ -6,11 +6,13 @@ import { Alert } from '@/components/Alert'
 
 type Props = {
     alertTitle?: string,
-    alertText?: string
+    alertText?: string,
+    setShowAlerts: boolean
 }
 const Header = ({ alertText, alertTitle } : Props) => {
 
     const [ showHeaderButtons, setShowHeaderButtons ] = useState(false)
+    const [ showAlerts, setShowAlerts ] = useState(true)
     // todo useEffect для адаптивности меню навигации
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -239,8 +241,8 @@ const Header = ({ alertText, alertTitle } : Props) => {
             {/*}*/}
         </div>
         {/*</div>*/}
-        {
-            !!alertText && !!alertTitle && <Alert text={alertText} title={alertTitle}/>
+        {showAlerts &&
+            !!alertText && !!alertTitle && <Alert text={alertText} title={alertTitle} setShowAlerts={setShowAlerts}/>
         }
 
     </>
