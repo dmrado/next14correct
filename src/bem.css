@@ -2537,21 +2537,21 @@ body {
         position: absolute;
         top: -20px;
         right: 20px;
-        color: #b6b4b4;
+        color: #505050;
         font-size: 68px;
         cursor: pointer;
     }
 
 
 .alert_title{
-    color: #b6b4b4;
+    color: #fc0202;
     width: 80%;
     text-align: center;
 }
 
 .alert_text{
     font-size: 18px;
-    color: #b6b4b4;
+    color: #505050;
     text-align: center;
     overflow: auto;
 }
