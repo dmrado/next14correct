@@ -8,6 +8,7 @@ import Footer from '@/components/Footer'
 import { getConsentAccepted } from '@/app/actions/getCookiesAccepted.ts'
 import CookieConsent from '@/components/CookieConsent.tsx'
 import { Alert as AlertModel } from '@/app/db/alert.model.ts'
+import { getAlerts } from '@/app/actions/getAlerts.ts'
 
 const inter = Dosis({ subsets: [ 'latin' ] })
 export const metadata = {
@@ -18,8 +19,7 @@ export const metadata = {
 
 export default async function RootLayout({ children }: {children: ReactNode}) {
     const isAcceptedCookie = await getConsentAccepted()
-    const alert = await AlertModel.findByPk(1)
-    console.log('alert', alert?.id, alert?.title, alert?.text)
+    const alerts = await getAlerts()
     return (
         <html lang="ru">
 
@@ -38,7 +38,7 @@ export default async function RootLayout({ children }: {children: ReactNode}) {
                     </div>
                 </div>}
 
-                <Header alertText={alert?.text} alertTitle={alert?.title}/>
+                <Header alerts={alerts}/>
 
                 <main>{children}</main>
 

@@ -5,14 +5,14 @@ import HeaderButtons from './HeaderButtons.tsx'
 import { Alert } from '@/components/Alert'
 
 type Props = {
-    alertTitle?: string,
-    alertText?: string,
     setShowAlerts: boolean
+    alerts: {id:number, title: string, text: string}[]
 }
-const Header = ({ alertText, alertTitle } : Props) => {
+const Header = ({ alerts } : Props) => {
 
     const [ showHeaderButtons, setShowHeaderButtons ] = useState(false)
     const [ showAlerts, setShowAlerts ] = useState(true)
+
     // todo useEffect для адаптивности меню навигации
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -242,9 +242,8 @@ const Header = ({ alertText, alertTitle } : Props) => {
         </div>
         {/*</div>*/}
         {showAlerts &&
-            !!alertText && !!alertTitle && <Alert text={alertText} title={alertTitle} setShowAlerts={setShowAlerts}/>
+            alerts.map(alert => <Alert text={alert.text} title={alert.title} key={alert.id} setShowAlerts={setShowAlerts}/>)
         }
-
     </>
     )
 }

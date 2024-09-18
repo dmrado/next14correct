@@ -1,11 +1,12 @@
 import { Model, InferAttributes, InferCreationAttributes, CreationOptional, ForeignKey, DataTypes } from 'sequelize'
-import { User } from './user.model'
 import { sequelize } from './connection'
 
 export class Alert extends Model<InferAttributes<Alert>, InferCreationAttributes<Alert>> {
     declare id: CreationOptional<number>
     declare title: string
     declare text: string
+    declare startDate: Date
+    declare endDate: Date
 }
 
 Alert.init({
@@ -20,6 +21,12 @@ Alert.init({
     text: {
         type: DataTypes.TEXT,
         defaultValue: '-- default --'
+    },
+    startDate: {
+        type: DataTypes.DATE
+    },
+    endDate: {
+        type: DataTypes.DATE
     },
 },
 {
