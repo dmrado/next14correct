@@ -7,11 +7,36 @@ import { Alert } from '@/components/Alert'
 type Props = {
     setShowAlerts: boolean
     alerts: {id:number, title: string, text: string}[]
+    storedClosedModals: []
+    handleCloseModal: (id: number) => void
 }
 const Header = ({ alerts } : Props) => {
 
     const [ showHeaderButtons, setShowHeaderButtons ] = useState(false)
     const [ showAlerts, setShowAlerts ] = useState(true)
+
+    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // Храним закрытые ID модальных окон из local storage
+    const [ closedModals, setClosedModals ] = useState<number[]>([])
+
+    // Получаем закрытые ID модальных окон из local storage
+    useEffect(() => {
+        const storedClosedModals = localStorage.getItem('closedModals')
+        if (storedClosedModals) {
+            setClosedModals(JSON.parse(storedClosedModals))
+            console.log('storedClosedModals', storedClosedModals)
+        }
+    }, [])
+
+    const handleCloseModal = (id: number) => {
+        // Добавляем ID закрытого модального окна в состояние
+        setClosedModals(prev => [ ...prev, id ])
+        // Сохраняем в local storage
+        localStorage.setItem('closedModals', JSON.stringify([ ...closedModals, id ]))
+        console.log('closedModals', closedModals)
+        setShowAlerts(false)
+    }
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     // todo useEffect для адаптивности меню навигации
     useEffect(() => {
@@ -242,7 +267,9 @@ const Header = ({ alerts } : Props) => {
         </div>
         {/*</div>*/}
         {showAlerts &&
-            alerts.map(alert => <Alert text={alert.text} title={alert.title} key={alert.id} setShowAlerts={setShowAlerts}/>)
+            alerts
+                .filter(alert => !closedModals.includes(alert.id))
+                .map(alert => <Alert text={alert.text} title={alert.title} key={alert.id} handleCloseModal={() => handleCloseModal(alert.id)}/>)
         }
     </>
     )
