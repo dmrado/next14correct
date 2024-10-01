@@ -27,8 +27,10 @@ export const Alert = ({ text, title, handleCloseModal }: Props) => {
                 <h1>{title}</h1>
             </div>
             <p className="alert_text">{text}</p>
+            {/*todo админ есть, а кнопки нет, почему?*/}
             {/*{isAdmin(session) &&*/}
             <Link href={'/posts/new'}>
+                {/*todo переход на добавление объявления вопрос в PostForm или создать AlertForm, принимая во внимание что там сервер экшен, а не выбор кнопками что создать пост или алерт - это вопрос лучшей архитектуры*/}
                 <button className='button_green'>Добавить пост</button>
             </Link>
             {/*}*/}

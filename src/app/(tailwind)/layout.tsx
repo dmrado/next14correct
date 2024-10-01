@@ -6,7 +6,8 @@ import Header from '@/components/Header.tsx'
 import Footer from '@/components/Footer'
 import './tailwind.css'
 import '@/bem.css'
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
+import { getAlerts } from '@/app/actions/getAlerts.ts'
 
 const inter = Dosis({ subsets: [ 'latin' ] })
 export const metadata = {
@@ -15,7 +16,8 @@ export const metadata = {
     }
 }
 
-export default function RootLayout({ children }: {children: ReactNode}) {
+export default async function RootLayout({ children }: {children: ReactNode}) {
+    const alerts = await getAlerts()
     return (
         <html lang="ru">
 
@@ -27,7 +29,7 @@ export default function RootLayout({ children }: {children: ReactNode}) {
                     async defer>
                 </script>
 
-                <Header/>
+                <Header alerts={alerts}/>
 
                 <main className="flex-grow">{children}</main>
 
