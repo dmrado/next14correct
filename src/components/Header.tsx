@@ -267,8 +267,7 @@ const Header = ({ alerts } : Props) => {
         </div>
         {/*</div>*/}
         {showAlerts &&
-            alerts
-                .filter(alert => !closedModals.includes(alert.id))
+            alerts?.filter(alert => !closedModals.includes(alert.id))
                 .map(alert => <Alert text={alert.text} title={alert.title} key={alert.id} handleCloseModal={() => handleCloseModal(alert.id)}/>)
         }
     </>
