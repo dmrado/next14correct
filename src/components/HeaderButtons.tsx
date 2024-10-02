@@ -32,6 +32,12 @@ export default async function HeaderButtons() {
                         </Link>
                     }
 
+                    {isAdmin(session) &&
+                        <Link href={'/alerts'}>
+                            <button className='button_blue'>Добавить объявление</button>
+                        </Link>
+                    }
+
                     <Link href={'/api/auth/signout'}>
                         <button className='button_red'>Выйти из аккаунта</button>
                     </Link>
