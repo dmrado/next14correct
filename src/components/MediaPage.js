@@ -5,7 +5,7 @@ const MediaPage = () => {
     return (<>
         <div className="container youtube">
 
-            <Link href='https://www.youtube.com/channel/UCXA60JCdNpDZwlTLBJaTJyg' target="_blank">
+            <Link href='https://youtube.com/@stranger-pilgrim?si=aBV7lJaAJu4qrfpR' target="_blank">
                 <button className="btn btn-youtube">Наш youtube канал</button>
             </Link>
 
