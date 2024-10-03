@@ -9,7 +9,9 @@ class ValidationError extends Error {}
 type AlertData = {
     id: number | undefined,
     title: string,
-    text: string
+    text: string,
+    startDate: Date,
+    endDate: Date
 }
 // todo id and text are undefined
 const cleanFormData = (formData: FormData): AlertData => {
@@ -26,14 +28,29 @@ const cleanFormData = (formData: FormData): AlertData => {
     if (title.length < TITLE_MIN_LENGTH) {
         throw new ValidationError('Title too short')
     }
-    return { title, text, id: id ? Number(id) : undefined }
+    const startDate = formData.get('start_date')
+    const endDate = formData.get('end_date')
+    if(typeof startDate !== 'string' || typeof endDate !== 'string') {
+        throw new ValidationError('Filedata in date fields')
+    }
+    if (!startDate || !endDate) {
+        throw new ValidationError('Title or text is null')
+    }
+    // todo проверить обе даты должны быть больше сегодня, дата окончания больше или равна дате начала. Проверить что это точно даты
+    return{
+        title,
+        text,
+        id: id ? Number(id) : undefined,
+        startDate: new Date(startDate),
+        endDate: new Date(endDate)
+    }
 }
 
 export const handleAlert = async (formData: FormData) => {
     try {
-        const { id, title, text } = cleanFormData(formData)
+        const { id, title, text, startDate, endDate } = cleanFormData(formData)
 
-        const alert = await Alert.create({ id: id, title, text })
+        const alert = await Alert.create({ title, text, startDate, endDate })
 
     } catch (err) {
         console.error('Error on handleForm:  ', err)
