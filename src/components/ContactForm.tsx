@@ -57,7 +57,7 @@ const ContactForm = () => {
                         <textarea className="form-control input_message" name="message" placeholder="Сообщение"
                             required
                         />
-                        <input hidden type="text" name="recaptcha_token" value={'___custom_prefix' + recaptchaToken + '___custom_suffix'} readOnly/>
+                        <input hidden type="text" name="recaptcha_token" value={recaptchaToken} readOnly/>
                     </div>
                     <ReCAPTCHA
                         onChange={onCaptchaChange}
