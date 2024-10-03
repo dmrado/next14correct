@@ -2515,3 +2515,57 @@ body {
     background-color: #fff;
     color: #004E98;
 }
+.alert{
+    height: 300px;
+    width: 80vh;
+    background-color: #fff;
+    position: fixed;
+    top: 150px;
+    left: 50%;
+    border-radius: 12px;
+    transform: translateX(-50%);
+    z-index: 150;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    opacity: 95%;
+    transition: opacity 0.5s ease;
+}
+
+.alert_close_button{
+        position: absolute;
+        top: -20px;
+        right: 20px;
+        color: #505050;
+        font-size: 68px;
+        cursor: pointer;
+    }
+
+
+.alert_title{
+    color: #fc0202;
+    width: 80%;
+    text-align: center;
+}
+
+.alert_text{
+    font-size: 18px;
+    color: #505050;
+    text-align: center;
+    overflow: auto;
+}
+
+@media (max-width: 768px) {
+    .alert {
+        width: 95%;
+        max-height: 70vh;
+    }
+    .alert_title{
+        font-size: 14px;
+    }
+    .alert_text{
+        font-size: 14px;
+    }
+}
+

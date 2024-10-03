@@ -4,7 +4,7 @@ export const metadata = {
     title: 'Beit-Ieshua | About us',
 }
 
-const About = () => {
+const About = async () => {
     return (
         <AboutPage/>
     )
