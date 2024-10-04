@@ -2515,3 +2515,9 @@ body {
     background-color: #fff;
     color: #004E98;
 }
+
+
+.videohosting_btns{
+    display: flex;
+    justify-content: center;
+}

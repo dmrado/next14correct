@@ -4,10 +4,14 @@ const MediaPage = () => {
 
     return (<>
         <div className="container youtube">
-
-            <Link href='https://youtube.com/@stranger-pilgrim?si=aBV7lJaAJu4qrfpR' target="_blank">
-                <button className="btn btn-youtube">Наш youtube канал</button>
-            </Link>
+            <div className="videohosting_btns">
+                <Link href='https://youtube.com/@stranger-pilgrim?si=aBV7lJaAJu4qrfpR' target="_blank">
+                    <button className="btn btn-youtube">YouTube</button>
+                </Link>
+                <Link href='https://rutube.ru/video/5aac7d67401e9624126964230167d953/?r=wm' target="_blank">
+                    <button className="btn btn-youtube">RuTube</button>
+                </Link>
+            </div>
 
             <div className="media__list-wrapper">
 
