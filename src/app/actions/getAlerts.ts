@@ -1,6 +1,6 @@
 'use server'
 import { Alert } from '@/app/db/alert.model.ts'
-import { Op } from 'sequelize'
+import { InferAttributes, Op } from 'sequelize'
 
 export const getAlerts = async ()
     : Promise< Array<Alert> > => {
@@ -16,4 +16,9 @@ export const getAlerts = async ()
         },
         order: [ [ 'startDate', 'DESC' ] ],
     }).then(alerts => alerts.map(alert => alert.toJSON()))
+}
+
+export const getAlert = async (id: number): Promise<InferAttributes<Alert> | null> => {
+    const alert = await Alert.findByPk(id)
+    return alert ? alert.toJSON() : null // Если пост не найден, возвращаем null
 }
