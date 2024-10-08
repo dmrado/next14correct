@@ -54,7 +54,7 @@ const AddAlert = async () => {
                 </div>
 
                 <div className="items-center p-5">
-                    <AlertForm HandleSubmit={HandleSubmit} titleForEdit={alertForEdit.title} textForEdit={alertForEdit.text} />
+                    {/*<AlertForm HandleSubmit={HandleSubmit} titleforEdit={alertForEdit.title} textForEdit={alertForEdit.text} />*/}
                     <div className="flex justify-center p-10">
                         <Link href={'/posts'}>
                             <button className='button_blue'>Вернуться</button>

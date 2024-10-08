@@ -1,6 +1,5 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { getAlert } from '@/app/actions/getAlerts.ts'
 
 type AlertForm = {
     titleForEdit: string;
