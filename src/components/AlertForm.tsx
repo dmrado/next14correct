@@ -6,16 +6,26 @@ type AlertForm = {
     id: number,
     title: string;
     text: string;
+    startDate: Date;
+    endDate: Date;
+    onSubmit: () => void
 }
 
-const AlertForm = ({ id, title, text }: AlertForm) => {
+const AlertForm = ({ id, title, text, startDate, endDate, onSubmit }: AlertForm) => {
     const [ editedTitle, setEditedTitle ] = useState(title ? title : '')
     const [ editedText, setEditedText ] = useState(text ? text : '')
 
+    const handleSubmit = async (formData: FormData) => {
+        await handleAlert(formData)
+            .then(() => onSubmit())
+    }
+
     return (
-        <form className="edit bg-white rounded px-8 pt-6 pb-8" action={handleAlert}>
+        <form className="edit bg-white rounded px-8 pt-6 pb-8" action={handleSubmit}>
+            <input hidden type="number" name="id" value={id} readOnly/>
             <div className="mb-4">
                 <input
+                    // defaultValue={title}
                     value={editedTitle}
                     onChange={(e) => {
                         if (e.target?.value) {
@@ -28,6 +38,7 @@ const AlertForm = ({ id, title, text }: AlertForm) => {
             </div>
             <div className="mb-4">
                 <textarea
+                    // defaultValue={text}
                     value={editedText}
                     onChange={(e) => {
                         if (e.target?.value) {
@@ -45,13 +56,13 @@ const AlertForm = ({ id, title, text }: AlertForm) => {
                 <div>
                     <label htmlFor="start">Дата начала:</label>
 
-                    <input type="date" id="start" name="start_date"/>
+                    <input defaultValue={startDate.toISOString().split('T')[0]} type="date" id="start" name="start_date"/>
                 </div>
 
                 <div>
                     <label htmlFor="start">Дата окончания:</label>
 
-                    <input type="date" id="start" name="end_date"/>
+                    <input defaultValue={endDate.toISOString().split('T')[0]} type="date" id="start" name="end_date"/>
                 </div>
             </div>
 
