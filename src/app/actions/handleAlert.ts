@@ -34,7 +34,7 @@ const cleanFormData = (formData: FormData): AlertData => {
         throw new ValidationError('Filedata in date fields')
     }
     if (!startDate || !endDate) {
-        throw new ValidationError('Title or text is null')
+        throw new ValidationError('startDate or endDate is null')
     }
     // todo проверить обе даты должны быть больше сегодня, дата окончания больше или равна дате начала. Проверить что это точно даты
     return{
@@ -49,9 +49,14 @@ const cleanFormData = (formData: FormData): AlertData => {
 export const handleAlert = async (formData: FormData) => {
     try {
         const { id, title, text, startDate, endDate } = cleanFormData(formData)
-
-        const alert = await Alert.create({ title, text, startDate, endDate })
-
+        if(id) {
+            await Alert.update(
+                { title, text, startDate, endDate },
+                { where: { id } }
+            )
+        } else {
+            await Alert.create({ title, text, startDate, endDate })
+        }
     } catch (err) {
         console.error('Error on handleForm:  ', err)
         if (err instanceof ValidationError) {
@@ -59,6 +64,6 @@ export const handleAlert = async (formData: FormData) => {
         }
         return redirect('/api/error/?code=500&message=SERVER_ERROR')
     }
-    revalidatePath('/posts')
-    redirect('/posts')
+    revalidatePath('/alerts')
+    redirect('/alerts')
 }

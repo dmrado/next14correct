@@ -1,6 +1,4 @@
-'use client'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
 import { getServerSession } from 'next-auth'
 import { isAdmin } from '@/app/isAdmin.ts'
 import { isSessionExpired } from '@/app/isSessionExpired.ts'
@@ -14,34 +12,25 @@ import theme from 'tailwindcss/defaultTheme'
 import { stringify } from 'querystring'
 import { consumeAlert, HandleSubmit } from '@/app/actions/alertsEditigFunctions.ts'
 
-const AddAlert = () => {
-    const alerts = getAlerts()
-    const session = getServerSession()
-
-    const [ editId, setEditId ] = useState('')
-    const [ editTitle, setEditTitle ] = useState('')
-    const [ editText, setEditText ] = useState('')
+const AddAlert = async () => {
+    const alerts = await getAlerts()
+    const session = await getServerSession()
 
     if (!session || !isAdmin(session) || isSessionExpired(session)) {
         return redirect('/api/auth/signin')
     }
 
-    const getAlertForEdit = async (id) => {
-        const result = await consumeAlert(id)
-        if (!result) {
-            return null
-        }
-        setEditId(result?.id)
-        setEditTitle(result?.title)
-        setEditText(result?.text)
-        console.log('>>>>>>>>>>>>>>>> >>>>> alertForEdit', result)
-        return result // Возвращаем весь объект alert
-    }
-
-    // этот useEffect для перезагрузки страницы после получения id что б AlertForm получил свои пропсы вопрос успеет ли, поэтому editId
-    useEffect(() => {
-        console.log('>>> >>> >>> >>> >>>> >>>>> id', id)
-    }, [ editId ])
+    // const getAlertForEdit = async (id) => {
+    //     const result = await consumeAlert(id)
+    //     if (!result) {
+    //         return null
+    //     }
+    //     setEditId(result?.id)
+    //     setEditTitle(result?.title)
+    //     setEditText(result?.text)
+    //     console.log('>>>>>>>>>>>>>>>> >>>>> alertForEdit', result)
+    //     return result // Возвращаем весь объект alert
+    // }
 
     return (<>
         <div className="flex">
@@ -52,26 +41,25 @@ const AddAlert = () => {
                 </div>
 
                 <div className="flex-1 p-4 border-r border-gray-300">
-                    {alerts.map((alert) =>
-                        <AlertsList key={alert.id} id={alert.id} title={alert.title} text={alert.text} getAlertForEdit={getAlertForEdit}/>
-                    )}
+
+                    <AlertsList alerts={alerts}/>
                 </div>
             </div>
             {/* Вторая колонка - форма для добавления нового alert */}
-            <div className="flex-1 p-4">
-                <div className="flex justify-center">
-                    <h1 className="mt-6 pb-2">Создадим новое объявление...</h1>
-                </div>
+            {/*<div className="flex-1 p-4">*/}
+            {/*    <div className="flex justify-center">*/}
+            {/*        <h1 className="mt-6 pb-2">Создадим новое объявление...</h1>*/}
+            {/*    </div>*/}
 
-                <div className="items-center p-5">
-                    <AlertForm HandleSubmit={HandleSubmit} id={editId} title={editTitle} text={editText} />
-                    <div className="flex justify-center p-10">
-                        <Link href={'/posts'}>
-                            <button className='button_blue'>Вернуться</button>
-                        </Link>
-                    </div>
-                </div>
-            </div>
+            {/*    <div className="items-center p-5">*/}
+            {/*        <AlertForm HandleSubmit={HandleSubmit} id={editId} title={editTitle} text={editText} />*/}
+            {/*        <div className="flex justify-center p-10">*/}
+            {/*            <Link href={'/posts'}>*/}
+            {/*                <button className='button_blue'>Вернуться</button>*/}
+            {/*            </Link>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
         </div>
     </>)
 }

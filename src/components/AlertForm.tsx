@@ -1,19 +1,19 @@
 'use client'
 import React, { useEffect, useState } from 'react'
+import { handleAlert } from '@/app/actions/handleAlert.ts'
 
 type AlertForm = {
     id: number,
     title: string;
     text: string;
-    HandleSubmit: (formData: FormData) => Promise<void>;
 }
 
-const AlertForm = ({ HandleSubmit, id, title, text }: AlertForm) => {
+const AlertForm = ({ id, title, text }: AlertForm) => {
     const [ editedTitle, setEditedTitle ] = useState(title ? title : '')
     const [ editedText, setEditedText ] = useState(text ? text : '')
 
     return (
-        <form className="edit bg-white rounded px-8 pt-6 pb-8" action={HandleSubmit}>
+        <form className="edit bg-white rounded px-8 pt-6 pb-8" action={handleAlert}>
             <div className="mb-4">
                 <input
                     value={editedTitle}
