@@ -1,4 +1,6 @@
+'use client'
 import Link from 'next/link'
+import {useState, useEffect} from 'react'
 import { getServerSession } from 'next-auth'
 import { isAdmin } from '@/app/isAdmin.ts'
 import { isSessionExpired } from '@/app/isSessionExpired.ts'
@@ -9,10 +11,14 @@ import AlertsList from '@/components/AlertsList.tsx'
 import AlertForm from '@/components/AlertForm.tsx'
 import { Alert } from '@/app/db/alert.model.ts'
 import theme from 'tailwindcss/defaultTheme'
+import { stringify } from 'querystring'
 
 const AddAlert = async () => {
     const alerts = await getAlerts()
     const session = await getServerSession()
+    const [editId, setEditId] = useState('')
+    const [editTitle, setEditTitle] = useState('')
+    const [editText, setEditText] = useState('')
 
     if (!session || !isAdmin(session) || isSessionExpired(session)) {
         return redirect('/api/auth/signin')
@@ -20,14 +26,21 @@ const AddAlert = async () => {
 
     const getAlertForEdit = async (id) => {
         'use server'
-        const alertForEdit = await getAlert(id)
-        console.log('>>>>>>>>>>>>>>>> >>>>> alertForEdit', alertForEdit)
-        if (!alertForEdit) {
+        const  result = await getAlert(id)
+        if (!result) {
             return null
         }
-        return alertForEdit // Возвращаем весь объект alert
+        setEditId(result?.id)
+        setEditTitle(result?.title)
+        setEditText(result?.text)
+        console.log('>>>>>>>>>>>>>>>> >>>>> alertForEdit', alertForEdit)
+        return result // Возвращаем весь объект alert
     }
 
+    // этот useEffect для перезагрузки страницы после получения id что б AlertForm получил свои пропсы
+    useEffect(() => {
+        console.log('>>> >>> >>> >>> >>>> >>>>> id', id)
+    }, [id])
     const HandleSubmit = async (formData: FormData) => {
         'use server'
         await handleAlert(formData)
@@ -54,7 +67,7 @@ const AddAlert = async () => {
                 </div>
 
                 <div className="items-center p-5">
-                    {/*<AlertForm HandleSubmit={HandleSubmit} titleforEdit={alertForEdit.title} textForEdit={alertForEdit.text} />*/}
+                    <AlertForm HandleSubmit={HandleSubmit} id={editId} title={editTitle} text={editText} />
                     <div className="flex justify-center p-10">
                         <Link href={'/posts'}>
                             <button className='button_blue'>Вернуться</button>
