@@ -33,14 +33,14 @@ const AddAlert = async () => {
         setEditId(result?.id)
         setEditTitle(result?.title)
         setEditText(result?.text)
-        console.log('>>>>>>>>>>>>>>>> >>>>> alertForEdit', alertForEdit)
+        console.log('>>>>>>>>>>>>>>>> >>>>> alertForEdit', result)
         return result // Возвращаем весь объект alert
     }
 
-    // этот useEffect для перезагрузки страницы после получения id что б AlertForm получил свои пропсы
+    // этот useEffect для перезагрузки страницы после получения id что б AlertForm получил свои пропсы вопрос успеет ли, поэтому editId
     useEffect(() => {
         console.log('>>> >>> >>> >>> >>>> >>>>> id', id)
-    }, [id])
+    }, [editId])
     const HandleSubmit = async (formData: FormData) => {
         'use server'
         await handleAlert(formData)
