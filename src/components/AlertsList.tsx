@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react'
-import Link from 'next/link'
 import AlertForm from '@/components/AlertForm.tsx'
 
 type AlertsListProps = {
@@ -10,7 +9,6 @@ type AlertsListProps = {
 }
 const AlertsList = ({ alerts } : any) => {
     const [ editId, setEditId ] = useState(null)
-    // const [ editText, setEditText ] = useState('')
 
     const hideAlertForm = () => {
         setEditId(null)
@@ -18,7 +16,6 @@ const AlertsList = ({ alerts } : any) => {
 
     return (
         <div className="flex">
-            <h1 className='flex justify-center'>{editId}</h1>
             <ul>
                 {alerts.map(alert => (
                     alert.id === editId

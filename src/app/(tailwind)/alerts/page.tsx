@@ -3,14 +3,9 @@ import { getServerSession } from 'next-auth'
 import { isAdmin } from '@/app/isAdmin.ts'
 import { isSessionExpired } from '@/app/isSessionExpired.ts'
 import { notFound, redirect } from 'next/navigation'
-import { handleAlert } from '@/app/actions/handleAlert.ts'
 import { getAlert, getAlerts } from '@/app/actions/getAlerts.ts'
 import AlertsList from '@/components/AlertsList.tsx'
-import AlertForm from '@/components/AlertForm.tsx'
-import { Alert } from '@/app/db/alert.model.ts'
-import theme from 'tailwindcss/defaultTheme'
-import { stringify } from 'querystring'
-import { consumeAlert, HandleSubmit } from '@/app/actions/alertsEditigFunctions.ts'
+import NewAlertForm from '@/components/NewAlertForm.tsx'
 
 const AddAlert = async () => {
     const alerts = await getAlerts()
@@ -20,22 +15,17 @@ const AddAlert = async () => {
         return redirect('/api/auth/signin')
     }
 
-    // const getAlertForEdit = async (id) => {
-    //     const result = await consumeAlert(id)
-    //     if (!result) {
-    //         return null
-    //     }
-    //     setEditId(result?.id)
-    //     setEditTitle(result?.title)
-    //     setEditText(result?.text)
-    //     console.log('>>>>>>>>>>>>>>>> >>>>> alertForEdit', result)
-    //     return result // Возвращаем весь объект alert
-    // }
-
     return (<>
         <div className="flex">
             <div className="flex-1 p-4">
-                {/* Первая колонка - список alerts */}
+                <div className="items-center p-5">
+                    <NewAlertForm />
+                    <div className="flex justify-center p-10">
+                        <Link href={'/posts'}>
+                            <button className='button_blue'>Вернуться</button>
+                        </Link>
+                    </div>
+                </div>
                 <div className="flex justify-center">
                     <h1 className="mt-6 pb-2">Список объявлений</h1>
                 </div>
@@ -45,21 +35,6 @@ const AddAlert = async () => {
                     <AlertsList alerts={alerts}/>
                 </div>
             </div>
-            {/* Вторая колонка - форма для добавления нового alert */}
-            {/*<div className="flex-1 p-4">*/}
-            {/*    <div className="flex justify-center">*/}
-            {/*        <h1 className="mt-6 pb-2">Создадим новое объявление...</h1>*/}
-            {/*    </div>*/}
-
-            {/*    <div className="items-center p-5">*/}
-            {/*        <AlertForm HandleSubmit={HandleSubmit} id={editId} title={editTitle} text={editText} />*/}
-            {/*        <div className="flex justify-center p-10">*/}
-            {/*            <Link href={'/posts'}>*/}
-            {/*                <button className='button_blue'>Вернуться</button>*/}
-            {/*            </Link>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
         </div>
     </>)
 }
