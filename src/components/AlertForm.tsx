@@ -2,23 +2,24 @@
 import React, { useEffect, useState } from 'react'
 
 type AlertForm = {
-    titleForEdit: string;
-    textForEdit: string;
+    id: number,
+    title: string;
+    text: string;
     HandleSubmit: (formData: FormData) => Promise<void>;
 }
 
-const AlertForm = ({ HandleSubmit, titleForEdit, textForEdit }: AlertForm) => {
-    const [ title, setTitle ] = useState(titleForEdit ? titleForEdit : '')
-    const [ text, setText ] = useState(textForEdit ? textForEdit : '')
+const AlertForm = ({ HandleSubmit, id, title, text }: AlertForm) => {
+    const [ editedTitle, setEditedTitle ] = useState(title ? title : '')
+    const [ editedText, setEditedText ] = useState(text ? text : '')
 
     return (
         <form className="edit bg-white rounded px-8 pt-6 pb-8" action={HandleSubmit}>
             <div className="mb-4">
                 <input
-                    value={title}
+                    value={editedTitle}
                     onChange={(e) => {
                         if (e.target?.value) {
-                            setTitle(e.target.value)
+                            setEditedTitle(e.target.value)
                         }
                     }}
                     required
@@ -27,10 +28,10 @@ const AlertForm = ({ HandleSubmit, titleForEdit, textForEdit }: AlertForm) => {
             </div>
             <div className="mb-4">
                 <textarea
-                    value={text}
+                    value={editedText}
                     onChange={(e) => {
                         if (e.target?.value) {
-                            setText(e.target.value)
+                            setEditedText(e.target.value)
                         }
                     }}
                     name='text'

@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import { getServerSession } from 'next-auth'
 import { isAdmin } from '@/app/isAdmin.ts'
 import { isSessionExpired } from '@/app/isSessionExpired.ts'
@@ -12,21 +12,22 @@ import AlertForm from '@/components/AlertForm.tsx'
 import { Alert } from '@/app/db/alert.model.ts'
 import theme from 'tailwindcss/defaultTheme'
 import { stringify } from 'querystring'
+import { consumeAlert, HandleSubmit } from '@/app/actions/alertsEditigFunctions.ts'
 
-const AddAlert = async () => {
-    const alerts = await getAlerts()
-    const session = await getServerSession()
-    const [editId, setEditId] = useState('')
-    const [editTitle, setEditTitle] = useState('')
-    const [editText, setEditText] = useState('')
+const AddAlert = () => {
+    const alerts = getAlerts()
+    const session = getServerSession()
+
+    const [ editId, setEditId ] = useState('')
+    const [ editTitle, setEditTitle ] = useState('')
+    const [ editText, setEditText ] = useState('')
 
     if (!session || !isAdmin(session) || isSessionExpired(session)) {
         return redirect('/api/auth/signin')
     }
 
     const getAlertForEdit = async (id) => {
-        'use server'
-        const  result = await getAlert(id)
+        const result = await consumeAlert(id)
         if (!result) {
             return null
         }
@@ -40,11 +41,7 @@ const AddAlert = async () => {
     // этот useEffect для перезагрузки страницы после получения id что б AlertForm получил свои пропсы вопрос успеет ли, поэтому editId
     useEffect(() => {
         console.log('>>> >>> >>> >>> >>>> >>>>> id', id)
-    }, [editId])
-    const HandleSubmit = async (formData: FormData) => {
-        'use server'
-        await handleAlert(formData)
-    }
+    }, [ editId ])
 
     return (<>
         <div className="flex">
