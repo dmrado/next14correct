@@ -3,6 +3,7 @@ import { Alert } from '@/app/db/alert.model.ts'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { TITLE_MIN_LENGTH } from '@/app/constants.ts'
+import { where } from 'sequelize'
 
 class ValidationError extends Error {}
 
@@ -13,7 +14,6 @@ type AlertData = {
     startDate: Date,
     endDate: Date
 }
-// todo id and text are undefined
 const cleanFormData = (formData: FormData): AlertData => {
     const id = formData.get('id')
     const title = formData.get('title')
@@ -40,7 +40,7 @@ const cleanFormData = (formData: FormData): AlertData => {
     return{
         title,
         text,
-        id: id ? Number(id) : undefined,
+        id: id && !isNaN(Number(id)) ? Number(id) : undefined,
         startDate: new Date(startDate),
         endDate: new Date(endDate)
     }
@@ -64,6 +64,14 @@ export const handleAlert = async (formData: FormData) => {
         }
         return redirect('/api/error/?code=500&message=SERVER_ERROR')
     }
+    revalidatePath('/alerts')
+    redirect('/alerts')
+}
+
+export const deleteAlert = async (id: number) : Promise<void> => {
+    await Alert.destroy(
+        { where: { id } }
+    )
     revalidatePath('/alerts')
     redirect('/alerts')
 }

@@ -2,19 +2,18 @@
 import { handleAlert } from '@/app/actions/handleAlert.ts'
 
 type AlertForm = {
-    id: number,
+    id?: number,
     title: string;
     text: string;
     startDate: Date;
     endDate: Date;
-    onSubmit: () => void
+    onSubmit?: () => void
 }
 
 const AlertForm = ({ id, title, text, startDate, endDate, onSubmit }: AlertForm) => {
-
     const handleSubmit = async (formData: FormData) => {
         await handleAlert(formData)
-            .then(() => onSubmit())
+            .then(() => onSubmit ? onSubmit() : undefined)
     }
 
     return (

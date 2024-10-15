@@ -1,0 +1,1 @@
+export const ALERTS_ENABLED = true

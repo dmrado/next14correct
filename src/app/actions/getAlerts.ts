@@ -14,7 +14,7 @@ export const getAlerts = async ()
                 [Op.gt]: now
             }
         },
-        order: [ [ 'startDate', 'DESC' ] ],
+        order: [ [ 'id', 'DESC' ] ],
     }).then(alerts => alerts.map(alert => alert.toJSON()))
 }
 
