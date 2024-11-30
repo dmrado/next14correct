@@ -3,10 +3,12 @@ import { Dosis } from 'next/font/google'
 import React, { ReactNode } from 'react'
 
 import YandexMetrika from '@/components/YandexMetrika'
-import Header from '@/components/Header'
+import Header from '@/components/Header.tsx'
 import Footer from '@/components/Footer'
 import { getConsentAccepted } from '@/app/actions/getCookiesAccepted.ts'
 import CookieConsent from '@/components/CookieConsent.tsx'
+import { Alert as AlertModel } from '@/app/db/alert.model.ts'
+import { getAlerts } from '@/app/actions/getAlerts.ts'
 
 const inter = Dosis({ subsets: [ 'latin' ] })
 export const metadata = {
@@ -17,7 +19,7 @@ export const metadata = {
 
 export default async function RootLayout({ children }: {children: ReactNode}) {
     const isAcceptedCookie = await getConsentAccepted()
-
+    const alerts = await getAlerts()
     return (
         <html lang="ru">
 
@@ -36,7 +38,7 @@ export default async function RootLayout({ children }: {children: ReactNode}) {
                     </div>
                 </div>}
 
-                <Header/>
+                <Header alerts={alerts}/>
 
                 <main>{children}</main>
 

@@ -25,7 +25,7 @@ const ContactForm = () => {
         message: '',
     })
     const [ recaptchaToken, setRecaptchaToken ] = useState('')
-
+    console.log('formState', formState)
     const onCaptchaChange = (token: string|null) => {
         if (!token || token.length < 1) {
             console.warn('Token is empty')

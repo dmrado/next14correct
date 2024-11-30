@@ -1,6 +1,7 @@
 import { Session } from 'next-auth'
 
 export const isAdmin = (session: Session | null) => {
+    console.log('session', session)
     if (!session) {
         return false //пользователь не залогинен
     }

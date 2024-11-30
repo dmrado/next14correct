@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { getServerSession } from 'next-auth'
 import React from 'react'
 import { isAdmin } from '@/app/isAdmin.ts'
+import { ALERTS_ENABLED } from '@/config.ts'
 
 export default async function HeaderButtons() {
     const session = await getServerSession()
@@ -29,6 +30,12 @@ export default async function HeaderButtons() {
                     {isAdmin(session) &&
                         <Link href={'/posts/new'}>
                             <button className='button_green'>Добавить пост</button>
+                        </Link>
+                    }
+
+                    {ALERTS_ENABLED && isAdmin(session) &&
+                        <Link href={'/alerts'}>
+                            <button className='button_blue'>Добавить объявление</button>
                         </Link>
                     }
 
