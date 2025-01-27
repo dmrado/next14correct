@@ -1,8 +1,7 @@
 import Link from 'next/link'
 
-const MediaPage = () => {
-
-    return (<>
+export const MediaPage = () => {
+        return (<>
             <div className="container youtube">
 
                 <div className="videohosting_btns">
@@ -16,7 +15,12 @@ const MediaPage = () => {
 
                 <div className="songs">
                     <Link href="https://www.youtube.com/playlist?list=PLUhK9QiIUX9eeE4RUp0usqia2wDQK_b8-">
+                    <div className="our-songs">Наши песни</div>
+                    <div className="lines"><i></i></div>
+
+
                         <div className="song__elem">
+
                             <div className="song__elem-1">
                                 <svg width="49" height="49" viewBox="0 0 39 39" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -54,6 +58,7 @@ const MediaPage = () => {
                                         fill="#FF6700"/>
                                 </svg>
                             </div>
+
                         </div>
                     </Link>
                 </div>
@@ -61,7 +66,7 @@ const MediaPage = () => {
 
                 <div className="media__list-wrapper">
 
-                    <div className="media__list-header">
+                <div className="media__list-header">
                         <h2>Наш фотоальбом</h2>
                     </div>
 
@@ -171,5 +176,4 @@ const MediaPage = () => {
         </>
     )
 }
-
 export default MediaPage
