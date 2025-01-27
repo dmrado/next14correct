@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 export const MediaPage = () => {
-        return (<>
+    return (<>
             <div className="container youtube">
 
                 <div className="videohosting_btns">
@@ -15,10 +15,8 @@ export const MediaPage = () => {
 
                 <div className="songs">
                     <Link href="https://www.youtube.com/playlist?list=PLUhK9QiIUX9eeE4RUp0usqia2wDQK_b8-">
-                    <div className="our-songs">Наши песни</div>
-                    <div className="lines"><i></i></div>
-
-
+                        <div className="our-songs">Наши песни</div>
+                        <div className="lines"><i></i></div>
                         <div className="song__elem">
 
                             <div className="song__elem-1">
@@ -39,7 +37,6 @@ export const MediaPage = () => {
                                 </svg>
                             </div>
 
-
                             <div className="song__elem-3">
                                 <svg width="46" height="42" viewBox="0 0 46 42" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -49,7 +46,6 @@ export const MediaPage = () => {
                                 </svg>
                             </div>
 
-
                             <div className="song__elem-4">
                                 <svg width="46" height="42" viewBox="0 0 46 42" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -58,7 +54,6 @@ export const MediaPage = () => {
                                         fill="#FF6700"/>
                                 </svg>
                             </div>
-
                         </div>
                     </Link>
                 </div>
@@ -66,7 +61,7 @@ export const MediaPage = () => {
 
                 <div className="media__list-wrapper">
 
-                <div className="media__list-header">
+                    <div className="media__list-header">
                         <h2>Наш фотоальбом</h2>
                     </div>
 

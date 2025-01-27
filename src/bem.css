@@ -2608,7 +2608,7 @@ body {
     text-transform: uppercase;
     /*padding-bottom: 25px;*/
     position: relative;
-    left: 70%;
+    left: 69%;
     /*top: 50%;*/
     transform: translate(-50%);
 }
@@ -2620,6 +2620,7 @@ body {
     width: 100%;
 }
 
+/* Создает две нижние линии */
 .lines::after {
     content: '';
     position: absolute;
@@ -2631,6 +2632,7 @@ body {
     border-top: 1px solid #004E98;
 }
 
+/* Создает две верхние линии */
 .lines::before {
     content: '';
     position: absolute;
@@ -2642,11 +2644,19 @@ body {
     height: 8px;
 }
 
+/* Создает среднюю (3-ю) линию */
 .lines i {
     position: absolute;
     left: 0;
     right: 0;
     bottom: 8px;
-    height: 1px;
-    background: #004E98;
+    border-top: 1px solid #004E98; /* Заменяем background на border-top */
+}
+
+.dots::before {
+    bottom: 6px;
+}
+
+.dots::after {
+    bottom: 14px;
 }
