@@ -2322,6 +2322,8 @@ body {
 .footer__info {
     display: block;
     transition: 0.7s;
+    transform: translateX(21%);
+    padding-bottom: 30px;
 }
 
 .footer_address {
