@@ -17,6 +17,13 @@
     box-sizing: inherit;
 }
 
+:root { --header-height: 190px}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--header-height);
+}
+
 a:-webkit-any-link {
     text-decoration: none;
     color: #fff;
@@ -107,7 +114,7 @@ body {
     border: none;
     background-color: #e15b01;
     color: #fff;
-    transform: translateX(1px) translateY(-3px);
+    transform: translateX(1px) translateY(-1px);
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.47);
 }
 
