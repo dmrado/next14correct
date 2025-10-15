@@ -2532,7 +2532,7 @@ body {
 }
 .songs {
     height: 100%;
-    margin: 20px auto 0 auto;
+    margin: 26px auto -18px auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
