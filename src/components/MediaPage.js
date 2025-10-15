@@ -58,6 +58,35 @@ export const MediaPage = () => {
                     </Link>
                 </div>
 
+                {/*VK-музыка*/}
+                <Link href="https://share.google/l2kPXW5LPDpXopFCP" target="_blank">
+                    <div className="song__elem-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="72" height="82" viewBox="0 0 72 72" role="img"
+                             aria-label="Слушать на VK Music">
+                            {/*нота*/}
+                            <svg x="15" y="14" width="46" height="42" viewBox="0 0 46 42" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M23 8.75V23.7125C21.1983 22.7675 18.975 22.4 16.6175 23.1525C14.0491 23.9925 12.075 26.075 11.615 28.525C11.4023 29.6274 11.4818 30.7603 11.8468 31.8289C12.2117 32.8975 12.8516 33.8708 13.7128 34.6674C14.5741 35.4641 15.6317 36.0609 16.7972 36.408C17.9628 36.7551 19.2024 36.8423 20.4125 36.6625C24.1691 36.12 26.8333 32.97 26.8333 29.4875V12.25H30.6666C32.775 12.25 34.5 10.675 34.5 8.75C34.5 6.825 32.775 5.25 30.6666 5.25H26.8333C24.725 5.25 23 6.825 23 8.75Z"
+                                    fill="#004E98"/>
+                            </svg>
+                            {/*треугольник*/}
+                            <path d="M36 66 L9.294 19.5
+           A4.5 4.5 0 0 1 14.794 15.5
+           L57.206 15.5
+           A4.5 4.5 0 0 1 62.706 19.5 Z"
+                                  fill="none" stroke="#FF6700" stroke-width="2" stroke-linejoin="round"
+                                  stroke-linecap="round"/>
+                            {/*"слушать"*/}
+                            <text x="36" y="69.5" text-anchor="middle" fill="#004E98"
+                                  font-family="Helvetica, Arial, sans-serif" font-weight="500" font-size="14"
+                                  dominant-baseline="middle" text-transform="uppercase">
+                                СЛУШАТЬ
+                            </text>
+                        </svg>
+                    </div>
+                </Link>
+
 
                 <div className="media__list-wrapper">
 
