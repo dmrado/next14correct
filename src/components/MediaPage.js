@@ -61,7 +61,7 @@ export const MediaPage = () => {
                 {/*VK-музыка*/}
                 <Link href="https://share.google/l2kPXW5LPDpXopFCP" target="_blank">
                     <div className="song__elem-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="72" height="82" viewBox="0 0 72 92" role="img"
+                        <svg xmlns="http://www.w3.org/2000/svg" width="82" height="82" viewBox="0 0 72 92" role="img"
                              aria-label="Слушать на VK Music">
                             {/*нота*/}
                             <svg x="19" y="18" width="36" height="32" viewBox="0 0 46 42" fill="none"
@@ -81,7 +81,7 @@ export const MediaPage = () => {
                             <text x="36" y="69.5" text-anchor="middle" fill="#004E98"
                                   font-family="Helvetica, Arial, sans-serif" font-weight="500" font-size="14"
                                   dominant-baseline="middle" transform="translate(0,9)">
-                                СЛУШАТЬ
+                                СЛУШАТЬ ВК
                             </text>
                         </svg>
                     </div>
