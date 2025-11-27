@@ -59,7 +59,7 @@ export const MediaPage = () => {
                 </div>
 
                 {/*VK-музыка*/}
-                <Link href="https://share.google/l2kPXW5LPDpXopFCP" target="_blank">
+                <Link href="https://vk.com/audios175381428?section=all&z=audio_playlist175381428_3" target="_blank">
                     <div className="song__elem-4">
                         <svg xmlns="http://www.w3.org/2000/svg" width="82" height="82" viewBox="0 0 72 92" role="img"
                              aria-label="Слушать на VK Music">
