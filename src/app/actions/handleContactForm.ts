@@ -4,7 +4,8 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { FILE_LIMIT, TITLE_MIN_LENGTH } from '@/app/constants.ts'
 import { sendMail } from '@/app/actions/nodemailer.ts'
-import { validateGoogleRecaptcha } from '@/app/actions/googleRecaptcha.ts'
+import {validateGoogleRecaptcha} from '@/app/actions/googleRecaptcha.ts'
+import { verifyConsentToken } from '@/lib/verifyConsentToken'
 
 class ValidationError extends Error {
 }
@@ -41,6 +42,11 @@ const cleanFormData = (formData: FormData): ContactData => {
 }
 
 export const handleContactForm = async (formState: {message: string}, formData: FormData) => {
+    const consentToken = formData.get('consent_token') as string
+
+    if (!consentToken || !verifyConsentToken(consentToken)) {
+        return { message: 'Необходимо принять соглашение об обработке персональных данных' }
+    }
     try {
         const { name, email, title, message, recaptchaToken } = cleanFormData(formData)
         console.log('name, email, title, message', name, email, title, message)
