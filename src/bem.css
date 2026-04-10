@@ -16,7 +16,9 @@
     box-sizing: inherit;
 }
 
-:root { --header-height: 190px}
+:root {
+    --header-height: 190px
+}
 
 html {
     scroll-behavior: smooth;
@@ -85,6 +87,7 @@ body {
     font-size: 0.85rem;
     text-align: left;
 }
+
 .cookie-consent-information h3 {
     display: flex;
     justify-content: center;
@@ -220,7 +223,7 @@ body {
     box-shadow: 0 3px 5px #8a8a8a;
 }
 
-.nav__logo{
+.nav__logo {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -357,6 +360,7 @@ body {
     .nav {
         padding: 15px 120px;
     }
+
     .header__burger-btn {
         transform: translateX(500%);
         display: block;
@@ -427,13 +431,13 @@ body {
     }
 }
 
-@media(max-width: 870px){
+@media (max-width: 870px) {
     .header__burger-btn {
         transform: translateX(300%);
     }
 }
 
-@media(max-width: 780px){
+@media (max-width: 780px) {
     .header__burger-btn {
         transform: translateX(250%);
     }
@@ -441,7 +445,7 @@ body {
 
 
 @media (max-width: 670px) {
-    .nav{
+    .nav {
         /*так надо из за скрытого справа меню для телефонной ориентации шириной около 40px*/
         padding-top: 15px;
         padding-right: 130px;
@@ -1606,11 +1610,12 @@ body {
     max-width: 120px;
 }
 
-.holiday__name{
+.holiday__name {
     display: flex;
     justify-content: center;
     padding: 0 10px;
 }
+
 .book_box h2 {
     color: #FF6700;
     text-transform: uppercase;
@@ -1969,7 +1974,7 @@ body {
 
 
 /*Контаты горизонтальные в единственном числе contact start*/
-.google__calendar{
+.google__calendar {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -2089,7 +2094,7 @@ body {
     flex-direction: column;
 }
 
-.form__submit{
+.form__submit {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2340,7 +2345,7 @@ body {
 }
 
 @media (max-width: 670px) {
-    .footer{
+    .footer {
         justify-content: space-between;
         padding-left: 15px;
     }
@@ -2357,7 +2362,7 @@ body {
         padding-right: 120px;
     }
 
-    .nav__logo{
+    .nav__logo {
         padding-left: 1px;
     }
 
@@ -2383,7 +2388,7 @@ body {
         margin-right: 1px;
     }
 
-    .menu_socials{
+    .menu_socials {
         gap: 0;
     }
 
@@ -2438,7 +2443,7 @@ body {
 }  */
 
 
-.btn-personalDatesModalOpen{
+.btn-personalDatesModalOpen {
     display: inline-block;
     padding: 10px;
     text-transform: uppercase;
@@ -2452,20 +2457,22 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-.btn-personalDatesModalOpen:hover{
+.btn-personalDatesModalOpen:hover {
     color: #004E98;
     border: 2px solid #004E98;
 }
-.btn-personalDatesModalOpen:active{
+
+.btn-personalDatesModalOpen:active {
     background-color: #fff;
     color: #004E98;
 }
 
-.videohosting_btns{
+.videohosting_btns {
     display: flex;
     justify-content: center;
 
 }
+
 .songs {
     height: 100%;
     margin: 26px auto -18px auto;
@@ -2474,7 +2481,7 @@ body {
     justify-content: center;
 }
 
-.song__elem{
+.song__elem {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -2509,9 +2516,15 @@ body {
 }
 
 @keyframes wave {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0); }
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
 }
 
 @keyframes scatter {
@@ -2546,7 +2559,7 @@ body {
     animation-duration: 0.4s; /* Уменьшаем длительность анимации */
 }
 
-.our-songs{
+.our-songs {
     color: #004E98;
     text-transform: uppercase;
     /*padding-bottom: 25px;*/
@@ -2602,4 +2615,54 @@ body {
 
 .dots::after {
     bottom: 14px;
+}
+
+/*блок согласия с обработкой песональных данных*/
+
+
+.form__consent {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 12px 0;
+    cursor: pointer;
+}
+
+.form__consent_checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    display: inline-block;
+    border: 2px solid #004E98;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+
+.form__consent_checkbox:checked {
+    background-color: #FFFFFFFF;
+}
+
+.form__consent_checkbox:checked::after {
+    content: '';
+    position: absolute;
+    /* Центрируем и выравниваем галочку */
+    inset: 0;
+    margin: auto;
+    left: 1px;
+    top: -2px;
+    /* --- */
+    width: 4px;
+    height: 8px;
+    border: 2px solid #004E98;
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg);
+}
+
+.form__consent_text {
+    font-size: 14px;
+    color: #555;
+    user-select: none;
+    line-height: 1.4;
 }
