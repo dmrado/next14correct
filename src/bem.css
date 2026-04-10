@@ -2029,6 +2029,9 @@ body {
     height: 100px;
     padding: 20px;
     color: #505050;
+
+    justify-items: center; /* убрать если вернется форма обратной связи */
+    text-align: center;
 }
 
 .address__list h4 {
@@ -2209,10 +2212,21 @@ body {
     }
 }
 
-@media (max-width: 460px) {
-    .form__wrapper {
+/*раскомментировать что бы форма показалась на компах*/
+/*@media (max-width: 460px) {*/
+/*    .form__wrapper {*/
+/*        grid-template-columns: 1fr;*/
+/*        height: 100%;*/
+/*    }*/
+/*}*/
+
+@media (min-width: 461px) {
+    .address__wrapper {
         grid-template-columns: 1fr;
-        height: 100%;
+    }
+
+    .form__wrapper {
+        display: none !important;
     }
 }
 
