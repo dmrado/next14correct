@@ -138,11 +138,11 @@ const Header = () => {
                                     Полезное
                                 </Link>
                             </li>
-                            <li className="menu__item">
-                                <Link className="menu__link" href="/posts">
-                                    Блог
-                                </Link>
-                            </li>
+                            {/*<li className="menu__item">*/}
+                            {/*    <Link className="menu__link" href="/posts">*/}
+                            {/*        Блог*/}
+                            {/*    </Link>*/}
+                            {/*</li>*/}
                         </ul>
                     </div>
 
