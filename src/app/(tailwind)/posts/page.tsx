@@ -1,4 +1,15 @@
-export {}
+import { redirect } from 'next/navigation'
+
+/**
+ * Блог убран с сайта. Файл нельзя просто опустошить: Next.js требует от каждой
+ * page.tsx экспорт компонента по умолчанию, иначе сборка падает на проверке
+ * типов. Поэтому страница осталась, но уводит на главную — заодно старые ссылки
+ * из поиска не отдают 404. Прежняя разметка сохранена ниже в комментарии.
+ */
+export default function Posts() {
+    redirect('/')
+}
+
 // import PostList from '@/components/PostList.tsx'
 // import React from 'react'
 // import { getPosts } from '@/app/actions/getPosts.ts'
