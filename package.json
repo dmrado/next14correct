@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p 3002",
+    "start": "next start -H 127.0.0.1 -p 3002",
     "lint": "next lint",
     "sync": "npx tsx src/db-sync.ts",
     "seed": "npx tsx src/db-seed.ts",
