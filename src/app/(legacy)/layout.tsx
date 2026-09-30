@@ -2,7 +2,7 @@ import '@/bem.css'
 import { Dosis } from 'next/font/google'
 import React, { ReactNode } from 'react'
 
-import YandexMetrika from '@/components/YandexMetrika'
+// import YandexMetrika from '@/components/YandexMetrika'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { getConsentAccepted } from '@/app/actions/getCookiesAccepted.ts'
@@ -23,11 +23,16 @@ export default async function RootLayout({ children }: {children: ReactNode}) {
 
             <body className={inter.className}>
 
-                <YandexMetrika/>
-
-                <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+                {/**
+                  * Яндекс.Метрика и Google reCAPTCHA отключены владельцем:
+                  * оба грузятся с чужих серверов и передают туда данные
+                  * посетителя. Форма обратной связи, ради которой стояла
+                  * капча, с сайта убрана. Код оставлен на случай возврата.
+                  */}
+                {/* <YandexMetrika/> */}
+                {/* <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
                     async defer>
-                </script>
+                </script> */}
                 {!isAcceptedCookie && <div className="flex justify-center mt-36">
                     <div className='cookie-consent-information'>
                         <CookieConsent
