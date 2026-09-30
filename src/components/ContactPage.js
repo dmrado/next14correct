@@ -1,6 +1,7 @@
 "use client";
 import ContactForm from "@/components/ContactForm.tsx";
 import CookieConsent from "@/components/CookieConsent.tsx";
+import ExternalEmbed from "@/components/ExternalEmbed.tsx";
 import React from "react";
 
 const CONTACTS = {
@@ -53,14 +54,11 @@ const ContactPage = () => {
           >
             Улица Пушкина, 16 Еврейская община города Артем — Яндекс&nbsp;Карты
           </a>
-          <iframe
-            style={{ border: 0, width: "100%", height: "350px" }}
+          <ExternalEmbed
             src="https://yandex.ru/map-widget/v1/?from=mapframe&ll=132.179308%2C43.349194&mode=whatshere&whatshere%5Bpoint%5D=132.178066%2C43.349638&whatshere%5Bzoom%5D=17&z=16.39"
-            width="1670"
-            height="400"
-            // frameBorder={0}
-            allowFullScreen={true}
-            // style={{ position: "relative" }}
+            title="Карта: как нас найти"
+            recipient="Яндекс"
+            height={350}
           />
         </div>
       </div>
@@ -68,12 +66,12 @@ const ContactPage = () => {
       {/*ADDRESS===============================================================*/}
       <div className="container">
         <div className="google__calendar">
-          <iframe
+          <ExternalEmbed
             src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Asia%2FVladivostok&bgcolor=%23ebebeb&src=MDhiOTRmNmRkODM4ODVmNjcwMzQ3NmE0OTMzNWU0Nzg0YmYyYzk1MjdmOGEwNmRiNGIxYWVkYzdlYjdkYzJhYUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=cnUucnVzc2lhbiNob2xpZGF5QGdyb3VwLnYuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%23039BE5&color=%230B8043"
-            style={{ borderWidth: 0 }}
-            width={1040}
+            title="Расписание встреч"
+            recipient="Google (США)"
             height={600}
-          ></iframe>
+          />
         </div>
 
         <div className="address__wrapper">

@@ -1,12 +1,17 @@
 "use client";
 import { useState } from "react";
 import { setConsentAccepted } from "@/app/actions/setCookiesAccepted.ts";
+import { setConsentDeclined } from "@/app/actions/setCookiesAccepted.ts";
 import Link from "next/link";
 
 const CookieConsent = ({ isAccepted }: { isAccepted: boolean }) => {
   const [showMessage, setShowMessage] = useState(true);
   const handleAccept = async () => {
     await setConsentAccepted();
+    setShowMessage(false);
+  };
+  const handleDecline = async () => {
+    await setConsentDeclined();
     setShowMessage(false);
   };
   if (isAccepted) return <></>;
@@ -28,31 +33,29 @@ const CookieConsent = ({ isAccepted }: { isAccepted: boolean }) => {
       </h3>
 
       <div className="text-[14px]">
-        Наш сайт использует файлы cookie для улучшения вашего опыта,
-        персонализации контента и сбора статистики. Эти файлы включают
-        собственные данные и данные сторонних сервисов: Яндекс
-        (зарегистрированный товарный знак Яндекса).
+        Сайт сохраняет файлы cookie, без которых он не может работать: они
+        помнят ваш выбор на этом окне и вход в личный кабинет. Счётчиков
+        посещаемости и других следящих сервисов на сайте нет.
         {/*  Мы применяем Google*/}
         {/*reCAPTCHA для защиты сайта от спама и злоумышленников, подтверждая, что*/}
         {/*вы человек, а не программа. */}
-        Мы используем Яндекс.Карты для предоставления удобных карт,
-        местоположений, адресов и маршрутов. Как разработчик, мы также
-        используем cookie для сохранения вашего выбора об их использовании.
-        Подробная информация об обработке данных доступна в нашей:
+        Карта и расписание встреч подгружаются со сторонних сайтов — Яндекса
+        и Google — но только после того, как вы сами нажмёте кнопку на их
+        месте. Пока вы этого не сделали, ваши данные туда не уходят.
+        Подробности:
       </div>
       <Link href={"/policy"}>
         <u>Политике конфиденциальности в отношении персональных данных</u>
       </Link>
 
-      <div className="text-[12px]">
-        Продолжая использовать наш сайт, вы подтверждаете свое согласие с
-        использованием указанных файлов cookie в соответствии с нашей Политикой.
+      <div className="flex justify-center" style={{ gap: "21px" }}>
+        <form action={handleAccept}>
+          <button className="btn btn-blog">Согласен</button>
+        </form>
+        <form action={handleDecline}>
+          <button className="btn btn-blog">Отказаться</button>
+        </form>
       </div>
-      <form className="flex justify-center" action={handleAccept}>
-        <button className="btn btn-blog" style={{ marginRight: "21px" }}>
-          Согласен
-        </button>
-      </form>
     </div>
   );
 };
