@@ -4,6 +4,21 @@ import CookieConsent from "@/components/CookieConsent.tsx";
 import ExternalEmbed from "@/components/ExternalEmbed.tsx";
 import React from "react";
 
+/**
+ * Адрес встраиваемого расписания и название сервиса, которому уходят данные
+ * посетителя. Переезжаем с Google Календаря на Яндекс.Календарь: когда будет
+ * готов код виджета, заменить эти две строки — больше адрес нигде не
+ * встречается. Пока стоит прежний Google, чтобы расписание не пропало с сайта.
+ *
+ * Код виджета берётся в Яндекс.Календаре: навести курсор на название
+ * календаря слева, «Открыть настройки», вкладка доступа, поле «Код для
+ * вставки календаря на сайт». События с видимостью «Участники» в виджете
+ * не показываются — им нужна видимость «Все».
+ */
+const CALENDAR_EMBED_URL =
+  "https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Asia%2FVladivostok&bgcolor=%23ebebeb&src=MDhiOTRmNmRkODM4ODVmNjcwMzQ3NmE0OTMzNWU0Nzg0YmYyYzk1MjdmOGEwNmRiNGIxYWVkYzdlYjdkYzJhYUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=cnUucnVzc2lhbiNob2xpZGF5QGdyb3VwLnYuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%23039BE5&color=%230B8043";
+const CALENDAR_RECIPIENT = "Google (США)";
+
 const CONTACTS = {
   headerAddres1: "Адрес: ",
   headerAddres2:
@@ -67,9 +82,9 @@ const ContactPage = () => {
       <div className="container">
         <div className="google__calendar">
           <ExternalEmbed
-            src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Asia%2FVladivostok&bgcolor=%23ebebeb&src=MDhiOTRmNmRkODM4ODVmNjcwMzQ3NmE0OTMzNWU0Nzg0YmYyYzk1MjdmOGEwNmRiNGIxYWVkYzdlYjdkYzJhYUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=cnUucnVzc2lhbiNob2xpZGF5QGdyb3VwLnYuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%23039BE5&color=%230B8043"
+            src={CALENDAR_EMBED_URL}
             title="Расписание встреч"
-            recipient="Google (США)"
+            recipient={CALENDAR_RECIPIENT}
             height={600}
           />
         </div>
